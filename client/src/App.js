@@ -2,18 +2,15 @@ import React from 'react';
 import './App.css'; // Importa el archivo CSS aquí
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import SaAgregar from './Screens/Agregar/SA_Agregar';
+import Inicio from './Screens/Inicio/Inicio';
 
-import SAModificar from './Screens/Modificar/SA_Modificar';
 
 function App() {
   return (
     <div className=''>
       <Router>
         <Routes>
-          <Route path="/SA_Agregar" element={<SaAgregar />} />
-          <Route path="/Inicio" element={<VerInicio />} />
-          <Route path="/SA_Modificar" element={<SAModificar />} />
+          <Route path="/Inicio" element={<Inicio />}></Route>
         </Routes>
       </Router>
     </div>

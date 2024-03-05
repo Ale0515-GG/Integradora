@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Inicio/Inicio.css'
 
 const Inicio = () => {
   return (
