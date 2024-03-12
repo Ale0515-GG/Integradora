@@ -3,6 +3,7 @@ import './App.css'; // Importa el archivo CSS aquí
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Inicio from './Screens/Inicio/Inicio';
+import Admin from './Screens/Administrador/Administrador/Admin';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/Inicio" element={<Inicio />}></Route>
+          <Route path="/Admin" element={<Admin />}></Route>
         </Routes>
       </Router>
     </div>
