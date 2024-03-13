@@ -7,7 +7,9 @@ import Admin from './Screens/Administrador/Administrador/Admin';
 import Apro from './Screens/Administrador/AprobacionHorarios/Apro';
 import LogeoEm from './Screens/Empleado/LogeoE/LogeoEm';
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
-import Noti from './Screens/Empleado/Notificaciones/Noti';
+import Noti from './Screens/Empleado/notificaciones/Notificaciones';
+import Contratos from './Screens/Administrador/Contratos/Contratos'
+
 
 
 
@@ -22,6 +24,7 @@ function App() {
           <Route path="/LogeoEm" element={<LogeoEm />}></Route>
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
           <Route path="/Noti" element={<Noti />}></Route>
+          <Route path="/Contratos" element={<Contratos/>}></Route>
         </Routes>
       </Router>
     </div>
