@@ -10,6 +10,7 @@ import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
 import Noti from './Screens/Empleado/Notificaciones/Noti';
 
 
+
 function App() {
   return (
     <div className=''>
