@@ -5,7 +5,6 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 
-
 function App() {
   return (
     <div className=''>
