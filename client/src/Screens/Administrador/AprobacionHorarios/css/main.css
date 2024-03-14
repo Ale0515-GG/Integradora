@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  width: 100%;
+  padding: 16px;
   background-color: rgba(255, 255, 255, 1);
   position: relative;
   overflow: hidden;
@@ -42,28 +42,31 @@ body {
   left: 224px;
 }
 
-.solicitudes-lista {
-  padding: 20px;
+.table {
+  margin-top: 16px;
 }
 
-.solicitud-item {
-  background-color: rgba(217, 217, 217, 1);
-  border-radius: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  position: relative;
-}
-
-.solicitud-info {
-  margin-bottom: 20px;
-}
-
-.botones {
+.row {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
 }
 
-.btn-aprobar,
-.btn-rechazar {
+.name {
+  flex: 2;
+}
+
+.department {
+  flex: 1;
+}
+
+.contractType {
+  flex: 2;
+}
+
+.button {
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
@@ -73,20 +76,18 @@ body {
   font-size: 16px;
 }
 
-.btn-aprobar {
-  background-color: rgba(0, 131, 0, 1);
-  color: #fff;
-}
-
-.btn-rechazar {
+.button.reject {
   background-color: rgba(255, 0, 0, 1);
   color: #fff;
 }
 
-.p{
+.button.approve {
+  background-color: rgba(0, 131, 0, 1);
+  color: #fff;
+}
+
+.p {
   color: #000000;
   font-size: 30px;
   font-weight: normal;
- 
-  
 }

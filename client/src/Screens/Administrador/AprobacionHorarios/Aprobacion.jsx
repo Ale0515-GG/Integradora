@@ -1,69 +1,62 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importa el componente Link de React Router
-import './css/main.css'; // Importa el archivo de estilos CSS
+import './css/main.css';
+import { Link } from 'react-router-dom';
 
 const Aprobacion = () => {
   // Estado para almacenar las solicitudes
   const [solicitudes, setSolicitudes] = useState([
     {
-      id: 1,
-      nombre: 'Juan Pérez',
-      departamento: 'Ventas',
-      tipoContrato: 'Tiempo completo'
+      nombre: 'Angela Ramirez',
+      departamento: 'Administrador',
+      tipoContrato: 'Trabaja 5 días y descansa 2'
     },
-    {
-      id: 2,
-      nombre: 'María López',
-      departamento: 'Recursos Humanos',
-      tipoContrato: 'Medio tiempo'
-    },
-    // Agrega más solicitudes de prueba aquí según lo necesites
+    // Agrega más solicitudes según lo necesites
   ]);
 
   // Función para aprobar una solicitud
-  const aprobarSolicitud = (id) => {
-    // Lógica para aprobar la solicitud con el id especificado
+  const aprobarSolicitud = (index) => {
+    // Lógica para aprobar la solicitud en el índice especificado
     // Por ejemplo, puedes eliminar la solicitud del estado
-    setSolicitudes(solicitudes.filter(solicitud => solicitud.id !== id));
+    const newSolicitudes = [...solicitudes];
+    newSolicitudes.splice(index, 1);
+    setSolicitudes(newSolicitudes);
   };
 
   // Función para rechazar una solicitud
-  const rechazarSolicitud = (id) => {
-    // Lógica para rechazar la solicitud con el id especificado
+  const rechazarSolicitud = (index) => {
+    // Lógica para rechazar la solicitud en el índice especificado
     // Por ejemplo, puedes eliminar la solicitud del estado
-    setSolicitudes(solicitudes.filter(solicitud => solicitud.id !== id));
+    const newSolicitudes = [...solicitudes];
+    newSolicitudes.splice(index, 1);
+    setSolicitudes(newSolicitudes);
   };
 
   return (
     <div className="container">
       <div className="header">
-        {/* Agrega el logo envuelto en un Link para redirigir a la página de inicio */}
-        <Link to="/Admin" className="logo"></Link>
-        <h1 className="title">Lista de Solicitudes Pendientes</h1>
+      <Link to="/Admin" className="logo"></Link>
+        <h1 className="title">Solicitud de Horarios</h1>
+        
       </div>
-      <div className="solicitudes-lista">
+      <div className="table">
         {solicitudes.length > 0 ? (
-          <ul>
-            {solicitudes.map(solicitud => (
-              <li key={solicitud.id} className="solicitud-item">
-                <div className="solicitud-info">
-                  <p><strong>Nombre:</strong> {solicitud.nombre}</p>
-                  <p><strong>DPTO.:</strong> {solicitud.departamento}</p>
-                  <p><strong>Tipo de contrato:</strong> {solicitud.tipoContrato}</p>
-                </div>
-                <div className="botones">
-                  <button className="btn-aprobar" onClick={() => aprobarSolicitud(solicitud.id)}>Aprobar</button>
-                  <button className="btn-rechazar" onClick={() => rechazarSolicitud(solicitud.id)}>Rechazar</button>
-                </div>
-              </li>
+          <div>
+            {solicitudes.map((solicitud, index) => (
+              <div key={index} className="row">
+                <div className="name">{solicitud.nombre}</div>
+                <div className="department">{solicitud.departamento}</div>
+                <div className="contractType">{solicitud.tipoContrato}</div>
+                <button className="button reject" onClick={() => rechazarSolicitud(index)}>Rechazar</button>
+                <button className="button approve" onClick={() => aprobarSolicitud(index)}>Aprobar</button>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
-          <p className='p'>No hay solicitudes pendientes.</p>
+          <p>No hay solicitudes pendientes.</p>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Aprobacion;
