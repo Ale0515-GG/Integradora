@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react"
+import './css/main.css'
 
-const Apro = () => {
-  return (
+const Contratos = () => {
+    return(
+<body>
     <div class="v282_91">
         <div class="v282_92"></div>
         <div class="v282_93"></div><span class="v282_94">Chrono Magnament </span>
@@ -24,7 +26,7 @@ const Apro = () => {
         <div class="v282_121"></div>
         <div class="v282_122"></div>
         <div class="v282_123"></div>
-        <div class="v282_124"></div><span class="v282_125">Solicitud de Horarios</span>
+        <div class="v282_124"></div><span class="v282_125">Contratos</span>
         <div class="v282_126"></div><span class="v282_127">Rechazar</span>
         <div class="v282_128"></div>
         <div class="v282_129"></div>
@@ -43,7 +45,6 @@ const Apro = () => {
         <div class="v282_148"></div><span class="v282_149">Aprobar</span>
         <div class="v282_150"></div>
     </div>
-  )
+</body>
+    )
 }
-
-export default Apro
