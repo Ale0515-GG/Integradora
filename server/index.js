@@ -1,21 +1,25 @@
-const express = require('express')
-const cors = require('cors')
-const mongoose = require('mongoose') 
+import express from "express"
+import mongoose from "mongoose"
+import cors from "cors"
+import { routerUsuarios } from "./routes/routerUsuarios.js";
+
 
 const app = express()
+const PORT = process.env.PORT || 3001
+
 app.use(cors())
 app.use(express.json())
 
-const PORT = process.env.PORT || 8080
 
 
-const userModel=mongoose.model("gatos",schemaData)
+mongoose.connect("mongodb://127.0.0.1:27017/gatos", { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('Conectado a MongoDB'))
+.catch(error => console.error('Error al conectar a MongoDB:', error));
 
-mongoose.connect("mongodb://127.0.0.1:27017/gatos")
-.then(()=>{
-    console.log("conectado a DB")
-    app.listen(PORT,()=>console.log("El sevidor esta funcionando"))
-})
-.catch((err)=>console.log(err))
+app.use('/usuarios',routerUsuarios)
+
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+  });
 
 
