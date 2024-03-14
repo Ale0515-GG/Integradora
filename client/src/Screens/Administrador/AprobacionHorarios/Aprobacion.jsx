@@ -6,7 +6,12 @@ const Aprobacion = () => {
   // Estado para almacenar las solicitudes
   const [solicitudes, setSolicitudes] = useState([
     {
-      nombre: 'Angela Ramirez',
+      nombre: 'Francisco Perez',
+      departamento: 'Administrador',
+      tipoContrato: 'Trabaja 5 días y descansa 2'
+    },
+    {
+      nombre: 'Francisco Perez',
       departamento: 'Administrador',
       tipoContrato: 'Trabaja 5 días y descansa 2'
     },

@@ -43,7 +43,8 @@ body {
 }
 
 .table {
-  margin-top: 16px;
+  margin-top: 75px;
+  background-color: rgb(76, 172, 232);
 }
 
 .row {
@@ -55,7 +56,8 @@ body {
 }
 
 .name {
-  flex: 2;
+  flex: 1;
+  color: #0c0c0c
 }
 
 .department {
