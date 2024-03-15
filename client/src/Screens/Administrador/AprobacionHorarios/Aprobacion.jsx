@@ -9,30 +9,49 @@ const Aprobacion = () => {
       nombre: "Francisco Perez",
       departamento: "Administrador",
       tipoContrato: "Trabaja 5 días y descansa 2",
+      estado: "pendiente", // Nuevo campo para el estado de la solicitud
+      historial: [] // Nuevo campo para el historial de la solicitud
     },
     {
       nombre: "Francisco Perez",
       departamento: "Administrador",
       tipoContrato: "Trabaja 5 días y descansa 2",
+      estado: "pendiente",
+      historial: []
     },
     // Agrega más solicitudes según lo necesites
   ]);
 
+  // Función para obtener la fecha actual en el formato deseado
+  const obtenerFechaActual = () => {
+    const fecha = new Date();
+    const dia = fecha.getDate().toString().padStart(2, "0");
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const año = fecha.getFullYear();
+    return `${dia}/${mes}/${año}`;
+  };
+
   // Función para aprobar una solicitud
   const aprobarSolicitud = (index) => {
-    // Lógica para aprobar la solicitud en el índice especificado
-    // Por ejemplo, puedes eliminar la solicitud del estado
     const newSolicitudes = [...solicitudes];
-    newSolicitudes.splice(index, 1);
+    const fechaAprobacion = obtenerFechaActual();
+    newSolicitudes[index].estado = "aprobado";
+    newSolicitudes[index].historial.push({
+      accion: "aprobado",
+      fecha: fechaAprobacion,
+    });
     setSolicitudes(newSolicitudes);
   };
 
   // Función para rechazar una solicitud
   const rechazarSolicitud = (index) => {
-    // Lógica para rechazar la solicitud en el índice especificado
-    // Por ejemplo, puedes eliminar la solicitud del estado
     const newSolicitudes = [...solicitudes];
-    newSolicitudes.splice(index, 1);
+    const fechaRechazo = obtenerFechaActual();
+    newSolicitudes[index].estado = "rechazado";
+    newSolicitudes[index].historial.push({
+      accion: "rechazado",
+      fecha: fechaRechazo,
+    });
     setSolicitudes(newSolicitudes);
   };
 
@@ -51,28 +70,38 @@ const Aprobacion = () => {
                 <div className="name">{solicitud.nombre}</div>
                 <div className="department">{solicitud.departamento}</div>
                 <div className="contractType">{solicitud.tipoContrato}</div>
-                <button
-                  style={{
-                    padding: "5px 10px",
-                    fontSize: "14px",
-                    maxWidth: "100px",
-                  }}
-                  className="button reject"
-                  onClick={() => rechazarSolicitud(index)}
-                >
-                  Rechazar
-                </button>
-                <button
-                  style={{
-                    padding: "5px 10px",
-                    fontSize: "14px",
-                    maxWidth: "100px",
-                  }}
-                  className="button approve"
-                  onClick={() => aprobarSolicitud(index)}
-                >
-                  Aprobar
-                </button>
+                <div className="status">{solicitud.estado}</div>
+                <div className="date">
+                  {solicitud.historial.length > 0 &&
+                    solicitud.historial[solicitud.historial.length - 1].fecha}
+                </div>
+                {/* Mostrar botones solo si el estado es "pendiente" */}
+                {solicitud.estado === "pendiente" && (
+                  <>
+                    <button
+                      style={{
+                        padding: "5px 10px",
+                        fontSize: "14px",
+                        maxWidth: "100px",
+                      }}
+                      className="button reject"
+                      onClick={() => rechazarSolicitud(index)}
+                    >
+                      Rechazar
+                    </button>
+                    <button
+                      style={{
+                        padding: "5px 10px",
+                        fontSize: "14px",
+                        maxWidth: "100px",
+                      }}
+                      className="button approve"
+                      onClick={() => aprobarSolicitud(index)}
+                    >
+                      Aprobar
+                    </button>
+                  </>
+                )}
               </div>
             ))}
           </div>
