@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import './css/main.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "./css/main.css";
+import { Link } from "react-router-dom";
 
 const Aprobacion = () => {
   // Estado para almacenar las solicitudes
   const [solicitudes, setSolicitudes] = useState([
     {
-      nombre: 'Francisco Perez',
-      departamento: 'Administrador',
-      tipoContrato: 'Trabaja 5 días y descansa 2'
+      nombre: "Francisco Perez",
+      departamento: "Administrador",
+      tipoContrato: "Trabaja 5 días y descansa 2",
     },
     {
-      nombre: 'Francisco Perez',
-      departamento: 'Administrador',
-      tipoContrato: 'Trabaja 5 días y descansa 2'
+      nombre: "Francisco Perez",
+      departamento: "Administrador",
+      tipoContrato: "Trabaja 5 días y descansa 2",
     },
     // Agrega más solicitudes según lo necesites
   ]);
@@ -39,9 +39,9 @@ const Aprobacion = () => {
   return (
     <div className="container">
       <div className="header">
-      <Link to="/Admin" className="logo"></Link>
-        <h1 className="title">Solicitud de Horarios</h1>
-        
+        <div className="logo"></div>
+        <Link to="/AproS" className="casita"></Link>
+        <h1 className="title">Solicitudes de cambio de Horarios</h1>
       </div>
       <div className="table">
         {solicitudes.length > 0 ? (
@@ -51,8 +51,28 @@ const Aprobacion = () => {
                 <div className="name">{solicitud.nombre}</div>
                 <div className="department">{solicitud.departamento}</div>
                 <div className="contractType">{solicitud.tipoContrato}</div>
-                <button className="button reject" onClick={() => rechazarSolicitud(index)}>Rechazar</button>
-                <button className="button approve" onClick={() => aprobarSolicitud(index)}>Aprobar</button>
+                <button
+                  style={{
+                    padding: "5px 10px",
+                    fontSize: "14px",
+                    maxWidth: "100px",
+                  }}
+                  className="button reject"
+                  onClick={() => rechazarSolicitud(index)}
+                >
+                  Rechazar
+                </button>
+                <button
+                  style={{
+                    padding: "5px 10px",
+                    fontSize: "14px",
+                    maxWidth: "100px",
+                  }}
+                  className="button approve"
+                  onClick={() => aprobarSolicitud(index)}
+                >
+                  Aprobar
+                </button>
               </div>
             ))}
           </div>

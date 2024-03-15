@@ -23,13 +23,22 @@ body {
   overflow: hidden;
 }
 
-.logo {
+.casita {
   width: 38px;
   height: 40px;
   background: url("../images/v282_93.png") center/cover no-repeat;
   position: absolute;
   top: 55px;
   right: 20px;
+  overflow: hidden;
+}
+.logo {
+  width: 110px;
+  height: 80px;
+  background: url("../images/v282_95.png") center/cover no-repeat;
+  position: absolute;
+  top: 30px;
+  left: 20px;
   overflow: hidden;
 }
 
@@ -43,21 +52,29 @@ body {
 }
 
 .table {
+
   margin-top: 80px;
   background-color: rgb(76, 172, 232);
+  margin-top: 75px; 
+  margin-bottom: 20px; 
+  background-color: rgba(37, 108, 152, 1); 
+  padding: 20px; 
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #cccccc;
   padding: 8px 0;
+  
+  
 }
 
 .name {
   flex: 1;
-  color: #0c0c0c
+  
+  
 }
 
 .department {
@@ -67,15 +84,14 @@ body {
 .contractType {
   flex: 2;
 }
-
 .button {
-  padding: 10px 20px;
-  margin-right: 10px;
+  padding: 5px 10px; /* Reducir el padding para reducir el tamaño del botón */
   cursor: pointer;
   border: none;
   border-radius: 5px;
   outline: none;
-  font-size: 16px;
+  font-size: 14px; /* Reducir el tamaño de la fuente */
+  max-width: 100px; /* Establecer un ancho máximo para los botones */
 }
 
 .button.reject {
@@ -86,6 +102,16 @@ body {
 .button.approve {
   background-color: rgba(0, 131, 0, 1);
   color: #fff;
+}
+
+/* Alinea los botones a la derecha */
+.row .button {
+  margin-left: auto; /* Coloca los botones al extremo derecho */
+}
+
+/* Alinea los botones a la derecha */
+.row .button {
+  margin-left: auto; /* Coloca los botones al extremo derecho */
 }
 
 .p {
