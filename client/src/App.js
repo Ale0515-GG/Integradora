@@ -1,16 +1,11 @@
 import React from 'react';
 import './App.css'; // Importa el archivo CSS aquí
-
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
-
-
-
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion'
-
-
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
+import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli'
 function App() {
   return (
     <div className=''>
@@ -18,9 +13,7 @@ function App() {
         <Routes>
           <Route path="/Inicio" element={<Inicio />}></Route>
           <Route path="/Admin" element={<Admin />}></Route>
-
-          
-
+          <Route path="/AproS" element={<AprobacionS />}></Route>
           <Route path="/Apro" element={<Aprobacion />}></Route>
           
 
