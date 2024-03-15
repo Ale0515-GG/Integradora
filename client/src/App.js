@@ -11,11 +11,15 @@ import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion'
 
 
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
+import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
+
 function App() {
   return (
     <div className=''>
       <Router>
         <Routes>
+
+          <Route path="/AgregarSede" element={<AgregarSede />}></Route>
           <Route path="/Inicio" element={<Inicio />}></Route>
           <Route path="/Admin" element={<Admin />}></Route>
 
