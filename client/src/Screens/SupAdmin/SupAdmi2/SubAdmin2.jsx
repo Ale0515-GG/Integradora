@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './css/main.css'
 const SubAdmin2 = () => {
   return (
     <div class="v276_9">
