@@ -3,6 +3,7 @@ import '../Inicio/Inicio.css'
 
 const Inicio = () => {
   return (
+    
     <div class="v130_66">
     <div class="v130_67"></div><span class="v130_68">Nosotros</span>
     <div class="v130_69"></div>
