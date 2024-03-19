@@ -77,6 +77,7 @@ const Administradores = () => {
   };
 
   return (
+    
     <div className="container">
       <div className="header">
       <Link to="/IngreSuAd" className="logo"></Link>
@@ -219,6 +220,7 @@ const Administradores = () => {
     </div>
 
   );
+
 };
 
 export default Administradores;
