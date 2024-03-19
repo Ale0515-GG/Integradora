@@ -44,9 +44,8 @@
   align-items: center;
 }
 
-/* Estilos para el botón de rechazar */
-.reject {
-  background-color: #ff3b3b;
+.button.reject {
+  background-color: rgba(255, 0, 0, 1);
   color: #fff;
 }
 

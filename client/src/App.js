@@ -5,7 +5,8 @@ import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
-import Noti from './Screens/Empleado/notificaciones/Notificaciones';
+<<<<<<< HEAD
+
 import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
@@ -13,6 +14,9 @@ import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede'
 import Horarios from './Screens/Administrador/horarios/horarios';
 
 
+=======
+import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli'
+>>>>>>> 9f84304a1345d221c5659133968dadb69c92e7da
 function App() {
   return (
     <div className=''>
