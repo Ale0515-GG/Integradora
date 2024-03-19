@@ -18,7 +18,6 @@ function App() {
     <div className=''>
       <Router>
         <Routes>
-          <Route path="/AgregarSede" element={<AgregarSede />}></Route>
           <Route path="/Inicio" element={<Inicio />}></Route>
           <Route path="/Admin" element={<Admin />}></Route>
           <Route path="/AproS" element={<AprobacionS />}></Route>
@@ -28,6 +27,7 @@ function App() {
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
           <Route path='/Horarios' element={<Horarios />}></Route>
+          <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
         </Routes>
       </Router>
     </div>
