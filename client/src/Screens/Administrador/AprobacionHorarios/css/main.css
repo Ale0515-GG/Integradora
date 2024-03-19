@@ -1,121 +1,57 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-size: 14px;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-}
-
+/* Estilos para la contenedor principal */
 .container {
-  padding: 16px;
-  background-color: rgba(255, 255, 255, 1);
-  position: relative;
-  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 500px; /* Modificado para mantener el contenido alineado */
 }
 
+/* Estilos para el encabezado */
 .header {
-  width: 100%;
-  height: 128px;
-  background-color: rgba(37, 108, 152, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.casita {
-  width: 38px;
-  height: 40px;
-  background: url("../images/v282_93.png") center/cover no-repeat;
-  position: absolute;
-  top: 55px;
-  right: 20px;
-  overflow: hidden;
-}
-.logo {
-  width: 110px;
-  height: 80px;
-  background: url("../images/v282_95.png") center/cover no-repeat;
-  position: absolute;
-  top: 30px;
-  left: 20px;
-  overflow: hidden;
-}
-
-.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #375a7f;
   color: #fff;
-  font-size: 30px;
-  font-weight: normal;
-  position: absolute;
-  top: 46px;
-  left: 224px;
+  padding: 1px 500px;
 }
 
+/* Estilos para la tabla */
 .table {
-
-  margin-top: 80px;
-  background-color: rgb(76, 172, 232);
-  margin-top: 75px; 
-  margin-bottom: 20px; 
-  background-color: rgba(37, 108, 152, 1); 
-  padding: 20px; 
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 8px;
+  align-items: center;
 }
 
+/* Estilos para las filas de la tabla */
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #cccccc;
-  padding: 8px 0;
-  
+  border-bottom: 1px solid #ccc;
   
 }
 
-.name {
-  flex: 1;
-  
-  
-}
-
-.department {
-  flex: 1;
-}
-
-.contractType {
-  flex: 2;
-}
+/* Estilos para los botones */
 .button {
-  padding: 5px 10px; /* Reducir el padding para reducir el tamaño del botón */
+  padding: 8px 16px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
   outline: none;
-  font-size: 14px; /* Reducir el tamaño de la fuente */
-  max-width: 100px; /* Establecer un ancho máximo para los botones */
+  font-size: 14px;
+  align-items: center;
 }
 
-.button.reject {
-  background-color: rgba(255, 0, 0, 1);
+/* Estilos para el botón de rechazar */
+.reject {
+  background-color: #ff3b3b;
   color: #fff;
 }
 
-.button.approve {
-  background-color: rgba(0, 131, 0, 1);
+/* Estilos para el botón de aprobar */
+.approve {
+  background-color: #28a745;
   color: #fff;
-}
-
-/* Alinea los botones a la derecha */
-.row .button {
-  margin-left: auto; /* Coloca los botones al extremo derecho */
-}
-
-/* Alinea los botones a la derecha */
-.row .button {
-  margin-left: auto; /* Coloca los botones al extremo derecho */
-}
-
-.p {
-  color: #000000;
-  font-size: 30px;
-  font-weight: normal;
 }
