@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './css/main.css'
 const Horarios = () => {
     return (
     <div class="v281_60">
