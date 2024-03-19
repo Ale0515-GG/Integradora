@@ -63,9 +63,9 @@ const AgregarSede = () => {
 
     const handleUpdateSedeArea = async () => {
         try {
-            await Axios.put(`http://localhost:3001/update_sede_area/${selectedSedeArea._id}`, selectedSedeArea);
+            await Axios.put(`http://localhost:3001/sede/update/${selectedSedeArea._id}`, selectedSedeArea);
             setOpenDialog(false); 
-            const response = await Axios.get("http://localhost:3001/sedes_areas");
+            const response = await Axios.get("http://localhost:3001/sede/");
             setSedesAreas(response.data.data);
         } catch (error) {
             console.error('Error al actualizar la sede o área:', error.message);
@@ -79,7 +79,7 @@ const AgregarSede = () => {
         }
 
         try {
-            const updatedSedeArea = await Axios.put(`http://localhost:3001/update_sede_area/${selectedSedeArea._id}`, {
+            const updatedSedeArea = await Axios.put(`http://localhost:3001/sede/update/${selectedSedeArea._id}`, {
                 $push: { Areas: { NombreArea: areaNombre, Tipo: areaTipo } }
             });
 
@@ -101,7 +101,7 @@ const AgregarSede = () => {
 
     const handleDeleteSedeArea = async (id) => {
         try {
-            await Axios.delete(`http://localhost:3001/delete_sede_area/${id}`);
+            await Axios.delete(`http://localhost:3001/sede/delete/${id}`);
             setSedesAreas(sedesAreas.filter(sede => sede._id !== id));
         } catch (error) {
             console.error('Error al eliminar la sede o área:', error.message);
