@@ -17,6 +17,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede); // Usa routerSede
 
+
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
