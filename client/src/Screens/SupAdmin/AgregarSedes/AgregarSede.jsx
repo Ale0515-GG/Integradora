@@ -53,7 +53,8 @@ const AgregarSede = () => {
         setSelectedSedeArea(sedeArea);
     };
 
-    const handleOpenUpdateDialog = () => {
+    const handleOpenUpdateDialog = (sedeArea) => {
+        setSelectedSedeArea(sedeArea);
         setOpenDialog(true);
     };
 
@@ -63,9 +64,14 @@ const AgregarSede = () => {
 
     const handleUpdateSedeArea = async () => {
         try {
+            if (!selectedSedeArea || !selectedSedeArea._id) {
+                console.error('Error: No se ha seleccionado una sede o área válida.');
+                return;
+            }
+
             await Axios.put(`http://localhost:3001/sede/update/${selectedSedeArea._id}`, selectedSedeArea);
-            setOpenDialog(false); 
-            const response = await Axios.get("http://localhost:3001/sede/");
+            setOpenDialog(false);
+            const response = await Axios.get("http://localhost:3001/sede");
             setSedesAreas(response.data.data);
         } catch (error) {
             console.error('Error al actualizar la sede o área:', error.message);
@@ -118,6 +124,7 @@ const AgregarSede = () => {
     
     return (
         <>
+        <TextField type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" style={{ marginLeft: '10px' }} /> <Button variant="contained" color="primary" onClick={() => setOpenAddAreaDialog(true)} style={{ marginLeft: '10px' }} > Agregar Área </Button>
             <div className="Sede">
                 <div className="Rectangle" />
                 <input type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" className='v141_18 ' style={{left: 1050, top: 160}}/>
@@ -154,7 +161,7 @@ const AgregarSede = () => {
                                                 <Button onClick={() => handleDeleteSedeArea(sedeArea._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
                                             </TableCell>
                                             <TableCell>
-                                                <Button onClick={handleOpenUpdateDialog} size="small" variant="outlined" color="primary" startIcon={<CloudUploadIcon />}>Actualizar</Button>
+                                                <Button onClick={() => handleOpenUpdateDialog(sedeArea)} size="small" variant="outlined" color="primary" startIcon={<CloudUploadIcon />}>Actualizar</Button>
                                             </TableCell>
                                             <TableCell>
                                                 <Button onClick={() => setOpenAddAreaDialog(true)} size="small" variant="outlined" color="primary" startIcon={<CloudUploadIcon />}>Agregar Area</Button>
@@ -264,7 +271,7 @@ const AgregarSede = () => {
             color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
             Administracion de Sedes
         </div>
-        <Button  color="primary" style={{left: 1305, top: 87}}><FormDialog /> </Button>
+        <Button  color="primary" style={{left: 500, top: 70}}><FormDialog /> </Button>
         </>
     );
 };

@@ -5,7 +5,8 @@ import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
-import Noti from './Screens/Empleado/notificaciones/Notificaciones';
+import Noti from './Screens/Empleado/Notificaciones/Notificaciones';
+
 import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
