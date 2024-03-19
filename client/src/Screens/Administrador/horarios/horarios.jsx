@@ -1,7 +1,10 @@
 import React from 'react'
 import './css/main.css'
-const Horarios = () => {
-    return (
+
+const horarios = () => {
+  return (
+
+
     <div class="v281_60">
         <div class="v281_61"></div>
         <div class="v281_62"></div><span class="v281_63">Chrono Magnament </span>
@@ -17,8 +20,7 @@ const Horarios = () => {
         <div class="v281_140"></div><span class="v358_10">Sede</span><span class="v358_11">Área</span><span
             class="v358_12">Contrato</span><span class="v281_143">Horario</span><span class="v359_18">Horarios</span>
     </div>
-
-)
+  )
 }
 
-export default Horarios
+export default horarios

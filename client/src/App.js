@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './App.css'; // Importa el archivo CSS aquí
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Inicio from './Screens/Inicio/Inicio';
@@ -9,8 +10,9 @@ import Noti from './Screens/Empleado/notificaciones/Notificaciones';
 import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
-import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede'
-import Horarios from './Screens/Administrador/horarios/horarios';
+import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
+import horarios from './Screens/Administrador/horarios/horarios'
+
 
 
 function App() {
@@ -26,8 +28,8 @@ function App() {
           <Route path="/Noti" element={<Noti />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
-          <Route path='/Horarios' element={<Horarios />}></Route>
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
+          <Route path='/horarios'element={<horario/>}></Route>
         </Routes>
       </Router>
     </div>
