@@ -26,8 +26,8 @@ function App() {
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
-          <Route path= '/notificaciones' element={<Notificaciones/>}></Route>
-          <Route path='/horarios' element={<Horarios />}></Route>
+          <Route path= '/Notificaciones' element={<Notificaciones/>}></Route>
+          <Route path='/Horarios' element={<Horarios />}></Route>
         </Routes>
       </Router>
     </div>
