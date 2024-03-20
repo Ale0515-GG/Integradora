@@ -35,16 +35,21 @@ export const postSede = async (req, res) => {
   }
 };
 
+
+
 export const putSede = async (req, res) => {
+  const id = req.params.id;
+  const newData = req.body;
+
   try {
-    const { id, ...rest } = req.body;
-    const data = await Sede.updateOne({ _id: id }, rest);
-    res.send({ success: true, message: "La sede se actualizó exitosamente", data: data });
+      const data = await Sede.findOneAndUpdate({ _id: id }, newData, { new: true });
+      res.json({ success: true, message: "Datos de la sede actualizados exitosamente", data: data });
   } catch (error) {
-    console.error("Error al actualizar la sede:", error);
-    res.status(500).json({ success: false, message: "Error del servidor" });
+      console.error("Error al actualizar los datos de la sede:", error);
+      res.status(500).json({ success: false, message: "Error del servidor" });
   }
 };
+
 
 export const deleteSede = async (req, res) => {
   try {

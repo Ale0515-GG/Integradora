@@ -26,7 +26,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import "./AgregarSede.css";
 
-import FormDialog from '../Sedes/sede'; 
+ import FormDialog from '../Sedes/sede';
 
 const AgregarSede = () => {
     const [sedesAreas, setSedesAreas] = useState([]);
@@ -40,7 +40,7 @@ const AgregarSede = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await Axios.get("http://localhost:3001/sede");
+                const response = await Axios.get("http://localhost:3001/sede/");
                 setSedesAreas(response.data.data);
             } catch (error) {
                 console.error('Error al obtener las sedes y áreas:', error.message);
@@ -71,7 +71,7 @@ const AgregarSede = () => {
 
             await Axios.put(`http://localhost:3001/sede/update/${selectedSedeArea._id}`, selectedSedeArea);
             setOpenDialog(false);
-            const response = await Axios.get("http://localhost:3001/sede");
+            const response = await Axios.get("http://localhost:3001/sede/");
             setSedesAreas(response.data.data);
         } catch (error) {
             console.error('Error al actualizar la sede o área:', error.message);
@@ -121,10 +121,10 @@ const AgregarSede = () => {
     const filteredSedesAreas = sedesAreas.filter(sedeArea => {
         return sedeArea.Nombre && sedeArea.Nombre.toLowerCase().includes(nombreSedeBuscado.toLowerCase());
     });
-    
     return (
         <>
-        <TextField type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" style={{ marginLeft: '10px' }} /> <Button variant="contained" color="primary" onClick={() => setOpenAddAreaDialog(true)} style={{ marginLeft: '10px' }} > Agregar Área </Button>
+            <TextField type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" style={{ marginLeft: '10px' }} /> 
+            <Button variant="contained" color="primary" onClick={() => setOpenAddAreaDialog(true)} style={{ marginLeft: '10px' }} > Agregar Área </Button>
             <div className="Sede">
                 <div className="Rectangle" />
                 <input type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" className='v141_18 ' style={{left: 1050, top: 160}}/>
@@ -267,11 +267,11 @@ const AgregarSede = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div className="AgregarNuevoEmpleado" style={{ width: 540, height: 37, left: 98, top: 161, position: 'absolute' ,
+            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 120, position: 'absolute' ,
             color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
             Administracion de Sedes
         </div>
-        <Button  color="primary" style={{left: 500, top: 70}}><FormDialog /> </Button>
+        <Button  color="primary" style={{left: 700, top: 10}}> </Button><FormDialog />
         </>
     );
 };
