@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { routerUsuarios } from "./routes/routerUsuarios.js";
 import { routerSede } from "./routes/routerSede.js"; // Importa routerSede
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -15,7 +16,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
 
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede); // Usa routerSede
-
+app.use('/solicitudes', solicitudRouter);
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
