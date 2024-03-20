@@ -6,13 +6,12 @@ import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
-import Noti from './Screens/Empleado/Notificaciones/Notificaciones';
 import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
-import Noti from './Screens/Empleado/Notificaciones/Notificaciones';
-
+import Horarios from './Screens/Administrador/horarios/horarios';
+import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
 
 function App() {
   return (
@@ -24,11 +23,11 @@ function App() {
           <Route path="/AproS" element={<AprobacionS />}></Route>
           <Route path="/Apro" element={<Aprobacion />}></Route>
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
-          <Route path="/Noti" element={<Noti />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
-          <Route path='/horarios'element={<horario/>}></Route>
+          <Route path= '/notificaciones' element={<Notificaciones/>}></Route>
+          <Route path='/horarios' element={<Horarios />}></Route>
         </Routes>
       </Router>
     </div>
