@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/main.css'
 
-const Noti = () => {
+const Notificaciones = () => {
   return (
     <div class="v60_3">
             <div class="v65_8"></div>
@@ -38,4 +38,4 @@ const Noti = () => {
   )
 }
 
-export default Noti
+export default Notificaciones
