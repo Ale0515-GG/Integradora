@@ -19,9 +19,9 @@ body {
   height: 128px;
   background: rgba(37,108,152,1);
   opacity: 1;
-  position: relative;
+  position: absolute;
   top: 0px;
-  left: 0px;
+  left: 3px;
   overflow: hidden;
 }
 .v281_62 {

@@ -8,5 +8,5 @@ router.get("/:id", sedeControllers.getSedeUno);
 router.post("/create", sedeControllers.postSede);
 router.put("/update/:id", sedeControllers.putSede);
 router.delete("/delete/:id", sedeControllers.deleteSede);
-
+ 
 export { router as routerSede };
