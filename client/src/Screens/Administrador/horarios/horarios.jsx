@@ -1,26 +1,58 @@
-import React from "react";
-import './css/main.css'
+import React, { useState } from 'react';
+import Select from 'react-select';
 
-const Horarios = () => {
+
+const HorarioDropdown = ({ options, value, onChange }) => {
   return (
-    <div className="v281_60">
-        <div className="v281_61"></div>
-        <div className="v281_62"></div><span className="v281_63">Chrono Magnament </span>
-        <div className="v358_4"></div>
-        <div className="v281_65"></div>
-        <div className="v359_46"></div>
-        <div className="v281_68"></div>
-        <div className="v281_124"></div>
-        <div className="v359_44"></div><span className="v359_45">Guardar Cambios</span>
-        <div className="v281_126"></div><span className="v358_15">Horario 1</span>
-        <div className="v358_8"></div>
-        <div className="v281_133"></div><span className="v358_16">Horario 2</span><span className="v358_17">Horario 3</span>
-        <div className="v281_140"></div><span className="v358_10">Sede</span><span className="v358_11">Área</span><span
-            className="v358_12">Contrato</span><span className="v281_143">Horario</span><span className="v359_18">Horarios</span>
+    <Select
+      options={options}
+      value={value}
+      onChange={onChange}
+    />
+  );
+};
+
+const App = () => {
+  const [horario1, setHorario1] = useState('');
+  const [horario2, setHorario2] = useState('');
+  const [horario3, setHorario3] = useState('');
+
+  const horarioOptions = [
+    { value: 'option1', label: '• 7:00 - 7:00' },
+    { value: 'option2', label: '•	15:00 – 23: 00' },
+    { value: 'option3', label: '• 23:00 – 7:00 ' },
+    { value: 'option4', label: '• 7:00 - 7:00' },
+    { value: 'option5', label: '• 19:00 - 19:00' },
+    { value: 'option6', label: '• 6:00 - 12:00' },
+    { value: 'option7', label: '• 12:00 - 18:00' },
+    { value: 'option8', label: '• 18:00 - 23:59' },
+    { value: 'option9', label: '• 0:00 - 6:00' }
+  ];
+
+  // Filtrar las opciones disponibles para el segundo combo
+  const filteredOptions2 = horarioOptions.filter(option => option.value !== horario1.value);
+  // Filtrar las opciones disponibles para el tercer combo
+  const filteredOptions3 = horarioOptions.filter(option => option.value !== horario1.value && option.value !== horario2.value);
+
+  return (
+    <div>
+      <HorarioDropdown
+        options={horarioOptions}
+        value={horario1}
+        onChange={setHorario1}
+      />
+      <HorarioDropdown
+        options={filteredOptions2}
+        value={horario2}
+        onChange={setHorario2}
+      />
+      <HorarioDropdown
+        options={filteredOptions3}
+        value={horario3}
+        onChange={setHorario3}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Horarios;
-
-
+export default App;

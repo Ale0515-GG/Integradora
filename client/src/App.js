@@ -10,9 +10,8 @@ import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
-import Horarios from './Screens/Administrador/horarios/horarios';
-
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
+import Horarios from './Screens/Administrador/horarios/horarios'
 
 
 function App() {
@@ -30,7 +29,7 @@ function App() {
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path= '/Notificaciones' element={<Notificaciones/>}></Route>
           <Route path='/Horarios' element={<Horarios />}></Route>
-        </Routes>
+        </Routes> 
       </Router>
     </div>
   );
