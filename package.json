@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-gantt-chart": "^0.3.0-rc.11",
     "react-select": "^5.8.0"
   }
 }

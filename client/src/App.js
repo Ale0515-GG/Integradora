@@ -12,6 +12,8 @@ import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli'
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
 import Horarios from './Screens/Administrador/horarios/horarios'
+import ActividadesAuto from './Screens/Automatizacion/ActividadesAutomatizacion.jsx';
+
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path= '/Notificaciones' element={<Notificaciones/>}></Route>
           <Route path='/Horarios' element={<Horarios />}></Route>
+          <Route path="/actividades" element={<ActividadesAuto />} />
+
         </Routes> 
       </Router>
     </div>
