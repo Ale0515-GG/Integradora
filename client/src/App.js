@@ -12,7 +12,7 @@ import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli'
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Horarios from './Screens/Administrador/horarios/horarios';
 
-import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
+import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones';
 
 
 function App() {
