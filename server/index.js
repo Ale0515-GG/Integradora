@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { routerUsuarios } from "./routes/routerUsuarios.js";
 import { routerSede } from "./routes/routerSede.js"; // Importa routerSede
+const solicitudRouter = require('./routes/routeSoli.js');
 
 const app = express();
 const PORT = process.env.PORT || 3001;

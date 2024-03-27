@@ -60,7 +60,7 @@ const AprobacionS = () => {
       <div className="header">
         <div className="logo"></div>
         <Link to="/Apro" className="casita"></Link>
-        <h1 className="title">Solicitudes de cambio de Horarios</h1>
+        <h1 className="title">Solicitudes de cambio de Contrato</h1>
       </div>
       <div className="table">
         {solicitudes.length > 0 ? (
