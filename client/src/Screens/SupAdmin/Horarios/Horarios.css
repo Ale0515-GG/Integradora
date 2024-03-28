@@ -16,7 +16,7 @@
   }
   .v281_61 {
     width: 100%;
-    height: 128px;
+    height: 80px;
     background: rgba(37,108,152,1);
     opacity: 1;
     position: absolute;
@@ -28,7 +28,7 @@
     width: 281px;
     color: rgba(255,255,255,1);
     position: absolute;
-    top: 46px;
+    top: 39px;
     left: 224px;
     font-family: Inter;
     font-weight: Regular;
@@ -38,8 +38,8 @@
  
   }
   .v281_65 {
-    width: 100%;
-    height: 61px;
+    width: 90%;
+    height: 50px;
     background: rgba(217,217,217,1);
     opacity: 1;
     position: absolute;
@@ -53,7 +53,7 @@
   }
   
   .v281_68 {
-    width: 100%;
+    width: 74%;
     height: 681px;
     background: rgba(57,126,171,1);
     opacity: 1;
@@ -63,7 +63,7 @@
     overflow: hidden;
   }
   .v281_124 {
-    width: 100%;
+    width: 70%;
     height: 596px;
     background: rgba(118,178,226,1);
     opacity: 1;
@@ -72,12 +72,12 @@
     left: 121px;
   }
   .v359_44 {
-    width: 188px;
-    height: 49px;
+    width: 180px;
+    height: 40px;
     background: rgba(57,126,171,1);
     opacity: 1;
     position: absolute;
-    top: 808px;
+    top: 810px;
     left: 685px;
   }
   .v359_45 {
@@ -93,8 +93,8 @@
     text-align: left;
   }
   .v281_126 {
-    width: 115px;
-    height: 16px;
+    width: 120px;
+    height: 30px;
     background: rgba(217,217,217,1);
     opacity: 1;
     position: absolute;
@@ -102,7 +102,7 @@
     left: 369px;
   }
   .v358_15 {
-    width: 64px;
+    width: 70px;
     color: rgba(128,128,128,1);
     position: absolute;
     top: 464px;
@@ -115,7 +115,7 @@
   }
   .v358_8 {
     width: 115px;
-    height: 16px;
+    height: 30px;
     background: rgba(217,217,217,1);
     opacity: 1;
     position: absolute;
@@ -124,7 +124,7 @@
   }
   .v281_133 {
     width: 115px;
-    height: 16px;
+    height: 30px;
     background: rgba(217,217,217,1);
     opacity: 1;
     position: absolute;
@@ -132,7 +132,7 @@
     left: 369px;
   }
   .v358_16 {
-    width: 66px;
+    width: 70px;
     color: rgba(128,128,128,1);
     position: absolute;
     top: 552px;
@@ -144,7 +144,7 @@
     text-align: left;
   }
   .v358_17 {
-    width: 66px;
+    width: 70px;
     color: rgba(128,128,128,1);
     position: absolute;
     top: 653px;
@@ -156,8 +156,8 @@
     text-align: left;
   }
   .v281_140 {
-    width: 811px;
-    height: 25px;
+    width: 1370px;
+    height: 45px;
     background: rgba(217,217,217,1);
     opacity: 1;
     position: absolute;
