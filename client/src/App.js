@@ -10,6 +10,11 @@ import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
+
+import Horarios from './Screens/Administrador/horarios/horarios';
+
+import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones';
+
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
 import ActividadesAuto from './Screens/Automatizacion/ActividadesAutomatizacion.jsx';
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';

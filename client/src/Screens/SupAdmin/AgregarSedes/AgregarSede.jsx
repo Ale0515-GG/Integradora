@@ -23,6 +23,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import CachedIcon from '@mui/icons-material/Cached';
+import AddIcon from '@mui/icons-material/Add';
 
 import "./AgregarSede.css";
 
@@ -40,7 +42,7 @@ const AgregarSede = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await Axios.get("http://localhost:3001/sede/");
+                const response = await Axios.get("http://localhost:3001/sede");
                 setSedesAreas(response.data.data);
             } catch (error) {
                 console.error('Error al obtener las sedes y áreas:', error.message);
@@ -141,9 +143,10 @@ const AgregarSede = () => {
                                     <TableCell />
                                     <TableCell>Nombre</TableCell>
                                     <TableCell>Dirección</TableCell>
-                                    <TableCell>Eliminar</TableCell>
+                                    
                                     <TableCell>Actualizar</TableCell>
                                     <TableCell>Agregar Area</TableCell>
+                                    <TableCell>Eliminar</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -158,14 +161,14 @@ const AgregarSede = () => {
                                             <TableCell>{sedeArea.Nombre}</TableCell>
                                             <TableCell>{sedeArea.Ubicacion}</TableCell>
                                             <TableCell>
+                                                <Button onClick={() => handleOpenUpdateDialog(sedeArea)} size="small" variant="outlined" color="primary" startIcon={<CachedIcon />}>Actualizar</Button>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Button onClick={() => setOpenAddAreaDialog(true)} size="small" variant="outlined" color="primary" startIcon={<AddIcon />}>Agregar Area</Button>
+                                            </TableCell>
+                                            <TableCell>
                                                 <Button onClick={() => handleDeleteSedeArea(sedeArea._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button onClick={() => handleOpenUpdateDialog(sedeArea)} size="small" variant="outlined" color="primary" startIcon={<CloudUploadIcon />}>Actualizar</Button>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button onClick={() => setOpenAddAreaDialog(true)} size="small" variant="outlined" color="primary" startIcon={<CloudUploadIcon />}>Agregar Area</Button>
-                                            </TableCell>
+                                            </TableCell> 
                                         </TableRow>
                                         <TableRow>
                                             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
@@ -269,9 +272,9 @@ const AgregarSede = () => {
             </Dialog>
             <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 120, position: 'absolute' ,
             color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
-            Administracion de Sedes
+            Sedes 
         </div>
-        <Button  color="primary" style={{left: 700, top: 10}}> </Button><FormDialog />
+        <Button  color="primary"> </Button ><FormDialog />
         </>
     );
 };
