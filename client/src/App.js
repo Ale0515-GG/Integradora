@@ -11,8 +11,8 @@ import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
-import Horarios from './Screens/Administrador/horarios/horarios'
 import ActividadesAuto from './Screens/Automatizacion/ActividadesAutomatizacion.jsx';
+import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
 
 
 
@@ -30,9 +30,8 @@ function App() {
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path= '/Notificaciones' element={<Notificaciones/>}></Route>
-          <Route path='/Horarios' element={<Horarios />}></Route>
           <Route path="/actividades" element={<ActividadesAuto />} />
-
+          <Route path='/Horarios' element={<Horarios />}/>
         </Routes> 
       </Router>
     </div>
