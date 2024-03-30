@@ -2,8 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { routerUsuarios } from "./routes/routerUsuarios.js";
-import { routerSede } from "./routes/routerSede.js"; // Importa routerSede
-const solicitudRouter = require('./routes/routeSoli.js');
+import { routerSede } from "./routes/routerSede.js";
+import solicitudRouter from './routes/routeSoli.js'; // Usar import en lugar de require
+
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,8 +19,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
     .catch(error => console.error('Error al conectar a MongoDB:', error));
 
 app.use('/usuarios', routerUsuarios);
-app.use('/sede', routerSede); // Usa routerSede
-
+app.use('/sede', routerSede);
+app.use('/soli',solicitudRouter); 
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);

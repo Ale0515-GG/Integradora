@@ -1,5 +1,3 @@
-// controllers/sedeControllers.js
-
 import Sede from "../models/sedeModel.js";
 
 export const getSedes = async (req, res) => {

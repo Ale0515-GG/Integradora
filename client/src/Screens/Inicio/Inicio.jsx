@@ -1,27 +1,21 @@
-import React from 'react'
-import '../Inicio/Inicio.css'
+import React from 'react';
+import '../Inicio/Inicio.css';
 
 const Inicio = () => {
   return (
-    
-    <div class="v130_66">
-    <div class="v130_67"></div><span class="v130_68">Nosotros</span>
-    <div class="v130_69"></div>
-    <div class="v130_70"></div>
-    <div class="v130_71"></div><span class="v130_72">Contacto</span><span class="v130_73">Nosotros</span><span
-        class="v130_74">Inicia Sesion</span>
-    <div class="v130_75"></div>
-    <div class="v130_76">
-        <div class="v130_77"></div><span class="v130_78">Nuestro objetivo principal es facilitar la gestión temporal
-            y la administración eficiente de horarios de empleados.
-
-            Buscamos optimizar los procesos administrativos relacionados con el registro de empleados y la
-            asignación de horarios, así permitiendo una coordinación suave y eficaz de tareas y responsabilidades
-            laborales.</span>
+    <div className="v130_66">
+      <div className="v130_67">
+        <div className="v130_75"></div>
+        <div className="v130_69">Contacto</div>
+        <div className="v130_70">Nosotros</div>
+        <div className="v130_71">Inicia Sesión</div>
+      </div>
+      <div className="v130_76">
+        <div className="v130_77"></div>
+        <span className="v130_78">Nuestro objetivo principal es facilitar la gestión temporal y la administración eficiente de horarios de empleados. Buscamos optimizar los procesos administrativos relacionados con el registro de empleados y la asignación de horarios, así permitiendo una coordinación suave y eficaz de tareas y responsabilidades laborales.</span>
+      </div>
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default Inicio
-
+export default Inicio;

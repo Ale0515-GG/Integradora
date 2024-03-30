@@ -1,166 +1,106 @@
+/* Establece el modelo de caja como border-box para todos los elementos */
 * {
-    box-sizing: border-box;
-  }
-  body {
-    font-size: 14px;
-  }
-  .v130_66 {
-    width: 100%;
-    height: 982px;
-    background: rgba(255,255,255,1);
-    opacity: 1;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    overflow: hidden;
-  }
-  .v130_67 {
-    width: 100%;
-    height: 160px;
-    background: rgba(255,255,255,1);
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 1px;
-    border: 1px solid rgba(0,0,0,1);
-    overflow: hidden;
-  }
-  
-  
-  .v130_69 {
-    width: 278px;
-    height: 54px;
-    background: rgba(118,178,226,1);
-    opacity: 1;
-    position: absolute;
-    top: 50px;
-    left: 500px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    overflow: hidden;
-  }
-  .v130_70 {
-    width: 278px;
-    height: 54px;
-    background: rgba(118,178,226,1);
-    opacity: 1;
-    position: absolute;
-    top: 50px;
-    left: 1200px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    overflow: hidden;
-  }
-  .v130_71 {
-    width: 278px;
-    height: 54px;
-    background: rgba(118,178,226,1);
-    opacity: 1;
-    position: absolute;
-    top: 50px;
-    left: 850px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    overflow: hidden;
-  }
-  .v130_72 {
-    width: 96px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 60px;
-    left: 1290px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Inter;
-    font-weight: Regular;
-    font-size: 22px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v130_73 {
-    width: 95px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 63px;
-    left: 940px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Inter;
-    font-weight: Regular;
-    font-size: 22px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v130_74 {
-    width: 130px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 63px;
-    left: 578px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Inter;
-    font-weight: Regular;
-    font-size: 22px;
-    opacity: 1;
-    text-align: center; /* Alinea el texto al centro */
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-  }
-    
-  .v130_75 {
-    width: 315px;
-    height: 130px;
-    background: url("./images/v130_75.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 30px;
-    overflow: hidden;
-  }
-  .v130_76 {
-    width: 100%;
-    height: 900px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 150px;
-    left: 0px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-  }
-  .v130_77 {
-    width: 100%;
-    height: 900px;
-    background: url("./images/v130_77.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: auto 180%; 
-    opacity: 1;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    overflow: hidden;
-  }
-  
-  
-  .v130_78 {
-    width: 100%;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 300px;
-    left: 50px;
-    font-family: Inter;
-    font-weight: Regular;
-    font-size: 35px;
-    opacity: 1;
-    text-align: center;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configuración básica del cuerpo de la página */
+body {
+  font-size: 14px;
+}
+
+/* Contenedor principal */
+.container {
+  position: relative; /* Contenedor relativo para los elementos absolutos */
+}
+
+/* Estilo de la sección principal */
+.v130_66 {
+  width: 100%;
+  min-height: 100vh; /* Asegura que la sección ocupe al menos el alto de la ventana */
+  background: rgba(255,255,255,1);
+  overflow: hidden; /* Evita el desbordamiento de los elementos absolutos */
+}
+
+/* Estilo del navbar */
+.v130_67 {
+  width: 100%; /* Ocupa todo el ancho de la página */
+  height: 160px; /* Establece la altura del navbar */
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(0,0,0,1);
+  display: flex; /* Usamos flexbox para alinear los elementos horizontalmente */
+  justify-content: space-between; /* Espacio uniforme entre los elementos */
+  align-items: center; /* Centramos verticalmente los elementos */
+}
+
+/* Estilo de la imagen */
+.v130_75 {
+  width: 295px; /* Reducimos el ancho de la imagen en 10px */
+  height: 120px; /* Reducimos la altura de la imagen en 10px */
+  background: url("./images/v130_75.png") center/cover no-repeat;
+  margin-left: 20px; /* Agregamos margen izquierdo */
+}
+
+/* Estilos de los botones */
+.v130_69, .v130_70, .v130_71 {
+  width: 180px; /* Aumentamos el ancho de los botones */
+  height: 54px;
+  background: rgba(118,178,226,1);
+  border-radius: 5px;
+  display: flex; /* Usamos flexbox para centrar el texto verticalmente */
+  justify-content: center; /* Centramos el texto horizontalmente */
+  align-items: center; /* Centramos el texto verticalmente */
+  font-family: 'Inter', sans-serif; /* Fuente sans-serif */
+  font-weight: bold; /* Grosor de la fuente */
+  font-size: 16px; /* Tamaño de la fuente */
+  color: #000; /* Color del texto */
+}
+
+/* Estilo del primer botón */
+.v130_69 {
+  margin-right: 10px; /* Agregamos margen derecho para separar los botones */
+}
+
+/* Estilo del segundo botón */
+.v130_70 {
+  margin-right: 10px; /* Agregamos margen derecho para separar los botones */
+}
+
+/* Estilo del texto del navbar */
+.v130_72, .v130_73, .v130_74 {
+  color: rgba(0,0,0,1); /* Cambiamos el color del texto a negro */
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 22px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilo de la sección principal */
+.v130_76 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 160px; /* Ajusta la posición vertical para que empiece debajo de la barra */
+  left: 0;
+}
+
+/* Estilo de la imagen de fondo */
+.v130_77 {
+  width: 100%;
+  height: 100%;
+  background: url("./images/v130_77.png") center/cover no-repeat;
+}
+
+/* Estilo del texto principal */
+.v130_78 {
+  color: rgba(255,255,255,1);
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 35px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra vertical y horizontalmente */
+  text-align: center;
+}

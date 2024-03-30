@@ -1,15 +1,15 @@
-const Solicitud = require('../models/solicitud');
+import Solicitud from '../models/sedeModel.js';
 
-exports.getAllSolicitudes = async (req, res) => {
+export async function getAllSolicitudes(req, res) {
   try {
     const solicitudes = await Solicitud.find();
     res.json(solicitudes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+}
 
-exports.aprobarSolicitud = async (req, res) => {
+export async function aprobarSolicitud(req, res) {
   const { id } = req.body;
   try {
     const solicitud = await Solicitud.findById(id);
@@ -23,9 +23,9 @@ exports.aprobarSolicitud = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+}
 
-exports.rechazarSolicitud = async (req, res) => {
+export async function rechazarSolicitud(req, res) {
   const { id } = req.body;
   try {
     const solicitud = await Solicitud.findById(id);
@@ -39,4 +39,4 @@ exports.rechazarSolicitud = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+}
