@@ -35,7 +35,7 @@ function App() {
 
           <Route path='/Notificaciones' element={<Notificaciones/>}></Route>
           
-
+          <Route path='/Inicio' element={<Inicio/>}></Route>
           <Route path= '/Notificaciones' element={<Notificaciones/>}></Route>
 
           <Route path="/diagrama" element={<Diagrama />} />

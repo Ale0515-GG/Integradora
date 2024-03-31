@@ -1,23 +1,73 @@
-import React from 'react'
-import './css/main.css'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
 
 const IngreSuAd = () => {
-  return (
-    <div class="v281_42">
-        <div class="v281_43"></div>
-        <div class="v281_44"></div>
-        <div class="v281_45"></div>
-        <div class="v281_46"></div><span class="v281_47">Iniciar Sesión</span><span class="v281_48">Mostrar
-            Contraseña</span><span class="v281_49">Ingresar Password</span><span class="v281_50">Ingresar Usuario</span>
-        <div class="v281_51"></div><span class="v281_52">Cancelar</span>
-        <div class="v281_53"></div>
-        <div class="v281_54"></div>
-        <div class="v281_55"></div>
-        <div class="v281_56"></div>
-        <div class="v281_57"></div>
-        <div class="v281_58"></div><span class="v281_59">Ingresar</span>
-    </div>
-  )
-}
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate(); 
 
-export default IngreSuAd
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validaciones
+    if (username.trim() === '') {
+      setError('Por favor ingresa un usuario');
+      return;
+    }
+
+    if (password.trim() === '') {
+      setError('Por favor ingresa una contraseña');
+      return;
+    }
+
+    navigate('/SubAdmi1');
+  };
+
+  return (
+    <div className="v281_42">
+      <form onSubmit={handleSubmit}>
+        <div className="v281_43">Iniciar Sesión</div>
+        <div className="v281_44">
+          <label>
+            Ingresar Usuario:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="v281_45">
+          <label>
+            Ingresar Contraseña:
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="v281_46">
+          <label>
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />{' '}
+            Mostrar Contraseña
+          </label>
+        </div>
+        {error && <div className="error">{error}</div>}
+        <div className="v281_51">
+          <button type="submit">Ingresar</button>
+          <button type="button">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default IngreSuAd;
