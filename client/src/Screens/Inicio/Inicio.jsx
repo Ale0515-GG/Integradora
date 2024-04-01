@@ -13,8 +13,6 @@ const Inicio = () => {
     <div className="v130_66">
       <div className="v130_67">
         <div className="v130_75"></div>
-        <div className="v130_69">Contacto</div>
-        <div className="v130_70">Nosotros</div>
         <div className="v130_71" onClick={handleLoginClick}>Inicia Sesión</div>
       </div>
       <div className="v130_76">

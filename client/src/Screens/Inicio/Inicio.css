@@ -8,19 +8,8 @@
 /* Configuración básica del cuerpo de la página */
 body {
   font-size: 14px;
-}
-
-/* Contenedor principal */
-.container {
-  position: relative; /* Contenedor relativo para los elementos absolutos */
-}
-
-/* Estilo de la sección principal */
-.v130_66 {
-  width: 100%;
-  min-height: 100vh; /* Asegura que la sección ocupe al menos el alto de la ventana */
-  background: rgba(255,255,255,1);
-  overflow: hidden; /* Evita el desbordamiento de los elementos absolutos */
+  margin: 0; /* Elimina el margen predeterminado del cuerpo */
+  overflow-x: hidden; /* Para evitar desplazamiento horizontal */
 }
 
 /* Estilo del navbar */
@@ -32,22 +21,38 @@ body {
   display: flex; /* Usamos flexbox para alinear los elementos horizontalmente */
   justify-content: space-between; /* Espacio uniforme entre los elementos */
   align-items: center; /* Centramos verticalmente los elementos */
+  padding: 0 20px; /* Agregamos espacio interno a los lados */
+  position: fixed; /* Fija el navbar */
+  top: 0; /* Ajusta el navbar en la parte superior */
+  left: 0; /* Ajusta el navbar en el lado izquierdo */
+  z-index: 999; /* Asegura que el navbar esté sobre la imagen */
+}
+
+/* Estilo de la imagen de fondo */
+.v130_77 {
+  width: 100%; /* Ancho total */
+  height: calc(100vh - 160px); /* Altura total de la ventana menos la altura del navbar */
+  background: url("./images/v130_77.png") center/cover no-repeat;
+  position: absolute;
+  top: 160px; /* Deja espacio para el navbar */
+  left: 0; /* Comienza justo después del navbar */
+  z-index: -1;
 }
 
 /* Estilo de la imagen */
 .v130_75 {
-  width: 295px; /* Reducimos el ancho de la imagen en 10px */
-  height: 120px; /* Reducimos la altura de la imagen en 10px */
-  background: url("./images/v130_75.png") center/cover no-repeat;
-  margin-left: 20px; /* Agregamos margen izquierdo */
+  width: 295px; /* Ancho de la imagen */
+  height: 120px; /* Altura de la imagen */
+  background: url("./images/v130_75.png") center/cover no-repeat; /* Imagen de fondo */
+  margin-bottom: 20px; /* Espacio entre la imagen y los botones */
 }
 
 /* Estilos de los botones */
 .v130_69, .v130_70, .v130_71 {
-  width: 180px; /* Aumentamos el ancho de los botones */
-  height: 54px;
-  background: rgba(118,178,226,1);
-  border-radius: 5px;
+  width: 180px; /* Ancho de los botones */
+  height: 54px; /* Altura de los botones */
+  background: rgba(118,178,226,1); /* Color de fondo */
+  border-radius: 5px; /* Borde redondeado */
   display: flex; /* Usamos flexbox para centrar el texto verticalmente */
   justify-content: center; /* Centramos el texto horizontalmente */
   align-items: center; /* Centramos el texto verticalmente */
@@ -59,12 +64,7 @@ body {
 
 /* Estilo del primer botón */
 .v130_69 {
-  margin-right: 10px; /* Agregamos margen derecho para separar los botones */
-}
-
-/* Estilo del segundo botón */
-.v130_70 {
-  margin-right: 10px; /* Agregamos margen derecho para separar los botones */
+  margin-bottom: 10px; /* Espacio entre los botones */
 }
 
 /* Estilo del texto del navbar */
@@ -76,22 +76,6 @@ body {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* Estilo de la sección principal */
-.v130_76 {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 160px; /* Ajusta la posición vertical para que empiece debajo de la barra */
-  left: 0;
-}
-
-/* Estilo de la imagen de fondo */
-.v130_77 {
-  width: 100%;
-  height: 100%;
-  background: url("./images/v130_77.png") center/cover no-repeat;
-}
-
 /* Estilo del texto principal */
 .v130_78 {
   color: rgba(255,255,255,1);
@@ -101,6 +85,6 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centra vertical y horizontalmente */
+  transform: translate(-50%, -50%); /* Centramos vertical y horizontalmente */
   text-align: center;
 }
