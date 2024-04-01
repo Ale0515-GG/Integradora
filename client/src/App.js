@@ -10,8 +10,8 @@ import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
-import Diagrama from './Screens/Automatizacion/Diagrama.jsx'
-import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones';
+import Diagrama from './Screens/Diagrama/Diagrama.jsx'
+import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
 
 
@@ -22,12 +22,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Inicio />}></Route>
-          <Route path="/Admin" element={<Admin />}></Route> //
-          <Route path="/AproS" element={<AprobacionS />}></Route> ////
-          <Route path="/Apro" element={<Aprobacion />}></Route>////
-          <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>\\\\
-          <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>***
-          <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>8888
+          <Route path="/Admin" element={<Admin />}></Route> 
+          <Route path="/AproS" element={<AprobacionS />}></Route> 
+          <Route path="/Apro" element={<Aprobacion />}></Route>
+          <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
+          <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
+          <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
 
           <Route path='/Notificaciones' element={<Notificaciones/>}></Route>8/8/8
