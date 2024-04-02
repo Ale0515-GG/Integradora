@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
+
+
 import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
@@ -13,7 +15,8 @@ import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
-
+import VEmpleadoH from './Screens/Empleado/SolicitudHorarioEmple/SoliHoraE.jsx'
+import VacaEmV from './Screens/Empleado/SolicitudVacacionesEmpleado/SoliEVaca.jsx'
 import AgregarArea from './Screens/SupAdmin/AgregarAreas/AgregarArea.jsx'
 
 
@@ -31,12 +34,13 @@ function App() {
           <Route path="/Admin" element={<Admin />}></Route>
 
           <Route path="/Admin" element={<Admin />}></Route> 
-
+          <Route path="/VaEmV" element={<VacaEmV />}></Route> 
           <Route path="/AproS" element={<AprobacionS />}></Route> 
           <Route path="/Apro" element={<Aprobacion />}></Route>
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
+          <Route path="/SoliHEmple" element={<VEmpleadoH />}></Route>
 
 
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
