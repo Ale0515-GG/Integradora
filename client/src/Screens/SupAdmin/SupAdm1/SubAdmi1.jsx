@@ -58,8 +58,8 @@ const Administradores = () => {
         cumpleanos: '',
         tipoTurno: 0
       });
-      fetchData(); // Actualizar la lista de administradores después de agregar uno nuevo
-      setError(''); // Limpiar mensaje de error después de agregar
+      fetchData(); 
+      setError(''); 
     } catch (error) {
       console.error('Error al agregar el administrador:', error.message);
     }
