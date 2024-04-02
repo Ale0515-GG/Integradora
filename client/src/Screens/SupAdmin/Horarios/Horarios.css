@@ -138,3 +138,35 @@
   color: #000000; /* Texto negro */
 }
 
+/* Estilos para la tabla de empleados aceptados */
+#empleadosAceptados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 500px; /* Espacio superior ajustado */
+}
+
+#empleadosAceptados th,
+#empleadosAceptados td {
+  border: 1px solid #ffffff; /* Color del borde */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+}
+
+#empleadosAceptados th {
+  background-color: #0f3f5c; /* Color de fondo para las celdas de encabezado */
+  color: #ffffff; /* Color del texto del encabezado */
+  font-weight: 60; /* Fuente negrita para los encabezados */
+}
+
+#empleadosAceptados tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para las filas pares */
+}
+
+#empleadosAceptados tr:hover {
+  background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
+}
+/* Estilos para la tabla */
+#example th:nth-child(5),
+#example td:nth-child(5) {
+  white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
