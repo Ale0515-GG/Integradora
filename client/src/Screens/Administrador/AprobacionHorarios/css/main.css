@@ -1,4 +1,4 @@
-/* Estilos para la contenedor principal */
+/* Estilos para el contenedor principal */
 .container {
   font-family: 'Arial', sans-serif;
   max-width: 800px;
@@ -16,21 +16,35 @@
   padding: 1px 500px;
 }
 
+
+/* Estilos para el encabezado */
+
 /* Estilos para la tabla */
 .table {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 8px;
-  align-items: center;
+  width: 100%;
+  background-color: #E1F6FF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  overflow: auto;
 }
 
-/* Estilos para las filas de la tabla */
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ccc;
-  
+.table th,
+.table td {
+  padding: 15px;
+}
+
+.table th {
+  background-color: #0C789C;
+  color: white;
+  font-size: 20px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
 }
 
 /* Estilos para los botones */
@@ -41,7 +55,6 @@
   border-radius: 5px;
   outline: none;
   font-size: 14px;
-  align-items: center;
 }
 
 .button.reject {
