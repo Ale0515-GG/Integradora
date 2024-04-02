@@ -27,11 +27,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Inicio />}></Route>
-
           <Route path="/Admin" element={<Admin />}></Route>
-
-          <Route path="/Admin" element={<Admin />}></Route> 
-
           <Route path="/AproS" element={<AprobacionS />}></Route> 
           <Route path="/Apro" element={<Aprobacion />}></Route>
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
@@ -43,10 +39,8 @@ function App() {
           <Route path='/AgregarArea'element={<AgregarArea/>}></Route>
 
           <Route path='/Notificaciones' element={<Notificaciones/>}></Route>
-
-          <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path='/SolicitudesH'element={<SolicitudH/>}></Route>
-          <Route path='/Notificaciones' element={<Notificaciones/>}></Route>8/8/8
+
 
           
 
