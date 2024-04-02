@@ -245,3 +245,34 @@ body {
 .input-container {
   display: inline-block;
 }
+#example td, #example th {
+  padding: 15px; /* Ajusta el espaciado entre las celdas */
+}
+/* horariosTable.css */
+
+#example {
+  border-collapse: collapse;
+  width: 50%; /* Ancho de la tabla */
+  margin-left: -40%; /* Mover la tabla hacia la derecha */
+  margin-top: 20px; /* Espacio superior */
+}
+
+#example th, #example td {
+  border: 1px solid #dddddd;
+  padding: 15px;
+}
+
+#example th {
+  background-color: #f2f2f2; /* Color de fondo para las celdas de encabezado */
+  font-weight: bold; /* Fuente negrita para los encabezados */
+}
+
+#example tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para las filas pares */
+}
+
+#example tr:hover {
+  background-color: #ddd; /* Color de fondo al pasar el ratón sobre la fila */
+}
+
+

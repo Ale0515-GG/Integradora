@@ -2,6 +2,7 @@
   "dependencies": {
     "@syncfusion/ej2-react-base": "^25.1.35",
     "@syncfusion/ej2-react-gantt": "^25.1.37",
+    "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "react-chartjs-2": "^5.2.0",
     "react-gantt-chart": "^0.3.0-rc.11",

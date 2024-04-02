@@ -13,7 +13,6 @@ import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
-import Empleado from './Screens/Empleado/SolicitudVacaciones/SoliVaca.jsx';
 
 
 
@@ -29,10 +28,10 @@ function App() {
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
-          < Route path='/AgregarSede'element={<AgregarSede/>}></Route>
-        
+          <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
+
           <Route path='/Notificaciones' element={<Notificaciones/>}></Route>8/8/8
-          <Route path='/SoliVaca'element={<Empleado/>}></Route>
+          
 
           <Route path="/diagrama" element={<Diagrama />} />\\\\
           <Route path='/Horarios' element={<Horarios />}/>\\\\
