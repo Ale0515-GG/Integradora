@@ -7,10 +7,11 @@ import axios from 'axios';
 
 
 
+
 const IngreSuAd = () => {
   const [usuario, setUsuario] = useState('');
   const [acceso, setAcceso] = useState('');
-  const [error, setError] = useState('');
+  const [ setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

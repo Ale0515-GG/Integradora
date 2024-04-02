@@ -40,7 +40,7 @@ export default function FormDialog() {
                 Tipo: ""
             });
             handleClose();
-            window.location.reload(); // Esto probablemente debería cambiarse, ya que recargar la página no es la mejor práctica
+            window.location.reload(); 
         } catch (error) {
             console.error('Error al crear el área:', error.message);
         }
@@ -78,18 +78,17 @@ export default function FormDialog() {
                         onChange={handleChange}
                     />
                     <TextField
-                        select
                         required
                         margin="dense"
                         id="tipo"
                         name="Tipo"
                         label="Tipo"
+                        type="text"
                         fullWidth
                         variant="standard"
                         value={formData.Tipo}
                         onChange={handleChange}
-                    >
-                    </TextField>
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
