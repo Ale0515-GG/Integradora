@@ -1,72 +1,76 @@
+// IngreSuAd.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+ // Asegúrate de que la ruta sea correcta
+import './IngreSuAd.css'
 
 const IngreSuAd = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [usuario, setUsuario] = useState('');
+  const [acceso, setAcceso] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validaciones
-    if (username.trim() === '') {
-      setError('Por favor ingresa un usuario');
-      return;
-    }
+    try {
+      const existeUsuario = await axios.post('http://localhost:3001/usuarios/verificarUsuario', { usuario });
+      if (!existeUsuario.data.success) {
+        setError('El usuario no existe');
+        return;
+      }
 
-    if (password.trim() === '') {
-      setError('Por favor ingresa una contraseña');
-      return;
+      const response = await axios.post('http://localhost:3001/usuarios/login', { usuario, acceso });
+      if (response.data.success) {
+        navigate('/SubAdmi1');
+      } else {
+        setError('Credenciales incorrectas');
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
     }
-
-    navigate('/SubAdmi1');
   };
 
   return (
-    <div className="v281_42">
-      <form onSubmit={handleSubmit}>
-        <div className="v281_43">Iniciar Sesión</div>
-        <div className="v281_44">
+
+    <div class="v130_80">
+    <form onSubmit={handleSubmit}>
+    <div class="v130_81"></div>
+    <div class="v130_89"></div>
+    <div class="v143_42"></div>
+    <div class="v281_26"></div><span class="v281_27">Iniciar Sesión</span><span class="v281_28">Mostrar
+        Contraseña</span>
+        <span class="v281_29"><label>
+            Ingresar Contraseña:
+            <input
+              type="password"
+              value={acceso}
+              onChange={(e) => setAcceso(e.target.value)}
+            />
+          </label>
+        </span>
+        <span class="v281_30">
           <label>
             Ingresar Usuario:
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
             />
           </label>
-        </div>
-        <div className="v281_45">
-          <label>
-            Ingresar Contraseña:
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="v281_46">
-          <label>
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onChange={() => setShowPassword(!showPassword)}
-            />{' '}
-            Mostrar Contraseña
-          </label>
-        </div>
-        {error && <div className="error">{error}</div>}
-        <div className="v281_51">
-          <button type="submit">Ingresar</button>
-          <button type="button">Cancelar</button>
-        </div>
-      </form>
-    </div>
+        </span>
+    <div class="v281_31"></div><span class="v281_32">Cancelar</span><button type="submit">Ingresar</button>
+    <div class="v281_33"></div>
+    <div class="v281_34"></div>
+    <div class="v281_35"></div>
+    <div class="v281_36"></div>
+    <div class="v281_37"></div>
+    
+    <div class="v281_38"></div><span class="v281_39">Ingresar</span><button type="submit">Ingresar</button>
+    </form>
+</div>
   );
 };
 

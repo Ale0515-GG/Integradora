@@ -1,4 +1,4 @@
-// AgregarSedes.js
+// AgregarAreas.js
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Box from '@mui/material/Box';
@@ -24,40 +24,37 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import CachedIcon from '@mui/icons-material/Cached';
+import AddIcon from '@mui/icons-material/Add';
 
-import {  useNavigate } from 'react-router-dom';
+import "./AgregarArea.css";
 
-import "./AgregarSede.css";
-import FormDialog from './Sedes/sede';
-
-
-const AgregarSede = () => {
-    const [sedesAreas, setSedesAreas] = useState([]);
-    const [selectedSedeArea, setSelectedSedeArea] = useState(null);
+const AgregarArea = () => {
+    const [areas, setAreas] = useState([]);
+    const [selectedArea, setSelectedArea] = useState(null);
     const [openDialog, setOpenDialog] = useState(false);
     const [areaNombre, setAreaNombre] = useState("");
     const [areaTipo, setAreaTipo] = useState("");
     const [openAddAreaDialog, setOpenAddAreaDialog] = useState(false);
-    const [nombreSedeBuscado, setNombreSedeBuscado] = useState("");
+    const [nombreAreaBuscado, setNombreAreaBuscado] = useState("");
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await Axios.get("http://localhost:3001/sede");
-                setSedesAreas(response.data.data);
+                const response = await Axios.get("http://localhost:3001/area");
+                setAreas(response.data.data);
             } catch (error) {
-                console.error('Error al obtener las sedes y áreas:', error.message);
+                console.error('Error al obtener las áreas:', error.message);
             }
         }
         fetchData();
     }, []);
 
-    const handleRowClick = async (sedeArea) => {
-        setSelectedSedeArea(sedeArea);
+    const handleRowClick = async (area) => {
+        setSelectedArea(area);
     };
 
-    const handleOpenUpdateDialog = (sedeArea) => {
-        setSelectedSedeArea(sedeArea);
+    const handleOpenUpdateDialog = (area) => {
+        setSelectedArea(area);
         setOpenDialog(true);
     };
 
@@ -65,41 +62,26 @@ const AgregarSede = () => {
         setOpenDialog(false); 
     };
 
-    const handleUpdateSedeArea = async () => {
+    const handleUpdateArea = async () => {
         try {
-            if (!selectedSedeArea || !selectedSedeArea._id) {
-                console.error('Error: No se ha seleccionado una sede o área válida.');
+            if (!selectedArea || !selectedArea._id) {
+                console.error('Error: No se ha seleccionado un área válida.');
                 return;
             }
 
-            await Axios.put(`http://localhost:3001/sede/update/${selectedSedeArea._id}`, selectedSedeArea);
+            await Axios.put(`http://localhost:3001/area/update/${selectedArea._id}`, selectedArea);
             setOpenDialog(false);
-            const response = await Axios.get("http://localhost:3001/sede/");
-            setSedesAreas(response.data.data);
+            const response = await Axios.get("http://localhost:3001/area/");
+            setAreas(response.data.data);
         } catch (error) {
-            console.error('Error al actualizar la sede o área:', error.message);
+            console.error('Error al actualizar el área:', error.message);
         }
     };
 
     const handleAddArea = async () => {
-        if (!selectedSedeArea || !selectedSedeArea._id) {
-            console.error('Error: No hay una sede seleccionada.');
-            return;
-        }
-
         try {
-            const updatedSedeArea = await Axios.put(`http://localhost:3001/sede/update/${selectedSedeArea._id}`, {
-                $push: { Areas: { NombreArea: areaNombre, Tipo: areaTipo } }
-            });
-
-            const updatedSedesAreas = sedesAreas.map(sedeArea => {
-                if (sedeArea._id === selectedSedeArea._id) {
-                    return updatedSedeArea.data;
-                }
-                return sedeArea;
-            });
-
-            setSedesAreas(updatedSedesAreas);
+            const newArea = await Axios.post(`http://localhost:3001/area/add`, { Nombre: areaNombre, Tipo: areaTipo });
+            setAreas([...areas, newArea.data]);
             setAreaNombre("");
             setAreaTipo("");
             setOpenAddAreaDialog(false); // Cierra la ventana emergente
@@ -108,37 +90,30 @@ const AgregarSede = () => {
         }
     };
 
-    const handleDeleteSedeArea = async (id) => {
+    const handleDeleteArea = async (id) => {
         try {
-            await Axios.delete(`http://localhost:3001/sede/delete/${id}`);
-            setSedesAreas(sedesAreas.filter(sede => sede._id !== id));
+            await Axios.delete(`http://localhost:3001/area/delete/${id}`);
+            setAreas(areas.filter(area => area._id !== id));
         } catch (error) {
-            console.error('Error al eliminar la sede o área:', error.message);
+            console.error('Error al eliminar el área:', error.message);
         }
     };
 
-    const handleNombreSedeChange = (event) => {
-        setNombreSedeBuscado(event.target.value);
+    const handleNombreAreaChange = (event) => {
+        setNombreAreaBuscado(event.target.value);
     };
 
-    const filteredSedesAreas = sedesAreas.filter(sedeArea => {
-        return sedeArea.Nombre && sedeArea.Nombre.toLowerCase().includes(nombreSedeBuscado.toLowerCase());
+    const filteredAreas = areas.filter(area => {
+        return area.Nombre && area.Nombre.toLowerCase().includes(nombreAreaBuscado.toLowerCase());
     });
-    
-    const navigate = useNavigate(); 
-
-    const handleAreaClick = () => {
-        navigate('/AgregarArea');
-      };
 
     return (
         <>
-            <TextField type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" style={{ marginLeft: '10px' }} /> 
-            <div className="Sede">
-
+            <TextField type="text" value={nombreAreaBuscado} onChange={handleNombreAreaChange} placeholder="Buscar Nombre de Área" style={{ marginLeft: '10px' }} /> 
+            <div className="Area">
                 <div className="Rectangle" />
-                
-                <input type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" className='v141_18 ' style={{left: 1050, top: 160}}/>
+                <Button variant="contained" color="primary" onClick={() => setOpenAddAreaDialog(true)} style={{ marginLeft: '10px' }} > Agregar Área </Button>
+                <input type="text" value={nombreAreaBuscado} onChange={handleNombreAreaChange} placeholder="Buscar Nombre de Área" className='v141_18 ' style={{left: 1050, top: 160}}/>
                 <div className="Tablas" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <div></div>
                     <h1>     </h1>
@@ -151,44 +126,37 @@ const AgregarSede = () => {
                                 <TableRow>
                                     <TableCell />
                                     <TableCell>Nombre</TableCell>
-                                    <TableCell>Dirección</TableCell>
-                                    
+                                    <TableCell>Tipo</TableCell>
                                     <TableCell>Actualizar</TableCell>
-                                    <TableCell>Agregar Area</TableCell>
                                     <TableCell>Eliminar</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {filteredSedesAreas.map((sedeArea, index) => (
+                                {filteredAreas.map((area, index) => (
                                     <React.Fragment key={index}>
                                         <TableRow>
                                             <TableCell>
-                                                <IconButton size="small" onClick={() => handleRowClick(sedeArea)}>
-                                                    {selectedSedeArea && selectedSedeArea._id === sedeArea._id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                                <IconButton size="small" onClick={() => handleRowClick(area)}>
+                                                    {selectedArea && selectedArea._id === area._id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                                                 </IconButton>
                                             </TableCell>
-                                            <TableCell>{sedeArea.Nombre}</TableCell>
-                                            <TableCell>{sedeArea.Ubicacion}</TableCell>
+                                            <TableCell>{area.Nombre}</TableCell>
+                                            <TableCell>{area.Tipo}</TableCell>
                                             <TableCell>
-                                                <Button onClick={() => handleOpenUpdateDialog(sedeArea)} size="small" variant="outlined" color="primary" startIcon={<CachedIcon />}>Actualizar</Button>
+                                                <Button onClick={() => handleOpenUpdateDialog(area)} size="small" variant="outlined" color="primary" startIcon={<CachedIcon />}>Actualizar</Button>
                                             </TableCell>
                                             <TableCell>
-                                                <Button onClick={() => handleAreaClick} size="small" variant="outlined" color="primary"  >Agregar Area</Button>
+                                                <Button onClick={() => setOpenAddAreaDialog(true)} size="small" variant="outlined" color="primary" startIcon={<AddIcon />}>Agregar Sede</Button>
                                             </TableCell>
                                             <TableCell>
-                                                <Button onClick={() => handleDeleteSedeArea(sedeArea._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
+                                                <Button onClick={() => handleDeleteArea(area._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
                                             </TableCell> 
                                         </TableRow>
                                         <TableRow>
                                             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
-                                                <Collapse in={selectedSedeArea && selectedSedeArea._id === sedeArea._id} timeout="auto" unmountOnExit>
+                                                <Collapse in={selectedArea && selectedArea._id === area._id} timeout="auto" unmountOnExit>
                                                     <Box sx={{ margin: 1 }}>
-                                                        <Typography variant="subtitle1">Áreas:</Typography>
-                                                        {sedeArea.Areas.map((area, areaIndex) => (
-                                                            <div key={areaIndex}>
-                                                                Tipo: {area.Tipo}, Nombre: {area.NombreArea}
-                                                            </div>
-                                                        ))}
+                                                        <Typography variant="subtitle1">No hay subáreas</Typography>
                                                     </Box>
                                                 </Collapse>
                                             </TableCell>
@@ -201,12 +169,12 @@ const AgregarSede = () => {
                 </div>
             </div>
             <Dialog open={openDialog} onClose={handleCloseDialog}>
-                <DialogTitle>Actualizar Sede o Área</DialogTitle>
+                <DialogTitle>Actualizar Área</DialogTitle>
                 <DialogContent>
-                    {selectedSedeArea && (
+                    {selectedArea && (
                         <>
                             <DialogContentText>
-                                Aquí puedes actualizar los datos de la sede o área.
+                                Aquí puedes actualizar los datos del área.
                             </DialogContentText>
                         
                             <TextField
@@ -216,18 +184,21 @@ const AgregarSede = () => {
                                 label="Nombre"
                                 type="text"
                                 fullWidth
-                                value={selectedSedeArea.Nombre}
-                                onChange={(e) => setSelectedSedeArea({...selectedSedeArea, Nombre: e.target.value})}
+                                value={selectedArea.Nombre}
+                                onChange={(e) => setSelectedArea({...selectedArea, Nombre: e.target.value})}
                             />
                             <TextField
+                                select  // Cambia a un campo de selección
                                 margin="dense"
-                                id="ubicacion"
-                                label="Ubicación"
-                                type="text"
+                                id="tipo"
+                                label="Tipo"
                                 fullWidth
-                                value={selectedSedeArea.Ubicacion}
-                                onChange={(e) => setSelectedSedeArea({...selectedSedeArea, Ubicacion: e.target.value})}
-                            />
+                                value={selectedArea.Tipo}
+                                onChange={(e) => setSelectedArea({...selectedArea, Tipo: e.target.value})}
+                            >
+                                <MenuItem value="Administrativa">Administrativa</MenuItem>
+                                <MenuItem value="Operativa">Operativa</MenuItem>
+                            </TextField>
                         </>
                     )}
                 </DialogContent>
@@ -235,7 +206,7 @@ const AgregarSede = () => {
                     <Button onClick={handleCloseDialog} color="primary">
                         Cancelar
                     </Button>
-                    <Button onClick={handleUpdateSedeArea} color="primary">
+                    <Button onClick={handleUpdateArea} color="primary">
                         Actualizar
                     </Button>
                 </DialogActions>
@@ -250,7 +221,7 @@ const AgregarSede = () => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="nombreArea"
+                        id="nombre"
                         label="Nombre del Área"
                         type="text"
                         fullWidth
@@ -260,7 +231,7 @@ const AgregarSede = () => {
                     <TextField
                         select  // Cambia a un campo de selección
                         margin="dense"
-                        id="tipoArea"
+                        id="tipo"
                         label="Tipo de Área"
                         fullWidth
                         value={areaTipo}
@@ -279,13 +250,8 @@ const AgregarSede = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 110, position: 'absolute' ,
-            color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
-            Sedes 
-        </div>
-        <Button color='primary' style={{ left: 620,top: 5}}><FormDialog /></Button>
         </>
     );
 };
 
-export default AgregarSede;
+export default AgregarArea;

@@ -4,7 +4,7 @@ import cors from "cors";
 import { routerUsuarios } from "./routes/routerUsuarios.js";
 import { routerSede } from "./routes/routerSede.js";
 import solicitudRouter from './routes/routeSoli.js'; // Usar import en lugar de require
-
+import { routerArea } from "./routes/routerArea.js";
 
 
 
@@ -21,6 +21,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede);
 app.use('/soli',solicitudRouter); 
+app.use('/area', routerArea)
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);

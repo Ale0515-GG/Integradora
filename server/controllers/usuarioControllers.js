@@ -77,3 +77,22 @@ export const deleteUsuarios = async(req,res)=> {
     }
 }
 
+
+
+// Función para verificar las credenciales de inicio de sesión
+export const verificarCredenciales = async (usuario, accesoPlano) => {
+    const usuarioEncontrado = await schemaEmpl.findOne({ usuario });
+    if (usuarioEncontrado) {
+        const match = await bcrypt.compare(accesoPlano, usuarioEncontrado.acceso);
+        if (match) {
+            return usuarioEncontrado;
+        }
+    }
+    return null;
+}
+
+// Función para verificar si existe el usuario
+export const verificarUsuarioExistente = async (acceso) => {
+    const usuarioEncontrado = await schemaEmpl.findOne({ acceso });
+    return usuarioEncontrado ? true : false;
+}
