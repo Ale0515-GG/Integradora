@@ -156,8 +156,8 @@ const Administradores = () => {
               <label className='selected'>
                 Sexo:
                 <select name="sexo" value={nuevoAdmin.sexo} onChange={handleInputChange}>
-                  <option value={true}>Masculino</option>
-                  <option value={false}>Femenino</option>
+                  <option value={true}>M</option>
+                  <option value={false}>F</option>
                 </select>
               </label>
             </div>

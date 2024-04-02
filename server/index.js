@@ -2,18 +2,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { routerUsuarios } from "./routes/routerUsuarios.js";
-import { routerSede } from "./routes/routerSede.js";
-
 import solicitudRouter from './routes/routeSoli.js'; // Usar import en lugar de require
 import { routerArea } from "./routes/routerArea.js";
-
-
-
-
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
 import { routerUsuarios } from './routes/routerUsuarios.js';
 import { routerSede } from './routes/routerSede.js';
 import * as solicitudRoutes from './routes/solicitudRoutes.js'; 
