@@ -12,4 +12,4 @@ router.post('/solicitudes', async (req, res) => {
   }
 });
 
-module.exports = router;
+export { router as solictudRoutes };

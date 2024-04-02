@@ -40,7 +40,7 @@ export default function FormDialog() {
                 Tipo: ""
             });
             handleClose();
-            // window.location.reload(); // Esto probablemente debería cambiarse, ya que recargar la página no es la mejor práctica
+            window.location.reload(); // Esto probablemente debería cambiarse, ya que recargar la página no es la mejor práctica
         } catch (error) {
             console.error('Error al crear el área:', error.message);
         }

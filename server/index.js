@@ -9,8 +9,6 @@ import { routerArea } from "./routes/routerArea.js";
 
 
 
-import solicitudRoutes from './routes/solicitudRoutes.js';
-
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,8 +25,6 @@ app.use('/sede', routerSede);
 
 app.use('/soli',solicitudRouter); 
 app.use('/area', routerArea)
-
-app.use('/api', solicitudRoutes);
 
 
 app.listen(PORT, () => {
