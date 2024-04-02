@@ -55,6 +55,7 @@ const Horarios = () => {
       </div>
       
       <div className="v281_68">
+        <h2>Gestión de Horarios/Contratos</h2>
         <table id="example">
           <thead>
             <tr>
@@ -78,7 +79,7 @@ const Horarios = () => {
                 <td>{empleado.sede}</td>
                 <td>{empleado.dia}</td>
                 <td><button className="eliminar" onClick={() => handleEliminar(empleado.id)}>Eliminar</button></td>
-                <td><button onClick={() => handleAceptar(empleado.id)}>Aceptar</button></td>
+                <td><button className="aceptar" onClick={() => handleAceptar(empleado.id)}>Aceptar</button></td>
                 <td><button className="agregar" onClick={() => handleAgregarHorarios(empleado.id)}>Agregar Horarios</button></td>
                 <td><button className="modificar" onClick={() => handleModificarHorarios(empleado.id)}>Modificar Horarios</button></td>
               </tr>

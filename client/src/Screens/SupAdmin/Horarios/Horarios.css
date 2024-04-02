@@ -60,7 +60,7 @@
 #example th {
   background-color: #0f3f5c; /* Color de fondo para las celdas de encabezado */
   color: #ffffff; /* Color del texto del encabezado */
-  font-weight: 600; /* Fuente negrita para los encabezados */
+  font-weight: 200; /* Fuente negrita para los encabezados */
 }
 
 #example tr:nth-child(even) {
@@ -71,18 +71,13 @@
   background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
 }
 
-/* Recuadro blanco debajo de la tabla */
-.v281_69 {
-  width: 100%;
-  height: 100px; /* Altura deseada del recuadro */
-  background-color: #fff; /* Color de fondo blanco */
-}
+/***************************************************************************************************/
 
 /* Estilos para la tabla de empleados aceptados */
 #empleadosAceptados {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px; /* Espacio superior */
+  margin-top: 500px; /* Espacio superior */
 }
 
 #empleadosAceptados th,
@@ -121,7 +116,13 @@
 }
 /* Estilos para el botón "Eliminar" */
 .v281_68 button.eliminar {
-  background-color: #ff0000; /* Color rojo */
+  background-color: #d60303; /* Color rojo */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Estilos para el botón "Eliminar" */
+.v281_68 button.aceptar {
+  background-color: #07a707; /* Color rojo */
   color: #ffffff; /* Texto blanco */
 }
 
@@ -136,3 +137,4 @@
   background-color: #ffffff; /* Color blanco */
   color: #000000; /* Texto negro */
 }
+
