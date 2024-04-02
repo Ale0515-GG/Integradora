@@ -1,16 +1,3 @@
-/* Reset y estilos generales */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Inter', sans-serif; /* Cambié la fuente a Inter y definí una fuente de respaldo */
-  font-size: 14px;
-  line-height: 1.5;
-}
-
 /* Contenedor principal */
 .v281_60 {
   width: 100%;
@@ -36,28 +23,26 @@ body {
   position: absolute;
   top: 50%; /* Centrado vertical */
   transform: translateY(-50%);
-  left: 50px; /* Espacio desde el borde izquierdo */
+  left: 70px; /* Espacio desde el borde izquierdo */
   font-family: 'Inter', sans-serif;
-  font-weight: 700; /* Cambié a 700 para negrita */
+  font-weight: 500; /* Cambié a 700 para negrita */
   font-size: 30px;
   opacity: 1;
 }
 
 /* Contenedor de la tabla */
-/* Contenedor de la tabla */
 .v281_68 {
-  width: 80%;
+  width: 100%;
   max-width: 1200px;
-  background-color: #397eab;
+  background-color: #f1f4f6;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
+  transform: translate(-50%, -60%);
+  border-radius: 20px;
   overflow: hidden;
-  margin: 0 auto; /* Añadir margen automático */
+  margin: 10 auto; /* Añadir margen automático */
 }
-
 
 /* Tabla */
 #example {
@@ -73,9 +58,9 @@ body {
 }
 
 #example th {
-  background-color: #256c98; /* Color de fondo para las celdas de encabezado */
+  background-color: #0f3f5c; /* Color de fondo para las celdas de encabezado */
   color: #ffffff; /* Color del texto del encabezado */
-  font-weight: 700; /* Fuente negrita para los encabezados */
+  font-weight: 600; /* Fuente negrita para los encabezados */
 }
 
 #example tr:nth-child(even) {
@@ -83,19 +68,71 @@ body {
 }
 
 #example tr:hover {
-  background-color: #ddd; /* Color de fondo al pasar el ratón sobre la fila */
+  background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
 }
 
-/* Botón */
-.v359_18 {
-  background-color: #256c98; /* Color de fondo */
-  color: #ffffff; /* Color del texto */
+/* Recuadro blanco debajo de la tabla */
+.v281_69 {
+  width: 100%;
+  height: 100px; /* Altura deseada del recuadro */
+  background-color: #fff; /* Color de fondo blanco */
+}
+
+/* Estilos para la tabla de empleados aceptados */
+#empleadosAceptados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Espacio superior */
+}
+
+#empleadosAceptados th,
+#empleadosAceptados td {
+  border: 1px solid #ffffff; /* Color del borde */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+}
+
+#empleadosAceptados th {
+  background-color: #0f3f5c; /* Color de fondo para las celdas de encabezado */
+  color: #ffffff; /* Color del texto del encabezado */
+  font-weight: 600; /* Fuente negrita para los encabezados */
+}
+
+#empleadosAceptados tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para las filas pares */
+}
+
+#empleadosAceptados tr:hover {
+  background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
+}
+
+/* Estilos para el botón "Guardar Cambios" */
+.v359_1 {
+  background-color: #2b90cf; /* Color azul */
+  color: #ffffff; /* Texto blanco */
   padding: 10px 20px; /* Espaciado interno */
   border: none; /* Sin borde */
   border-radius: 5px; /* Esquinas redondeadas */
   cursor: pointer;
   margin-top: 20px; /* Espacio superior */
   display: block; /* Cambié a bloque para que ocupe el ancho completo */
-  margin: 20px auto; /* Centrado horizontal */
+  margin: 0 auto; /* Centrado horizontal */
   max-width: 200px; /* Ancho máximo */
+}
+/* Estilos para el botón "Eliminar" */
+.v281_68 button.eliminar {
+  background-color: #ff0000; /* Color rojo */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Estilos para el botón "Agregar Horarios" */
+.v281_68 button.agregar {
+  background-color: #ffffff; /* Color blanco */
+  color: #000000; /* Texto negro */
+}
+
+/* Estilos para el botón "Modificar Horarios" */
+.v281_68 button.modificar {
+  background-color: #ffffff; /* Color blanco */
+  color: #000000; /* Texto negro */
 }

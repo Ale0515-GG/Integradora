@@ -1,83 +1,124 @@
-import React from 'react';
-import './Horarios.css';
+import React, { useState } from 'react';
+import './Horarios.css'; // Importa el archivo CSS
 
 const Horarios = () => {
+  const [empleados, setEmpleados] = useState([
+    {
+      id: 1,
+      nombre: 'Andrea Palomares',
+      area: 'Desarrollo de aplicaciones y programas',
+      sede: 'Leon Gto',
+      dia: '2011-04-25',
+    },
+    {
+      id: 2,
+      nombre: 'Victor Barrientos',
+      area: 'Diseño gráfico',
+      sede: 'Ciudad de México',
+      dia: '2012-05-15'
+    }
+  ]);
+
+  const [empleadosAceptados, setEmpleadosAceptados] = useState([]);
+
+  const handleEliminar = (id) => {
+    const nuevosEmpleados = empleados.filter(empleado => empleado.id !== id);
+    setEmpleados(nuevosEmpleados);
+    console.log(`Eliminando registro con ID: ${id}`);
+  };
+
+  const handleAceptar = (id) => {
+    const empleadoAceptado = empleados.find(empleado => empleado.id === id);
+    if (empleadoAceptado) {
+      setEmpleadosAceptados([...empleadosAceptados, { ...empleadoAceptado, fechaAceptacion: new Date().toISOString().slice(0, 10) }]);
+      handleEliminar(id); // Eliminar empleado de la lista principal
+      console.log(`Aceptando cambios para el usuario con ID: ${id}`);
+    }
+  };
+
+  const handleAgregarHorarios = (id) => {
+    console.log(`Agregando horarios para el usuario con ID: ${id}`);
+  };
+
+  const handleModificarHorarios = (id) => {
+    console.log(`Modificando horarios para el usuario con ID: ${id}`);
+  };
+
   const handleGuardarCambios = () => {
-    // Aquí puedes agregar la lógica para guardar los cambios
     console.log('Cambios guardados');
   };
 
   return (
-    <div className="v281_00">
-      <div className="v281_61"></div>
-      <div className="v281_62"></div>
-      <span className="v281_63">Chrono Magnament</span>
-      <div className="v358_4"></div>
-      <div className="v281_68"></div>
-      <div className="v281_68"></div>
-      <div className="v281_124">
-        {/* Campos eliminados */}
+    <div className="v281_0">
+      <div className="v281_61">
+        <p className="v281_63">ChronoMagnament</p>
+      </div>
+      
+      <div className="v281_68">
+        <table id="example">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Nombre Empleado</th>
+              <th>Área</th>
+              <th>Sede</th>
+              <th>Día</th>
+              <th>Eliminar</th>
+              <th>Aceptar</th>
+              <th>Agregar Horarios</th>
+              <th>Modificar Horarios</th>
+            </tr>
+          </thead>
+          <tbody>
+            {empleados.map((empleado, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{empleado.nombre}</td>
+                <td>{empleado.area}</td>
+                <td>{empleado.sede}</td>
+                <td>{empleado.dia}</td>
+                <td><button className="eliminar" onClick={() => handleEliminar(empleado.id)}>Eliminar</button></td>
+                <td><button onClick={() => handleAceptar(empleado.id)}>Aceptar</button></td>
+                <td><button className="agregar" onClick={() => handleAgregarHorarios(empleado.id)}>Agregar Horarios</button></td>
+                <td><button className="modificar" onClick={() => handleModificarHorarios(empleado.id)}>Modificar Horarios</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button
+          className="v359_1"
+          onClick={handleGuardarCambios}
+        >
+          Guardar Cambios
+        </button>
       </div>
 
-      {/* Tabla */}
-      <table
-        id="example"
-        className="display nowrap"
-        style={{
-          width: '50%',
-          textAlign: 'center',
-          position: 'absolute',
-          top: '400px',
-          left: '50%', // Centrado horizontal
-          transform: 'translateX(-50%)', // Centrado horizontal
-        }}
-      >
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Nombre Empleado</th>
-            <th>Área</th>
-            <th>Sede</th>
-            <th>Día</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Andrea Palomares</td>
-            <td>Desarrollo de aplicaciones y programas</td>
-            <td>Leon Gto</td>
-            <td>2011-04-25</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Kim Taehyung</td>
-            <td>Desarrollo de apps para dispositivos móviles</td>
-            <td>Leon Gto</td>
-            <td>2011-07-25</td>
-          </tr>
-        </tbody>
-      </table>
-
-      {/* Botón para guardar cambios */}
-      <button
-        className="v359_18"
-        style={{
-          position: 'absolute',
-          top: '800px', // Posicionamos en el 90% del eje Y
-          left: '70%', // Posicionamos en el 50% del eje X
-          transform: 'translate(-50%, -0%)', // Centramos el botón correctamente
-          background: 'rgba(57,126,171,1)',
-          color: 'rgba(255,255,255,1)',
-          padding: '5px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}
-        onClick={handleGuardarCambios}
-      >
-        Guardar Cambios
-      </button>
+      {/* Tabla de empleados aceptados */}
+      <div>
+        <h2>Empleados Aceptados:</h2>
+        <table id="empleadosAceptados">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Nombre Empleado</th>
+              <th>Área</th>
+              <th>Sede</th>
+              <th>Fecha de Aceptación</th>
+            </tr>
+          </thead>
+          <tbody>
+            {empleadosAceptados.map((empleado, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{empleado.nombre}</td>
+                <td>{empleado.area}</td>
+                <td>{empleado.sede}</td>
+                <td>{empleado.fechaAceptacion}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
