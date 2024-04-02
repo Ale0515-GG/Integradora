@@ -51,10 +51,13 @@ body {
   display: flex;
   align-items: center; /* Centramos verticalmente los elementos */
   justify-content: center; /* Centramos horizontalmente los elementos */
+   width: 800px;
 }
 
 .form-group label {
   margin-right: 10px; /* Agregamos un pequeño margen entre el label y el input */
+  min-width: 100px;
+  justify-content: center;
 }
 
 .form-group input[type="text"],
@@ -123,3 +126,15 @@ body {
   align-items: center; /* Centrar verticalmente */
 }
 
+
+.group-s {
+  margin-bottom: 10px; /* Margen inferior para separación */
+  display: inline-block;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.selected {
+  font-size: 16px; /* Tamaño de la fuente */
+  margin-right: 10px; /* Margen a la derecha para separar los elementos */
+  color: white; /* Color de la letra */
+}

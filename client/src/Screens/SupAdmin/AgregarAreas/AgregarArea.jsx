@@ -1,19 +1,12 @@
-// AgregarAreas.js
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -22,11 +15,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import CachedIcon from '@mui/icons-material/Cached';
-import AddIcon from '@mui/icons-material/Add';
+import {  useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
 
 import "./AgregarArea.css";
+import FormDialog from './Areas/area';
 
 const AgregarArea = () => {
     const [areas, setAreas] = useState([]);
@@ -99,20 +94,43 @@ const AgregarArea = () => {
         }
     };
 
-    const handleNombreAreaChange = (event) => {
-        setNombreAreaBuscado(event.target.value);
-    };
 
     const filteredAreas = areas.filter(area => {
         return area.Nombre && area.Nombre.toLowerCase().includes(nombreAreaBuscado.toLowerCase());
     });
+    const navigate = useNavigate(); 
+
+    const handleSedeClick = () => {
+        navigate('/AgregarSede');
+      };
+
+      
+      const handleNombreAreaChange = (event) => {
+        setNombreAreaBuscado(event.target.value);
+    };
 
     return (
         <>
-            <TextField type="text" value={nombreAreaBuscado} onChange={handleNombreAreaChange} placeholder="Buscar Nombre de Área" style={{ marginLeft: '10px' }} /> 
+            <TextField
+    type="text"
+    value={nombreAreaBuscado}
+    onChange={handleNombreAreaChange}
+    placeholder="Buscar Nombre de Sede"
+    fullWidth
+    style={{ marginLeft: '10px', border: 'none', borderBottom: '1px solid grey' }}
+    InputProps={{
+        startAdornment: (
+            <InputAdornment position="start">
+                <SearchIcon style={{ color: 'grey' }} />
+            </InputAdornment>
+        ),
+        disableUnderline: true, // Esto elimina el borde predeterminado del TextField
+    }}
+/>
+
             <div className="Area">
                 <div className="Rectangle" />
-                <Button variant="contained" color="primary" onClick={() => setOpenAddAreaDialog(true)} style={{ marginLeft: '10px' }} > Agregar Área </Button>
+                
                 <input type="text" value={nombreAreaBuscado} onChange={handleNombreAreaChange} placeholder="Buscar Nombre de Área" className='v141_18 ' style={{left: 1050, top: 160}}/>
                 <div className="Tablas" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <div></div>
@@ -124,44 +142,27 @@ const AgregarArea = () => {
                         <Table aria-label="collapsible table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell />
                                     <TableCell>Nombre</TableCell>
                                     <TableCell>Tipo</TableCell>
                                     <TableCell>Actualizar</TableCell>
+
                                     <TableCell>Eliminar</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {filteredAreas.map((area, index) => (
-                                    <React.Fragment key={index}>
-                                        <TableRow>
-                                            <TableCell>
-                                                <IconButton size="small" onClick={() => handleRowClick(area)}>
-                                                    {selectedArea && selectedArea._id === area._id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                                </IconButton>
-                                            </TableCell>
-                                            <TableCell>{area.Nombre}</TableCell>
-                                            <TableCell>{area.Tipo}</TableCell>
-                                            <TableCell>
-                                                <Button onClick={() => handleOpenUpdateDialog(area)} size="small" variant="outlined" color="primary" startIcon={<CachedIcon />}>Actualizar</Button>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button onClick={() => setOpenAddAreaDialog(true)} size="small" variant="outlined" color="primary" startIcon={<AddIcon />}>Agregar Sede</Button>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button onClick={() => handleDeleteArea(area._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
-                                            </TableCell> 
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
-                                                <Collapse in={selectedArea && selectedArea._id === area._id} timeout="auto" unmountOnExit>
-                                                    <Box sx={{ margin: 1 }}>
-                                                        <Typography variant="subtitle1">No hay subáreas</Typography>
-                                                    </Box>
-                                                </Collapse>
-                                            </TableCell>
-                                        </TableRow>
-                                    </React.Fragment>
+                                    <TableRow key={index} onClick={() => handleRowClick(area)} style={{ cursor: 'pointer', backgroundColor: selectedArea && selectedArea._id === area._id ? '#f0f0f0' : 'white' }}>
+                                        <TableCell style={{ paddingLeft: '20px' }}>{area.Nombre}</TableCell>
+                                        <TableCell>{area.Tipo}</TableCell>
+                                        <TableCell>
+                                            <Button onClick={() => handleOpenUpdateDialog(area)} size="small" variant="outlined" color="primary" startIcon={<CachedIcon />}>Actualizar</Button>
+                                        </TableCell>
+                                        
+                                        <TableCell>
+                                            <Button onClick={() => handleDeleteArea(area._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
+                                        </TableCell> 
+                                    </TableRow>
+                                    
                                 ))}
                             </TableBody>
                         </Table>
@@ -188,17 +189,13 @@ const AgregarArea = () => {
                                 onChange={(e) => setSelectedArea({...selectedArea, Nombre: e.target.value})}
                             />
                             <TextField
-                                select  // Cambia a un campo de selección
                                 margin="dense"
                                 id="tipo"
                                 label="Tipo"
                                 fullWidth
                                 value={selectedArea.Tipo}
                                 onChange={(e) => setSelectedArea({...selectedArea, Tipo: e.target.value})}
-                            >
-                                <MenuItem value="Administrativa">Administrativa</MenuItem>
-                                <MenuItem value="Operativa">Operativa</MenuItem>
-                            </TextField>
+                            />
                         </>
                     )}
                 </DialogContent>
@@ -229,17 +226,13 @@ const AgregarArea = () => {
                         onChange={(e) => setAreaNombre(e.target.value)}
                     />
                     <TextField
-                        select  // Cambia a un campo de selección
                         margin="dense"
                         id="tipo"
                         label="Tipo de Área"
                         fullWidth
                         value={areaTipo}
                         onChange={(e) => setAreaTipo(e.target.value)}
-                    >
-                        <MenuItem value="Administrativa">Administrativa</MenuItem>
-                        <MenuItem value="Operativa">Operativa</MenuItem>
-                    </TextField>
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => setOpenAddAreaDialog(false)} color="primary">
@@ -250,6 +243,12 @@ const AgregarArea = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 105, position: 'absolute' ,
+            color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
+            Areas 
+        </div>
+        <Button color='primary' style={{ left: 400,top: 0}}><FormDialog /></Button>
+        <Button onClick={handleSedeClick} color='primary' style={{ left: 500, top: 0, border: '1px solid blue' }}>Sedes</Button>
         </>
     );
 };

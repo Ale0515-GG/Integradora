@@ -7,17 +7,19 @@ const Administradores = () => {
   const [administradores, setAdministradores] = useState([]);
   const [nuevoAdmin, setNuevoAdmin] = useState({
     nombreempleado: '',
+    tipoUsuario: '',
+    acceso: '',
     apellidoP: '',
     apellidoM: '',
     correo: '',
-    acceso: '',
     rol: '',
     sede: '',
     area: '',
-    sexo: '',
+    sexo: false,
     cumpleanos: '',
-    tipoTurno: ''
+    tipoTurno: 0
   });
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -25,7 +27,7 @@ const Administradores = () => {
 
   const fetchData = async () => {
     try {
-      const response = await Axios.get("http://localhost:3001/administradores");
+      const response = await Axios.get("http://localhost:3001/usuarios");
       setAdministradores(response.data.data);
     } catch (error) {
       console.error('Error al obtener los administradores:', error.message);
@@ -33,43 +35,57 @@ const Administradores = () => {
   };
 
   const agregarAdministrador = async () => {
+    // Validar que ningún campo esté vacío
+    const camposVacios = Object.values(nuevoAdmin).some(value => value === '');
+    if (camposVacios) {
+      setError('Por favor completa todos los campos.');
+      return;
+    }
+
     try {
-      await Axios.post("http://localhost:3001/administradores/create", nuevoAdmin);
+      await Axios.post("http://localhost:3001/usuarios/create", nuevoAdmin);
       setNuevoAdmin({
         nombreempleado: '',
+        tipoUsuario: '',
+        acceso: '',
         apellidoP: '',
         apellidoM: '',
         correo: '',
-        acceso: '',
         rol: '',
         sede: '',
         area: '',
-        sexo: '',
+        sexo: false,
         cumpleanos: '',
-        tipoTurno: ''
+        tipoTurno: 0
       });
       fetchData(); // Actualizar la lista de administradores después de agregar uno nuevo
+      setError(''); // Limpiar mensaje de error después de agregar
     } catch (error) {
       console.error('Error al agregar el administrador:', error.message);
     }
   };
 
-  const eliminarAdministrador = async (correo) => {
+  const eliminarAdministrador = async (id) => {
     try {
-      await Axios.delete(`http://localhost:3001/administradores/delete/${correo}`);
+      await Axios.delete(`http://localhost:3001/usuarios/delete/${id}`);
       fetchData(); // Actualizar la lista de administradores después de eliminar uno
     } catch (error) {
       console.error('Error al eliminar el administrador:', error.message);
     }
   };
 
-  const modificarAdministrador = async (correo, nuevoAdminData) => {
+  const modificarAdministrador = async (id, nuevoAdminData) => {
     try {
-      await Axios.put(`http://localhost:3001/administradores/update/${correo}`, nuevoAdminData);
+      await Axios.put(`http://localhost:3001/usuarios/update/${id}`, nuevoAdminData);
       fetchData(); // Actualizar la lista de administradores después de modificar uno
     } catch (error) {
       console.error('Error al modificar el administrador:', error.message);
     }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNuevoAdmin({ ...nuevoAdmin, [name]: value });
   };
 
   return (
@@ -81,87 +97,85 @@ const Administradores = () => {
       <div className='tabla'>
         <h2 className='row-agregar'>Agregar Administrador</h2>
         <form onSubmit={(e) => { e.preventDefault(); agregarAdministrador(); }}>
-        <div className='form-grid'>
-      <div className="form-group">
-        <label className='name'>
-          Nombre:
-          <input type="text" value={nuevoAdmin.nombreempleado} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, nombreempleado: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Apellido Paterno:
-          <input type="text" value={nuevoAdmin.apellidoP} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, apellidoP: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Apellido Materno:
-          <input type="text" value={nuevoAdmin.apellidoM} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, apellidoM: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Correo:
-          <input type="email" value={nuevoAdmin.correo} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, correo: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Acceso:
-          <input type="text" value={nuevoAdmin.acceso} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, acceso: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Rol:
-          <input type="text" value={nuevoAdmin.rol} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, rol: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Sede:
-          <input type="text" value={nuevoAdmin.sede} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, sede: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Área:
-          <input type="text" value={nuevoAdmin.area} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, area: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Sexo:
-          <input type="text" value={nuevoAdmin.sexo} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, sexo: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Cumpleaños:
-          <input type="text" value={nuevoAdmin.cumpleanos} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, cumpleanos: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        <div className="form-group">
-        <label className='name'>
-          Tipo de Turno:
-          <input type="text" value={nuevoAdmin.tipoTurno} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, tipoTurno: e.target.value })} />
-        </label>
-        </div>
-        <br />
-        </div>
-        <button className="button agregar"  type="submit">Agregar Administrador</button>
-
+          <div className='form-grid'>
+            <div className="form-group">
+              <label className='name'>
+                Nombre:
+                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Tipo de Usuario:
+                <input type="text" name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Acceso:
+                <input type="text" name="acceso" value={nuevoAdmin.acceso} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Apellido Paterno:
+                <input type="text" name="apellidoP" value={nuevoAdmin.apellidoP} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Apellido Materno:
+                <input type="text" name="apellidoM" value={nuevoAdmin.apellidoM} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Correo:
+                <input type="email" name="correo" value={nuevoAdmin.correo} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Rol:
+                <input type="text" name="rol" value={nuevoAdmin.rol} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Sede:
+                <input type="text" name="sede" value={nuevoAdmin.sede} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Área:
+                <input type="text" name="area" value={nuevoAdmin.area} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="group-s">
+              <label className='selected'>
+                Sexo:
+                <select name="sexo" value={nuevoAdmin.sexo} onChange={handleInputChange}>
+                  <option value={true}>M</option>
+                  <option value={false}>F</option>
+                </select>
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Cumpleaños:
+                <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
+                Tipo de Turno:
+                <input type="number" name="tipoTurno" value={nuevoAdmin.tipoTurno} onChange={handleInputChange} />
+              </label>
+            </div>
+          </div>
+          <button className="button agregar" type="submit">Agregar Administrador</button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
       </div>
       <div className='table'>
@@ -184,8 +198,8 @@ const Administradores = () => {
             </tr>
           </thead>
           <tbody>
-            {administradores.map((admin, index) => (
-              <tr key={index}>
+            {administradores.map((admin) => (
+              <tr key={admin._id}>
                 <td>{admin.nombreempleado}</td>
                 <td>{admin.apellidoP}</td>
                 <td>{admin.apellidoM}</td>
@@ -194,12 +208,12 @@ const Administradores = () => {
                 <td>{admin.rol}</td>
                 <td>{admin.sede}</td>
                 <td>{admin.area}</td>
-                <td>{admin.sexo}</td>
+                <td>{admin.sexo ? 'Masculino' : 'Femenino'}</td>
                 <td>{admin.cumpleanos}</td>
                 <td>{admin.tipoTurno}</td>
                 <td>
-                  <button className="button eliminar" onClick={() => eliminarAdministrador(admin.correo)}>Eliminar</button>
-                  <button className="button modificar" onClick={() => modificarAdministrador(admin.correo, { nombreempleado: '' })}>Modificar</button>
+                  <button className="button eliminar" onClick={() => eliminarAdministrador(admin._id)}>Eliminar</button>
+                  <button className="button modificar" onClick={() => modificarAdministrador(admin._id, { nombreempleado: '' })}>Modificar</button>
                 </td>
               </tr>
             ))}

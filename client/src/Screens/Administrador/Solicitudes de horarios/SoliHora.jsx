@@ -3,7 +3,7 @@ import axios from 'axios';
 import './css/main.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { POSITION } from 'react-toastify';
+
 
 
 const HorarioEmpleado = () => {
