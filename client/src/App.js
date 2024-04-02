@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-
+import 'react-toastify/dist/ReactToastify.css';
 import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';

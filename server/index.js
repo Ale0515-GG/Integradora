@@ -1,16 +1,9 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import { routerUsuarios } from "./routes/routerUsuarios.js";
-import { routerSede } from "./routes/routerSede.js";
-
-import solicitudRouter from './routes/routeSoli.js'; // Usar import en lugar de require
-import { routerArea } from "./routes/routerArea.js";
-
-
-
-import solicitudRoutes from './routes/solicitudRoutes.js';
-
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import { routerUsuarios } from './routes/routerUsuarios.js';
+import { routerSede } from './routes/routerSede.js';
+import * as solicitudRoutes from './routes/solicitudRoutes.js'; 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,12 +17,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
 
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede);
-
-app.use('/soli',solicitudRouter); 
-app.use('/area', routerArea)
-
-app.use('/api', solicitudRoutes);
-
+app.use('/solicitudes', solicitudRoutes.default);
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);

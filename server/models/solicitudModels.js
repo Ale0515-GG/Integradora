@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const solicitudSchema = new mongoose.Schema({
   dia: String,
@@ -8,4 +8,4 @@ const solicitudSchema = new mongoose.Schema({
 
 const Solicitud = mongoose.model('Solicitud', solicitudSchema);
 
-module.exports = Solicitud;
+export default Solicitud;

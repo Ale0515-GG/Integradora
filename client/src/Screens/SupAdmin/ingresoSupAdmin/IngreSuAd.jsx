@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
  // Asegúrate de que la ruta sea correcta
-import './IngreSuAd.css'
+import './ingreSuAd.css'
 
 const IngreSuAd = () => {
   const [usuario, setUsuario] = useState('');
