@@ -20,7 +20,18 @@ const Horarios = () => {
       </div>
 
       {/* Tabla */}
-      <table id="example" className="display nowrap" style={{ width: '50%', textAlign: 'center', position: 'absolute', top: '400px', left: '2' }}>
+      <table
+        id="example"
+        className="display nowrap"
+        style={{
+          width: '50%',
+          textAlign: 'center',
+          position: 'absolute',
+          top: '400px',
+          left: '50%', // Centrado horizontal
+          transform: 'translateX(-50%)', // Centrado horizontal
+        }}
+      >
         <thead>
           <tr>
             <th>No.</th>
@@ -49,10 +60,10 @@ const Horarios = () => {
       </table>
 
       {/* Botón para guardar cambios */}
-      <button 
-        className="v359_18" 
-        style={{ 
-          position: 'absolute', 
+      <button
+        className="v359_18"
+        style={{
+          position: 'absolute',
           top: '800px', // Posicionamos en el 90% del eje Y
           left: '70%', // Posicionamos en el 50% del eje X
           transform: 'translate(-50%, -0%)', // Centramos el botón correctamente
@@ -62,13 +73,13 @@ const Horarios = () => {
           border: 'none',
           borderRadius: '5px',
           cursor: 'pointer',
-        }} 
+        }}
         onClick={handleGuardarCambios}
       >
         Guardar Cambios
       </button>
     </div>
   );
-}
+};
 
 export default Horarios;
