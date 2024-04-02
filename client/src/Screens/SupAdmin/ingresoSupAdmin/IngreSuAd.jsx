@@ -5,6 +5,9 @@ import axios from 'axios';
  // Asegúrate de que la ruta sea correcta
  import './IngreSuAd.css'
 
+import './ingreSuAd.css'
+
+
 const IngreSuAd = () => {
   const [usuario, setUsuario] = useState('');
   const [acceso, setAcceso] = useState('');

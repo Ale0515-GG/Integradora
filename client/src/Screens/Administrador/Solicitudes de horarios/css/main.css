@@ -45,9 +45,8 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
-button {
-  background-color: #4CAF50; /* Color de fondo del botón */
+.custom-button {
+  background-color: #0cafe5; /* Color de fondo del botón */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -55,11 +54,12 @@ button {
   cursor: pointer;
   font-size: 16px;
   display: block; /* Convertir el botón en bloque */
-  margin-left: auto; /* Mover el botón a la derecha */
-  margin-right: auto; 
-
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
+
+
 button:hover {
-  background-color: #45a049; /* Color de fondo del botón al pasar el mouse */
+  background-color: #08445c; /* Color de fondo del botón al pasar el mouse */
 }

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './css/main.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { POSITION } from 'react-toastify';
+
+
 const HorarioEmpleado = () => {
   // Estado para almacenar los horarios del empleado
   const [horarios, setHorarios] = useState([
@@ -21,14 +26,22 @@ const HorarioEmpleado = () => {
   // Función para manejar el clic en el botón guardar
   const handleGuardar = () => {
     // Aquí puedes enviar los horarios al servidor
-    axios.post('/api/solicitudes', horarios)
+    axios.post('/solicitudes', horarios)
       .then(response => {
-        console.log('Horarios guardados:', response.data);
+        // Muestra un mensaje de éxito
+        toast.success('Solicitud guardada correctamente', {
+          position: 'top-center'
+        });
       })
       .catch(error => {
+        // Muestra un mensaje de error
+        toast.error('Error al guardar los horarios', {
+          position: 'top-center'
+        });
         console.error('Error al guardar los horarios:', error);
       });
   };
+  
 
   // Opciones para los horarios disponibles
   const opcionesInicio = ['08:00', '09:00', '10:00'];
@@ -80,7 +93,7 @@ const HorarioEmpleado = () => {
             ))}
           </tbody>
         </table>
-        <button onClick={handleGuardar}>Guardar</button>
+        <button className="custom-button" onClick={handleGuardar}>Guardar</button>
       </div>
     </div>
   );

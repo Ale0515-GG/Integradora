@@ -24,6 +24,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import CachedIcon from '@mui/icons-material/Cached';
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
+
 
 import {  useNavigate } from 'react-router-dom';
 
@@ -133,7 +136,25 @@ const AgregarSede = () => {
 
     return (
         <>
-            <TextField type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Sede" style={{ marginLeft: '10px' }} /> 
+
+<TextField
+    type="text"
+    value={nombreSedeBuscado}
+    onChange={handleNombreSedeChange}
+    placeholder="Buscar Nombre de Sede"
+    fullWidth
+    style={{ marginLeft: '10px', border: 'none', borderBottom: '1px solid grey' }}
+    InputProps={{
+        startAdornment: (
+            <InputAdornment position="start">
+                <SearchIcon style={{ color: 'grey' }} />
+            </InputAdornment>
+        ),
+        disableUnderline: true, // Esto elimina el borde predeterminado del TextField
+    }}
+/>
+
+
             <div className="Sede">
 
                 <div className="Rectangle" />
@@ -154,7 +175,7 @@ const AgregarSede = () => {
                                     <TableCell>Dirección</TableCell>
                                     
                                     <TableCell>Actualizar</TableCell>
-                                    <TableCell>Agregar Area</TableCell>
+                                    
                                     <TableCell>Eliminar</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -171,9 +192,6 @@ const AgregarSede = () => {
                                             <TableCell>{sedeArea.Ubicacion}</TableCell>
                                             <TableCell>
                                                 <Button onClick={() => handleOpenUpdateDialog(sedeArea)} size="small" variant="outlined" color="primary" startIcon={<CachedIcon />}>Actualizar</Button>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button onClick={() => handleAreaClick} size="small" variant="outlined" color="primary"  >Agregar Area</Button>
                                             </TableCell>
                                             <TableCell>
                                                 <Button onClick={() => handleDeleteSedeArea(sedeArea._id)} size="small" variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
@@ -279,11 +297,12 @@ const AgregarSede = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 110, position: 'absolute' ,
+            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 105, position: 'absolute' ,
             color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
             Sedes 
         </div>
-        <Button color='primary' style={{ left: 620,top: 5}}><FormDialog /></Button>
+        <Button color='primary' style={{ left: 400,top: 0}}><FormDialog /></Button>
+        <Button onClick={handleAreaClick} color='primary' style={{ left: 500, top: 0, border: '1px solid blue' }}>Agregar Áreas</Button>
         </>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-
+import 'react-toastify/dist/ReactToastify.css';
 import Inicio from './Screens/Inicio/Inicio';
 import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
@@ -11,7 +11,7 @@ import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'
-import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
+import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones.jsx';
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
 
 import AgregarArea from './Screens/SupAdmin/AgregarAreas/AgregarArea.jsx'

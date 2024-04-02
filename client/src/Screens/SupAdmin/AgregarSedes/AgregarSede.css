@@ -13,16 +13,6 @@
   left: 0;
 }
 
-.v141_18 {
-  width: 300px;
-  height: 40px;
-  border-radius: 20px;
-  border: none;
-  padding: 10px;
-  font-size: 18px;
-  text-align: center;
-  margin-top: 10px;
-}
 
 .AgregarNuevoEmpleado {
   width: 540px;
@@ -94,3 +84,22 @@
 .MuiButton-root.delete-button:hover {
   background-color: #b71c1c;
 }
+.v141_18 {
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  border: none; /* Elimina el borde */
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Estilo específico para el TextField dentro de la barra de búsqueda */
+.Sede .v141_18 {
+  margin-left: 10px; /* Agrega un margen izquierdo */
+  border-radius: 0; /* Quita el borde redondeado */
+  border-bottom: 1px solid grey; /* Establece un borde inferior gris */
+}
+
+

@@ -1,6 +1,6 @@
-const Solicitud = require('../models/Solicitud');
+import Solicitud from '../models/Solicitud.js';
 
-exports.crearSolicitud = async (req, res) => {
+export const crearSolicitud = async (req, res) => {
   try {
     const nuevaSolicitud = new Solicitud(req.body);
     await nuevaSolicitud.save();
