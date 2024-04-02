@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/main.css";
+import "./css/mainH.css";
 import { Link } from "react-router-dom";
 
 const Aprobacion = () => {
@@ -60,7 +60,7 @@ const Aprobacion = () => {
       <div className="header">
         <div className="logo"></div>
         <Link to="/AproS" className="casita"></Link>
-        <h1 className="title">Solicitudes de cambio de Horarios</h1>
+        <h1 className="title">Aprobacion de cambio de Horarios</h1>
       </div>
       <div className="table">
         {solicitudes.length > 0 ? (
