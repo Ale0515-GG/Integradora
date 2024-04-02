@@ -13,7 +13,7 @@ import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones';
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
-
+import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora.jsx';
 
 
 function App() {
@@ -29,8 +29,8 @@ function App() {
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
-
-          <Route path='/Notificaciones' element={<Notificaciones/>}></Route>8/8/8
+          <Route path='/SolicitudH'element={<SolicitudH/>}></Route>
+          <Route path='/Notificaciones' element={<Notificaciones/>}></Route>
           
 
           <Route path="/diagrama" element={<Diagrama />} />\\\\
