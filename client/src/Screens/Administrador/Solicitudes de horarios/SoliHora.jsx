@@ -1,71 +1,89 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import './css/main.css'
+const HorarioEmpleado = () => {
+  // Estado para almacenar los horarios del empleado
+  const [horarios, setHorarios] = useState([
+    { dia: 'Lunes', horaInicio: '', horaFin: '' },
+    { dia: 'Martes', horaInicio: '', horaFin: '' },
+    { dia: 'Miércoles', horaInicio: '', horaFin: '' },
+    { dia: 'Jueves', horaInicio: '', horaFin: '' },
+    { dia: 'Viernes', horaInicio: '', horaFin: '' }
+  ]);
 
-const SolicitudCambioHorarios = () => {
-  const [solicitudes, setSolicitudes] = useState([]);
-
-  useEffect(() => {
-    cargarSolicitudes();
-  }, []);
-
-  const cargarSolicitudes = async () => {
-    try {
-      const response = await axios.get('/api/solicitudes');
-      setSolicitudes(response.data);
-    } catch (error) {
-      console.error('Error al cargar las solicitudes:', error);
-    }
+  // Función para manejar cambios en las horas de inicio y fin
+  const handleHoraChange = (index, campo, valor) => {
+    const nuevosHorarios = [...horarios];
+    nuevosHorarios[index][campo] = valor;
+    setHorarios(nuevosHorarios);
   };
 
-  const agregarSolicitud = async () => {
-    try {
-      const nuevaSolicitud = { /* datos de la nueva solicitud */ };
-      await axios.post('/api/solicitudes', nuevaSolicitud);
-      cargarSolicitudes();
-    } catch (error) {
-      console.error('Error al agregar la solicitud:', error);
-    }
+  // Función para manejar el clic en el botón guardar
+  const handleGuardar = () => {
+    // Aquí puedes enviar los horarios al servidor
+    axios.post('/api/solicitudes', horarios)
+      .then(response => {
+        console.log('Horarios guardados:', response.data);
+      })
+      .catch(error => {
+        console.error('Error al guardar los horarios:', error);
+      });
   };
 
-  const eliminarSolicitud = async (id) => {
-    try {
-      await axios.delete(`/api/solicitudes/${id}`);
-      cargarSolicitudes();
-    } catch (error) {
-      console.error('Error al eliminar la solicitud:', error);
-    }
-  };
+  // Opciones para los horarios disponibles
+  const opcionesInicio = ['08:00', '09:00', '10:00'];
+  const opcionesFin = ['16:00', '17:00', '18:00'];
 
   return (
     <div>
-      <h1>Lista de Solicitudes de Cambio de Horarios</h1>
-      <button onClick={agregarSolicitud}>Agregar Solicitud</button>
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Descanso</th>
-            <th>Horario</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {solicitudes.map((solicitud, index) => (
-            <tr key={index}>
-              <td>{solicitud.nombre}</td>
-              <td>{solicitud.descanso}</td>
-              <td>{solicitud.horario}</td>
-              <td>{solicitud.estado}</td>
-              <td>
-                <button onClick={() => eliminarSolicitud(solicitud._id)}>Eliminar</button>
-              </td>
+      <div className="rectangulo-imagenes">
+        {/* Aquí van las imágenes */}
+      </div>
+      <div className="info-empleado">
+        <div>
+          <p>Area: [Área del empleado]</p>
+          <p>Sede: [Sede del empleado]</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Día</th>
+              <th>Hora inicio</th>
+              <th>Hora fin</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {horarios.map((horario, index) => (
+              <tr key={index}>
+                <td>{horario.dia}</td>
+                <td>
+                  <select
+                    value={horario.horaInicio}
+                    onChange={(e) => handleHoraChange(index, 'horaInicio', e.target.value)}
+                  >
+                    {opcionesInicio.map((hora, i) => (
+                      <option key={i} value={hora}>{hora}</option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <select
+                    value={horario.horaFin}
+                    onChange={(e) => handleHoraChange(index, 'horaFin', e.target.value)}
+                  >
+                    {opcionesFin.map((hora, i) => (
+                      <option key={i} value={hora}>{hora}</option>
+                    ))}
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button onClick={handleGuardar}>Guardar</button>
+      </div>
     </div>
   );
 };
 
-export default SolicitudCambioHorarios;
+export default HorarioEmpleado;

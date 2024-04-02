@@ -5,10 +5,6 @@ import { routerUsuarios } from "./routes/routerUsuarios.js";
 import { routerSede } from "./routes/routerSede.js";
 import solicitudRoutes from './routes/solicitudRoutes.js';
 
-
-
-
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
