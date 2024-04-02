@@ -11,12 +11,8 @@ import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
 import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'
-
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
-
 import AgregarArea from './Screens/SupAdmin/AgregarAreas/AgregarArea.jsx'
-
-
 import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora.jsx'
 
 
@@ -46,7 +42,7 @@ function App() {
 
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path='/SolicitudesH'element={<SolicitudH/>}></Route>
-      
+
 
           
 

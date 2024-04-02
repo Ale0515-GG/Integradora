@@ -1,31 +1,36 @@
-/* Estilos para el contenedor principal */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
 .container {
   font-family: 'Arial', sans-serif;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px 500px; /* Modificado para mantener el contenido alineado */
+  padding: 20px;
 }
 
-/* Estilos para el encabezado */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #375a7f;
   color: #fff;
-  padding: 1px 500px;
+  width: 1380px;
 }
 
-
-/* Estilos para el encabezado */
-
-/* Estilos para la tabla */
 .table {
   width: 100%;
-  background-color: #E1F6FF;
+  background-color: #375a7f;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   overflow: auto;
+  margin-top: 20px;
 }
 
 .table th,
@@ -35,19 +40,24 @@
 
 .table th {
   background-color: #0C789C;
-  color: white;
+  color: #fff;
   font-size: 20px;
 }
 
 .table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #375a7f;
 }
 
 .table tr:hover {
-  background-color: #ddd;
+  background-color: #375a7f;
 }
 
-/* Estilos para los botones */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
 .button {
   padding: 8px 16px;
   cursor: pointer;
@@ -55,6 +65,7 @@
   border-radius: 5px;
   outline: none;
   font-size: 14px;
+  margin-left: 10px;
 }
 
 .button.reject {
@@ -62,8 +73,7 @@
   color: #fff;
 }
 
-/* Estilos para el botón de aprobar */
 .approve {
   background-color: #28a745;
-  color: #fff;
+  color: #ffffff;
 }
