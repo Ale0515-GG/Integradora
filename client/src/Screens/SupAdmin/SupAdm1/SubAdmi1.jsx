@@ -6,8 +6,8 @@ import './css/main.css';
 const Administradores = () => {
   const [administradores, setAdministradores] = useState([]);
   const [error, setError] = useState('');
-  const [adminEditando, setAdminEditando] = useState(null); // Estado para almacenar el ID del administrador en edición
-  const [adminCambios, setAdminCambios] = useState({}); // Estado para almacenar los cambios en el administrador
+  const [adminEditando, setAdminEditando] = useState(null); 
+  const [adminCambios, setAdminCambios] = useState({}); 
   const [nuevoAdmin, setNuevoAdmin] = useState({
     nombreempleado: '',
     tipoUsuario: '',

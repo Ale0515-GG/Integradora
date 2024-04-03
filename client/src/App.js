@@ -16,7 +16,7 @@ import Diagrama from './Screens/Diagrama/Diagrama.jsx'
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
 
 import VEmpleadoH from './Screens/Empleado/SolicitudHorarioEmple/SoliHoraE.jsx'
-import VacaEmV from './Screens/Empleado/SolicitudVacacionesEmpleado/SoliEVacaciones.jsx'
+import VacaEmV from './Screens/Empleado/SolicitudVacacionesEmpleado/SoliEVaca.jsx'
 
 import AgregarArea from './Screens/SupAdmin/AgregarAreas/AgregarArea.jsx'
 import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora.jsx'
