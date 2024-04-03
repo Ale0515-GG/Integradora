@@ -1,3 +1,5 @@
+// sedeControllers.js
+
 import Sede from "../models/sedeModel.js";
 
 export const getSedes = async (req, res) => {
@@ -33,21 +35,18 @@ export const postSede = async (req, res) => {
   }
 };
 
-
-
 export const putSede = async (req, res) => {
   const id = req.params.id;
   const newData = req.body;
 
   try {
-      const data = await Sede.findOneAndUpdate({ _id: id }, newData, { new: true });
-      res.json({ success: true, message: "Datos de la sede actualizados exitosamente", data: data });
+    const data = await Sede.findOneAndUpdate({ _id: id }, newData, { new: true });
+    res.json({ success: true, message: "Datos de la sede actualizados exitosamente", data: data });
   } catch (error) {
-      console.error("Error al actualizar los datos de la sede:", error);
-      res.status(500).json({ success: false, message: "Error del servidor" });
+    console.error("Error al actualizar los datos de la sede:", error);
+    res.status(500).json({ success: false, message: "Error del servidor" });
   }
 };
-
 
 export const deleteSede = async (req, res) => {
   try {
@@ -56,6 +55,25 @@ export const deleteSede = async (req, res) => {
     res.send({ success: true, message: "La sede se eliminó exitosamente" });
   } catch (error) {
     console.error("Error al eliminar la sede:", error);
+    res.status(500).json({ success: false, message: "Error del servidor" });
+  }
+};
+
+export const deleteAreaFromSede = async (req, res) => {
+  try {
+    const { id, areaId } = req.params;
+    const sede = await Sede.findById(id);
+
+    if (!sede) {
+      return res.status(404).json({ success: false, message: "Sede no encontrada" });
+    }
+
+    sede.Areas = sede.Areas.filter(area => area._id != areaId);
+    await sede.save();
+
+    res.json({ success: true, message: "Área eliminada de la sede exitosamente" });
+  } catch (error) {
+    console.error("Error al eliminar el área de la sede:", error);
     res.status(500).json({ success: false, message: "Error del servidor" });
   }
 };

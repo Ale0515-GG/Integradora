@@ -111,6 +111,7 @@ const AgregarSede = () => {
             setSedesAreas(updatedSedesAreas);
             setAreaNombre("");
             setOpenAddAreaDialog(false); // Cierra la ventana emergente
+            setAreas(areas.filter(area => area.Nombre !== areaNombre)); // Elimina el área seleccionada de la lista de opciones
 
         } catch (error) {
             console.error('Error al agregar el área:', error.message);
@@ -166,7 +167,7 @@ const AgregarSede = () => {
                 onChange={handleNombreSedeChange}
                 placeholder="Buscar Nombre de Sede"
                 fullWidth
-                style={{ border: 'none', borderBottom: '1px solid grey',marginTop:'70px'}}
+                style={{ border: 'none', borderBottom: '1px solid grey'}}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -180,7 +181,7 @@ const AgregarSede = () => {
             <div className="Sede">
                 
                 <div className="Rectangle" />
-                
+                <input type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Área" className='v141_18 ' style={{left: 1050, top: 160}}/>
                 <div className="Tablas" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <TableContainer component={Paper}>
                         <Table aria-label="collapsible table">
@@ -297,42 +298,52 @@ const AgregarSede = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+
+
+
+
             <Dialog open={openAddAreaDialog} onClose={() => setOpenAddAreaDialog(false)}>
-                <DialogTitle>Agregar Área</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Complete los detalles del área a agregar.
-                    </DialogContentText>
-                    <TextField
-                        select
-                        margin="dense"
-                        id="nombreArea"
-                        label="Nombre del Área"
-                        fullWidth
-                        value={areaNombre}
-                        onChange={(e) => {
-                            setAreaNombre(e.target.value);
-                            const selectedArea = areas.find(area => area.Nombre === e.target.value);
-                            if (selectedArea) {
-                                
-                            }
-                        }}
-                    >
-                        {areas.map((area, index) => (
-                            <MenuItem key={index} value={area.Nombre}>{area.Nombre}</MenuItem>
-                        ))}
-                    </TextField>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setOpenAddAreaDialog(false)} color="primary">
-                        Cancelar
-                    </Button>
-                    <Button onClick={handleAddArea} color="primary">
-                        Agregar
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        
+    <DialogTitle>Agregar Área</DialogTitle>
+    <DialogContent>
+        <DialogContentText>
+            Complete los detalles del área a agregar.
+        </DialogContentText>
+        <TextField
+            select
+            margin="dense"
+            id="nombreArea"
+            label="Nombre del Área"
+            fullWidth
+            value={areaNombre}
+            onChange={(e) => {
+                setAreaNombre(e.target.value);
+            }}
+        >
+            {areas
+                .filter(area => !selectedSedeArea || !selectedSedeArea.Areas.some(sedeArea => sedeArea.NombreArea === area.Nombre))
+                .map((area, index) => (
+                    <MenuItem key={index} value={area.Nombre}>{area.Nombre}</MenuItem>
+                ))}
+        </TextField>
+    </DialogContent>
+    <DialogActions>
+        <Button onClick={() => setOpenAddAreaDialog(false)} color="primary">
+            Cancelar
+        </Button>
+        <Button onClick={() => {
+            handleAddArea();
+            window.location.reload();
+        }} color="primary">
+            Agregar
+        </Button>
+    </DialogActions>
+</Dialog>
+
+
+
+
+
 
             <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 105, position: 'absolute' ,
                 color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
