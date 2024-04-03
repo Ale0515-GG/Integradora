@@ -1,0 +1,82 @@
+/* mainEV.css */
+
+/* Estilos para el contenedor principal */
+.solicitudes-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 10px;
+  
+}
+
+/* Estilos para el encabezado */
+.solicitudes-header {
+  position: fixed; /* Hace que el encabezado se mantenga fijo en la pantalla */
+  top: 0; /* Lo coloca en la parte superior de la pantalla */
+  left: 0; /* Lo coloca en el borde izquierdo de la pantalla */
+  width: 100%; /* Lo hace ocupar todo el ancho de la pantalla */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  padding: 40px 20px; /* Agrega espacio interno */
+  color: white; /* Cambia el color del texto a blanco */
+}
+
+/* Estilos para el título */
+.solicitudes-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 200px;
+}
+
+/* Estilos para la tabla */
+.solicitudes-table {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+/* Estilos para las filas */
+.solicitudes-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilos para la última fila */
+.solicitudes-row:last-child {
+  border-bottom: none;
+}
+
+/* Estilos para los elementos dentro de las filas */
+.solicitudes-name,
+.solicitudes-department,
+.solicitudes-sede,
+.solicitudes-horario,
+.solicitudes-editar {
+  flex: 1;
+}
+
+/* Estilos para los botones de editar */
+.solicitudes-acciones button.solicitud-boton,
+.solicitudes-acciones select.solicitud-boton {
+  padding: 8px 16px;
+  background-color: #000dff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-left: 15%;
+}
+
+
+/* Estilos para el contenedor de botones */
+.boton-container {
+  margin-bottom: 10px; 
+  border-radius: 10%;
+/* Espacio entre los botones */
+}

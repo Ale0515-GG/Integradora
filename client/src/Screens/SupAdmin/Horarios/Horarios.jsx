@@ -95,9 +95,9 @@ const Horarios = () => {
       </div>
 
       {/* Tabla de empleados aceptados */}
-      <div>
+      <div className="v281_0">
         <h2>Empleados Aceptados:</h2>
-        <table id="empleadosAceptados">
+        <table id="empleadosAceptados" className="example">
           <thead>
             <tr>
               <th>No.</th>

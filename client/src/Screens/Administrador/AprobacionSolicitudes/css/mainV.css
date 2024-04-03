@@ -1,19 +1,7 @@
 
-
 * {
   box-sizing: border-box;
 }
-
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 10px;
-    padding: 16px;
-    background-color: rgba(255, 255, 255, 1);
-    position: relative;
-    overflow: hidden;
-    margin: 20px;
-  }
-  }
 
 body {
   font-size: 14px;
@@ -21,6 +9,16 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+@media screen and (max-width: 1480px) {
+  .container {
+    padding: 10px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 1px;
+  }
+}
 
 .header {
   height: 128px;
@@ -81,7 +79,9 @@ body {
   outline: none;
   font-size: 14px;
   max-width: 100px;
-  /* Estilos para el contenedor principal */
+}
+
+/* Estilos para el contenedor principal */
 .container {
   font-family: 'Arial', sans-serif;
   max-width: 800px;
@@ -96,31 +96,35 @@ body {
   justify-content: space-between;
   background-color: #375a7f;
   color: #fff;
-  padding: 1px 680px;
- 
-}
-
-/* Estilos para el título */
-.title {
-  font-size: 24px;
-  margin: 0;
+  width: 1380px;
 }
 
 /* Estilos para la tabla */
 .table {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 8px;
-  align-items: center;
+  width: 1000px;
+  background-color: #375a7f;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  overflow: auto;
 }
 
-/* Estilos para las filas de la tabla */
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+.table th,
+.table td {
+  padding: 15px;
+}
+
+.table th {
+  background-color: #0C789C;
+  color: #375a7f;
+  font-size: 20px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #375a7f;
+}
+
+.table tr:hover {
+  background-color: #375a7f;
 }
 
 /* Estilos para los botones */
@@ -131,12 +135,10 @@ body {
   border-radius: 5px;
   outline: none;
   font-size: 14px;
-  align-items: right;
 }
 
-/* Estilos para el botón de rechazar */
-.reject {
-  background-color: #ff3b3b;
+.button.reject {
+  background-color: rgba(255, 0, 0, 1);
   color: #fff;
 }
 
@@ -144,30 +146,4 @@ body {
 .approve {
   background-color: #28a745;
   color: #fff;
-}
-
-}
-
-.name,
-.department,
-.contractType,
-.status,
-.date {
-  flex: 1;
-  white-space: nowrap; /* Evita que los textos se envuelvan */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Añade puntos suspensivos cuando el texto sea demasiado largo */
-}
-
-
-
-
-.button.reject {
-  background-color: rgba(255, 0, 0, 0); /* Fondo transparente */
-  color: #f50404; /* Conserva el color del texto */
-}
-
-.button.approve {
-  background-color: rgba(0, 131, 0, 0); /* Fondo transparente */
-  color: #1ddc13; /* Conserva el color del texto */
 }
