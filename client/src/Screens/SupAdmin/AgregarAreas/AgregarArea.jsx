@@ -111,22 +111,22 @@ const AgregarArea = () => {
 
     return (
         <> 
-<TextField
-    type="text"
-    value={nombreAreaBuscado}
-    onChange={handleNombreAreaChange}
-    placeholder="Buscar Nombre de Sede"
-    fullWidth
-    style={{ marginLeft: '10px', border: 'none', borderBottom: '1px solid grey' }}
-    InputProps={{
-        startAdornment: (
-            <InputAdornment position="start">
-                <SearchIcon style={{ color: 'grey' }} />
-            </InputAdornment>
-        ),
-        disableUnderline: true, // Esto elimina el borde predeterminado del TextField
-    }}
-/>
+            <TextField
+                type="text"
+                value={nombreAreaBuscado}
+                onChange={handleNombreAreaChange}
+                placeholder="Buscar Nombre de Sede"
+                fullWidth
+                style={{ marginLeft: '10px', border: 'none', borderBottom: '1px solid grey' }}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <SearchIcon style={{ color: 'grey' }} />
+                        </InputAdornment>
+                    ),
+                    disableUnderline: true, // Esto elimina el borde predeterminado del TextField
+                }}
+            />
 
             <div className="Area">
                 <div className="Rectangle" />

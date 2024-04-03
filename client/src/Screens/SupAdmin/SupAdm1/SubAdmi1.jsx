@@ -1,27 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
 import './css/main.css';
 
 const Administradores = () => {
   const [administradores, setAdministradores] = useState([]);
   const [error, setError] = useState('');
-  const [adminEditando, setAdminEditando] = useState(null); 
-  const [adminCambios, setAdminCambios] = useState({}); 
-  const [nuevoAdmin, setNuevoAdmin] = useState({
-    nombreempleado: '',
-    tipoUsuario: '',
-    acceso: '',
-    apellidoP: '',
-    apellidoM: '',
-    correo: '',
-    rol: '',
-    sede: '',
-    area: '',
-    sexo: true,
-    cumpleanos: '',
-    tipoTurno: ''
-  });
+  const [adminEditando, setAdminEditando] = useState(null); // Estado para almacenar el ID del administrador en edición
+  const [adminCambios, setAdminCambios] = useState({}); // Estado para almacenar los cambios en el administrador
 
   useEffect(() => {
     fetchData();
@@ -42,21 +27,6 @@ const Administradores = () => {
       fetchData();
       setError('');
       alert('Administrador agregado correctamente');
-      // Reiniciar los valores del nuevo administrador
-      setNuevoAdmin({
-        nombreempleado: '',
-        tipoUsuario: '',
-        acceso: '',
-        apellidoP: '',
-        apellidoM: '',
-        correo: '',
-        rol: '',
-        sede: '',
-        area: '',
-        sexo: true,
-        cumpleanos: '',
-        tipoTurno: ''
-      });
     } catch (error) {
       console.error('Error al agregar el administrador:', error.message);
       setError('Error al agregar el administrador');
@@ -96,12 +66,11 @@ const Administradores = () => {
 
   const handleInputChange = (e, id) => {
     const { name, value } = e.target;
-    // Si el valor está vacío, elimina la clave del estado adminCambios[id] para que quede vacío
     setAdminCambios(prevState => ({
       ...prevState,
       [id]: {
         ...prevState[id],
-        [name]: value === '' ? undefined : value
+        [name]: value
       }
     }));
   };
@@ -118,8 +87,9 @@ const Administradores = () => {
     const adminActualizado = adminCambios[id];
     if (adminActualizado) {
       try {
-        await modificarAdministrador(id, adminActualizado);
-        alert('Cambios guardados correctamente');
+        await modificarAdministrador(id, {
+          ...adminActualizado
+        });
       } catch (error) {
         console.error('Error al guardar los cambios:', error.message);
         setError('Error al guardar los cambios');
@@ -127,85 +97,89 @@ const Administradores = () => {
     }
   };
 
-  const handleNuevoAdminChange = (e) => {
-    const { name, value } = e.target;
-    setNuevoAdmin(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
   return (
     <div className="container">
       <div className="header">
-        <Link to="/IngreSuAd" className="logo"></Link>
-        <h1 className='title'>Control de Administradores</h1>
+        
       </div>
       <div className='tabla'>
         <h2 className='row-agregar'>Agregar Administrador</h2>
         <form onSubmit={(e) => {
           e.preventDefault();
-          agregarAdministrador(nuevoAdmin);
+          agregarAdministrador({
+            nombreempleado: e.target.nombreempleado.value,
+            tipoUsuario: e.target.tipoUsuario.value,
+            acceso: e.target.acceso.value,
+            apellidoP: e.target.apellidoP.value,
+            apellidoM: e.target.apellidoM.value,
+            correo: e.target.correo.value,
+            rol: e.target.rol.value,
+            sede: e.target.sede.value,
+            area: e.target.area.value,
+            sexo: e.target.sexo.value === 'true' ? true : false,
+            cumpleanos: e.target.cumpleanos.value,
+            tipoTurno: e.target.tipoTurno.value
+          });
         }}>
           <div className='form-grid'>
             <div className="form-group">
               <label className='name'>
                 Nombre:
-                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleNuevoAdminChange} />
+                <input type="text" name="nombreempleado" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Tipo de Usuario:
-                <input type="text" name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleNuevoAdminChange} />
+                <input type="text" name="tipoUsuario" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Acceso:
-                <input type="text" name="acceso" value={nuevoAdmin.acceso} onChange={handleNuevoAdminChange} />
+                <input type="text" name="acceso" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Apellido Paterno:
-                <input type="text" name="apellidoP" value={nuevoAdmin.apellidoP} onChange={handleNuevoAdminChange} />
+                <input type="text" name="apellidoP" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Apellido Materno:
-                <input type="text" name="apellidoM" value={nuevoAdmin.apellidoM} onChange={handleNuevoAdminChange} />
+                <input type="text" name="apellidoM" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Correo:
-                <input type="email" name="correo" value={nuevoAdmin.correo} onChange={handleNuevoAdminChange} />
+                <input type="email" name="correo" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Rol:
-                <input type="text" name="rol" value={nuevoAdmin.rol} onChange={handleNuevoAdminChange} />
+                <input type="text" name="rol" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Sede:
-                <input type="text" name="sede" value={nuevoAdmin.sede} onChange={handleNuevoAdminChange} />
+                <input type="text" name="sede" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Área:
-                <input type="text" name="area" value={nuevoAdmin.area} onChange={handleNuevoAdminChange} />
+                <input type="text" name="area" />
               </label>
             </div>
-            <div className="group-s">
-              <label className='selected'>
+            <div className="form-group">
+              <label className='name'>
                 Sexo:
-                <select name="sexo" value={nuevoAdmin.sexo} onChange={handleNuevoAdminChange}>
+                <select name="sexo">
                   <option value={true}>M</option>
                   <option value={false}>F</option>
                 </select>
@@ -214,13 +188,13 @@ const Administradores = () => {
             <div className="form-group">
               <label className='name'>
                 Cumpleaños:
-                <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={handleNuevoAdminChange} />
+                <input type="date" name="cumpleanos" />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Tipo de Turno:
-                <input type="number" name="tipoTurno" value={nuevoAdmin.tipoTurno} onChange={handleNuevoAdminChange} />
+                <input type="number" name="tipoTurno" />
               </label>
             </div>
           </div>
