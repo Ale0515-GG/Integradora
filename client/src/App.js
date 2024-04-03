@@ -5,16 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import Inicio from './Screens/Inicio/Inicio';
-import Admin from './Screens/Administrador/Administrador/Admin';
 import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
 import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
-import SubAdmin2 from './Screens/SupAdmin/SupAdmi2/SubAdmin2';
-import AprobacionS from './Screens/Administrador/AprobacionSolicitudes/AproSoli';
+
 import AgregarSede from './Screens/SupAdmin/AgregarSedes/AgregarSede';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'
 import Horarios from './Screens/SupAdmin/Horarios/Horarios.jsx';
-
 import VEmpleadoH from './Screens/Empleado/SolicitudHorarioEmple/SoliHoraE.jsx'
 import VacaEmV from './Screens/Empleado/SolicitudVacacionesEmpleado/SoliEVaca.jsx'
 
