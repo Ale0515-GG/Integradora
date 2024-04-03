@@ -48,7 +48,6 @@ function App() {
           <Route path='/AgregarArea'element={<AgregarArea/>}></Route>
 
 
-         
 
   
 
