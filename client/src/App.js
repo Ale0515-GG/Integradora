@@ -29,33 +29,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Inicio />}></Route>
-          <Route path="/Admin" element={<Admin />}></Route>
-
-
-          <Route path="/Admin" element={<Admin />}></Route> 
           <Route path="/VaEmV" element={<VacaEmV />}></Route> 
-
-
-          <Route path="/AproS" element={<AprobacionS />}></Route> 
           <Route path="/Apro" element={<Aprobacion />}></Route>
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
-          <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
-
-          <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path='/AgregarArea'element={<AgregarArea/>}></Route>
-
           <Route path="/SoliHEmple" element={<VEmpleadoH />}></Route>
-
-
-          <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
-          <Route path='/AgregarArea'element={<AgregarArea/>}></Route>
-
-
-
-  
-
-
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path='/SolicitudesH'element={<SolicitudH/>}></Route>
           <Route path="/diagrama" element={<Diagrama />} />

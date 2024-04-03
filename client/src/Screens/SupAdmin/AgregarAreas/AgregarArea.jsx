@@ -111,7 +111,7 @@ const AgregarArea = () => {
 
     return (
         <> 
-            <TextField
+<TextField
     type="text"
     value={nombreAreaBuscado}
     onChange={handleNombreAreaChange}

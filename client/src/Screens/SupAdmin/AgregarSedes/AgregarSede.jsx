@@ -111,19 +111,25 @@ const AgregarSede = () => {
             setSedesAreas(updatedSedesAreas);
             setAreaNombre("");
             setOpenAddAreaDialog(false); // Cierra la ventana emergente
-            window.location.reload();
 
         } catch (error) {
             console.error('Error al agregar el área:', error.message);
         }
     };
 
-    const handleDeleteSedeArea = async (id) => {
+    const handleDeleteArea = async (sedeId, areaId) => {
         try {
-            await Axios.delete(`http://localhost:3001/sede/delete/${id}`);
-            setSedesAreas(sedesAreas.filter(sede => sede._id !== id));
+            await Axios.delete(`http://localhost:3001/sede/deleteArea/${sedeId}/${areaId}`);
+            const updatedSedesAreas = sedesAreas.map(sedeArea => {
+                if (sedeArea._id === sedeId) {
+                    const updatedAreas = sedeArea.Areas.filter(area => area._id !== areaId);
+                    return { ...sedeArea, Areas: updatedAreas };
+                }
+                return sedeArea;
+            });
+            setSedesAreas(updatedSedesAreas);
         } catch (error) {
-            console.error('Error al eliminar la sede o área:', error.message);
+            console.error('Error al eliminar el área:', error.message);
         }
     };
 
@@ -139,11 +145,22 @@ const AgregarSede = () => {
 
     const handleAreaClick = () => {
         navigate('/AgregarArea');
+        
     };
+
+    const handleDeleteSedeArea = async (id) => {
+        try {
+            await Axios.delete(`http://localhost:3001/sede/delete/${id}`);
+            setSedesAreas(sedesAreas.filter(sede => sede._id !== id));
+        } catch (error) {
+            console.error('Error al eliminar la sede o área:', error.message);
+        }
+    };
+    
 
     return (
         <>
-  <TextField
+            <TextField
                 type="text"
                 value={nombreSedeBuscado}
                 onChange={handleNombreSedeChange}
@@ -204,12 +221,32 @@ const AgregarSede = () => {
                                                     <Box sx={{ margin: 1 }}>
                                                         <Typography variant="subtitle1">Áreas:</Typography>
                                                         
-                                                        { sedeArea.Areas.map((area, areaIndex) => (
-                                                            <div key={areaIndex}>
-                                                                Nombre: {area.NombreArea}, Tipo: {area.Tipo}
-                                                            </div>
-                                                        ))}
-                                                        
+                                                        {sedeArea.Areas.length > 0 ? (
+                                                            <Table>
+                                                                <TableHead>
+                                                                    <TableRow>
+                                                                        <TableCell>Nombre</TableCell>
+                                                                        <TableCell>Tipo</TableCell>
+                                                                        <TableCell>Eliminar</TableCell>
+                                                                    </TableRow>
+                                                                </TableHead>
+                                                                <TableBody>
+                                                                    {sedeArea.Areas.map((area, areaIndex) => (
+                                                                        <TableRow key={areaIndex}>
+                                                                            <TableCell>{area.NombreArea}</TableCell>
+                                                                            <TableCell>{area.Tipo}</TableCell>
+                                                                            <TableCell>
+                                                                                <IconButton size="small" onClick={() => handleDeleteArea(sedeArea._id, area._id)} color="error">
+                                                                                    <DeleteIcon />
+                                                                                </IconButton>
+                                                                            </TableCell>
+                                                                        </TableRow>
+                                                                    ))}
+                                                                </TableBody>
+                                                            </Table>
+                                                        ) : (
+                                                            <Typography variant="body2">No hay áreas.</Typography>
+                                                        )}
                                                     </Box>
                                                 </Collapse>
                                             </TableCell>
@@ -277,7 +314,7 @@ const AgregarSede = () => {
                             setAreaNombre(e.target.value);
                             const selectedArea = areas.find(area => area.Nombre === e.target.value);
                             if (selectedArea) {
-                                // No se necesita setear el valor de areaTipo ya que no se utiliza
+                                
                             }
                         }}
                     >
@@ -302,8 +339,8 @@ const AgregarSede = () => {
                 Sedes 
             </div>
             
-            <Button color='primary' style={{ left: 400,top: 0}}><FormDialog /></Button>
-            <Button onClick={handleAreaClick} color='primary' style={{ left: 500, top: 0, border: '1px solid blue' }}>Áreas</Button>
+            <Button color='primary' style={{ left: 400,top: -30}}><FormDialog /></Button>
+            <Button onClick={handleAreaClick} color='primary' style={{ left: 500, top: -30, border: '1px solid blue' }}>Áreas</Button>
                             
         </>
     );
