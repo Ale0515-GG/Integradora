@@ -112,7 +112,7 @@ const AgregarSede = () => {
             setAreaNombre("");
             setOpenAddAreaDialog(false); // Cierra la ventana emergente
             setAreas(areas.filter(area => area.Nombre !== areaNombre)); // Elimina el área seleccionada de la lista de opciones
-
+            window.location.reload();
         } catch (error) {
             console.error('Error al agregar el área:', error.message);
         }
@@ -333,7 +333,7 @@ const AgregarSede = () => {
         </Button>
         <Button onClick={() => {
             handleAddArea();
-            window.location.reload();
+            
         }} color="primary">
             Agregar
         </Button>
@@ -358,3 +358,6 @@ const AgregarSede = () => {
 };
 
 export default AgregarSede;
+
+
+
