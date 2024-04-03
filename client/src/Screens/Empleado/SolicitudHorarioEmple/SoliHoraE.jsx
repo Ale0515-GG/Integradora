@@ -72,26 +72,26 @@ const CrudEmpleados = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
+    <div className="crud-container">
+      <div className="crud-header">
         <div className="logo"></div>
         <Link to="/VaEmV" className="casita"></Link>
-        <h1 className="title">Solicitudes Pendientes de Horarios</h1>
+        <h1 className="crud-title">Solicitudes Pendientes de Horarios</h1>
       </div>
-      <div className="table">
+      <div className="crud-table">
         {empleadosConSolicitudes.length > 0 ? (
           <div>
             {empleadosConSolicitudes.map((empleado) =>
               empleado.horarioPendiente ? (
-                <div key={empleado.id} className="row">
-                  <div className="name">{empleado.nombre}</div>
-                  <div className="department">{empleado.departamento}</div>
-                  <div className="sede">{empleado.sede}</div>
-                  <div className="horario">
+                <div key={empleado.id} className="crud-row">
+                  <div className="crud-name">{empleado.nombre}</div>
+                  <div className="crud-department">{empleado.departamento}</div>
+                  <div className="crud-sede">{empleado.sede}</div>
+                  <div className="crud-horario">
                     Tipo de Horario: {empleado.horarioPendiente.tipo}
                   </div>
                   
-                  <div className="editar">
+                  <div className="crud-editar">
                     {mostrarCombo ? (
                       <div>
                         <select value={horarioSeleccionado} onChange={handleHorarioChange}>
@@ -107,7 +107,7 @@ const CrudEmpleados = () => {
                     )}
                   </div>
 
-                  <div className="cancelar-solicitud">
+                  <div className="crud-cancelar-solicitud">
                     <button onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
                   </div>
                 </div>

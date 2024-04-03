@@ -42,13 +42,21 @@ const SolicitudesVacaciones = () => {
   // Función para modificar las fechas de vacaciones pendientes de un empleado
   const modificarVacaciones = (empleadoId) => {
     // Convertir las fechas seleccionadas a cadenas de texto antes de actualizar el estado
-    const fechasTexto = fechasSeleccionadas.map(date => date.toISOString().split('T')[0]);
+    const fechasTexto = fechasSeleccionadas.map((date) =>
+      date.toISOString().split("T")[0]
+    );
 
     // Actualizar el estado de las fechas seleccionadas como cadenas de texto
     setSolicitudesVacaciones(
       solicitudesVacaciones.map((empleado) =>
         empleado.id === empleadoId
-          ? { ...empleado, vacacionesPendientes: { ...empleado.vacacionesPendientes, dias: fechasTexto } }
+          ? {
+              ...empleado,
+              vacacionesPendientes: {
+                ...empleado.vacacionesPendientes,
+                dias: fechasTexto,
+              },
+            }
           : empleado
       )
     );
@@ -70,44 +78,45 @@ const SolicitudesVacaciones = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
+    <div className="solicitudes-container">
+      <div className="solicitudes-header">
         <div className="logo"></div>
         <Link to="/SoliHEmple" className="casita"></Link>
-        <h1 className="title">Solicitudes Pendientes de Vacaciones</h1>
+        <h1 className="solicitudes-title">Solicitudes Pendientes de Vacaciones</h1>
       </div>
-      <div className="table">
+      <div className="solicitudes-table">
         {solicitudesVacaciones.length > 0 ? (
           <div>
             {solicitudesVacaciones.map((empleado) =>
               empleado.vacacionesPendientes ? (
-                <div key={empleado.id} className="row">
-                  <div className="name">{empleado.nombre}</div>
-                  <div className="department">{empleado.departamento}</div>
-                  <div className="sede">{empleado.sede}</div>
-                  <div className="dias-vacaciones">
+                <div key={empleado.id} className="solicitudes-row">
+                  <div className="solicitudes-name">{empleado.nombre}</div>
+                  <div className="solicitudes-department">{empleado.departamento}</div>
+                  <div className="solicitudes-sede">{empleado.sede}</div>
+                  <div className="solicitudes-dias-vacaciones">
                     Dias de Vacaciones:
                     {empleado.vacacionesPendientes.dias.map((dia) => (
                       <span key={dia}> {dia} </span>
                     ))}
                   </div>
-                  <div className="acciones">
-                    {mostrarCalendario ? (
-                      <div>
-                        <Calendar onChange={handleDateChange} value={fechasSeleccionadas} selectRange />
-                        <div className="boton-container">
-                          <button onClick={() => modificarVacaciones(empleado.id)}>Guardar</button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="boton-container">
-                        <button onClick={() => setMostrarCalendario(true)}>Editar</button>
-                      </div>
-                    )}
-                    <div className="boton-container">
-                      <button onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
-                    </div>
-                  </div>
+                  <div className="solicitudes-acciones">
+  {mostrarCalendario ? (
+    <div>
+      <Calendar onChange={handleDateChange} value={fechasSeleccionadas} selectRange />
+      <div className="boton-container">
+        <button className="solicitud-boton" onClick={() => modificarVacaciones(empleado.id)}>Guardar</button>
+      </div>
+    </div>
+  ) : (
+    <div className="boton-container">
+      <button className="solicitud-boton" onClick={() => setMostrarCalendario(true)}>Editar</button>
+    </div>
+  )}
+  <div className="boton-container">
+    <button className="solicitud-boton" onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
+  </div>
+</div>
+
                 </div>
               ) : null
             )}
