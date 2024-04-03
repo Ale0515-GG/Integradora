@@ -110,7 +110,7 @@ const AgregarArea = () => {
     };
 
     return (
-        <>
+        <> 
             <TextField
     type="text"
     value={nombreAreaBuscado}

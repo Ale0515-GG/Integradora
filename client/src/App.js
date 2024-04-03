@@ -29,23 +29,10 @@ function App() {
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path="/SubAdmin2" element={<SubAdmin2 />}></Route>
-
-
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
           <Route path='/AgregarArea'element={<AgregarArea/>}></Route>
-
-
-          <Route path='/Notificaciones' element={<Notificaciones/>}></Route>
-
-  
-
           <Route path='/AgregarSede'element={<AgregarSede/>}></Route>
-
           <Route path='/SolicitudesH'element={<SolicitudH/>}></Route>
-
-
-          
-
           <Route path="/diagrama" element={<Diagrama />} />
           <Route path='/Horarios' element={<Horarios />}/>
         </Routes> 

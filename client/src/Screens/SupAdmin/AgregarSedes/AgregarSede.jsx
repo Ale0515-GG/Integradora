@@ -111,6 +111,8 @@ const AgregarSede = () => {
             setSedesAreas(updatedSedesAreas);
             setAreaNombre("");
             setOpenAddAreaDialog(false); // Cierra la ventana emergente
+            window.location.reload();
+
         } catch (error) {
             console.error('Error al agregar el área:', error.message);
         }
@@ -141,13 +143,13 @@ const AgregarSede = () => {
 
     return (
         <>
-            <TextField
+  <TextField
                 type="text"
                 value={nombreSedeBuscado}
                 onChange={handleNombreSedeChange}
                 placeholder="Buscar Nombre de Sede"
                 fullWidth
-                style={{ marginLeft: '10px', border: 'none', borderBottom: '1px solid grey' }}
+                style={{ border: 'none', borderBottom: '1px solid grey',marginTop:'70px'}}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -159,7 +161,9 @@ const AgregarSede = () => {
             />
 
             <div className="Sede">
+                
                 <div className="Rectangle" />
+                
                 <div className="Tablas" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <TableContainer component={Paper}>
                         <Table aria-label="collapsible table">
@@ -199,11 +203,13 @@ const AgregarSede = () => {
                                                 <Collapse in={selectedSedeArea && selectedSedeArea._id === sedeArea._id} timeout="auto" unmountOnExit>
                                                     <Box sx={{ margin: 1 }}>
                                                         <Typography variant="subtitle1">Áreas:</Typography>
-                                                        {sedeArea.Areas.map((area, areaIndex) => (
+                                                        
+                                                        { sedeArea.Areas.map((area, areaIndex) => (
                                                             <div key={areaIndex}>
-                                                                Tipo: {area.Tipo}, Nombre: {area.NombreArea}
+                                                                Nombre: {area.NombreArea}, Tipo: {area.Tipo}
                                                             </div>
                                                         ))}
+                                                        
                                                     </Box>
                                                 </Collapse>
                                             </TableCell>
@@ -289,12 +295,16 @@ const AgregarSede = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+        
+
             <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 105, position: 'absolute' ,
                 color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
                 Sedes 
             </div>
+            
             <Button color='primary' style={{ left: 400,top: 0}}><FormDialog /></Button>
             <Button onClick={handleAreaClick} color='primary' style={{ left: 500, top: 0, border: '1px solid blue' }}>Áreas</Button>
+                            
         </>
     );
 };
