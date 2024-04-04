@@ -50,19 +50,20 @@ export const postUsuarios = async(req,res)=> {
     }
 }
 
+
 //update date
-export const putUsuarios = async(req,res)=> {
-    try{
-        console.log(req.body)
-        const { id,...rest} = req.body
-        console.log(rest)
-        const data = await schemaEmpl.updateOne({_id: id},rest)
-        res.send({success: true, message: "El dato se actualizo con exito", data : data})
-    }catch(error){
-        console.error("Error al obtener los usuarios:", error);
+export const putUsuarios = async (req, res) => {
+    try {
+        const { id, ...rest } = req.body;
+        const data = await schemaEmpl.findOneAndUpdate(id, rest, { new: true });
+        res.send({ success: true, message: "El dato se actualizó correctamente", data: data });
+    } catch (error) {
+        console.error("Error al actualizar el usuario:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
-}
+};
+
+
 
 //Delete date
 export const deleteUsuarios = async(req,res)=> {
