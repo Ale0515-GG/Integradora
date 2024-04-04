@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-const SolicitudesVacaciones = () => {
+const SolicitudesVacacionesVista = () => {
   // Estado para almacenar la lista de empleados con sus solicitudes pendientes de vacaciones
   const [solicitudesVacaciones, setSolicitudesVacaciones] = useState([
     {
@@ -129,4 +129,4 @@ const SolicitudesVacaciones = () => {
   );
 };
 
-export default SolicitudesVacaciones;
+export default SolicitudesVacacionesVista;
