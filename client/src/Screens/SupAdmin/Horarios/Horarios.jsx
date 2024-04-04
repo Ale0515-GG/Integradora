@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Horarios.css'; // Importa el archivo CSS
 
 const Horarios = () => {
@@ -9,17 +10,21 @@ const Horarios = () => {
       area: 'Desarrollo de aplicaciones y programas',
       sede: 'Leon Gto',
       dia: '2011-04-25',
+      horario: '08:00 - 16:00' 
     },
     {
       id: 2,
       nombre: 'Victor Barrientos',
       area: 'Diseño gráfico',
       sede: 'Ciudad de México',
-      dia: '2012-05-15'
+      dia: '2012-05-15',
+      horario: '09:00 - 17:00' 
     }
   ]);
 
   const [empleadosAceptados, setEmpleadosAceptados] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [idUsuarioSeleccionado, setIdUsuarioSeleccionado] = useState(null);
 
   const handleEliminar = (id) => {
     const nuevosEmpleados = empleados.filter(empleado => empleado.id !== id);
@@ -36,7 +41,16 @@ const Horarios = () => {
     }
   };
 
-  const handleAgregarHorarios = (id) => {
+  const handleAgregarHorarios = (id, horaEntrada, horaSalida) => {
+    const nuevosEmpleados = empleados.map(empleado => {
+      if (empleado.id === id) {
+        // Agregar el nuevo horario al empleado actual
+        const nuevoHorario = `${horaEntrada} - ${horaSalida}`;
+        return { ...empleado, horario: nuevoHorario };
+      }
+      return empleado;
+    });
+    setEmpleados(nuevosEmpleados);
     console.log(`Agregando horarios para el usuario con ID: ${id}`);
   };
 
@@ -46,6 +60,16 @@ const Horarios = () => {
 
   const handleGuardarCambios = () => {
     console.log('Cambios guardados');
+  };
+
+  const handleSubmitHorarioForm = (event) => {
+    event.preventDefault();
+    
+    const horaEntrada = event.target.horaEntrada.value;
+    const horaSalida = event.target.horaSalida.value;
+    
+    handleAgregarHorarios(idUsuarioSeleccionado, horaEntrada, horaSalida);
+    setShowPopup(false); // Cerrar el formulario emergente después de enviar los datos
   };
 
   return (
@@ -64,10 +88,11 @@ const Horarios = () => {
               <th>Área</th>
               <th>Sede</th>
               <th>Día</th>
+              <th>Horarios Solicitados</th> {/* Nueva columna para mostrar horarios */}
               <th>Eliminar</th>
               <th>Aceptar</th>
               <th>Agregar Horarios</th>
-              <th>Modificar Horarios</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -78,10 +103,11 @@ const Horarios = () => {
                 <td>{empleado.area}</td>
                 <td>{empleado.sede}</td>
                 <td>{empleado.dia}</td>
+                <td>{empleado.horario}</td> {/* Mostrar horario en la nueva columna */}
                 <td><button className="eliminar" onClick={() => handleEliminar(empleado.id)}>Eliminar</button></td>
                 <td><button className="aceptar" onClick={() => handleAceptar(empleado.id)}>Aceptar</button></td>
-                <td><button className="agregar" onClick={() => handleAgregarHorarios(empleado.id)}>Agregar Horarios</button></td>
-                <td><button className="modificar" onClick={() => handleModificarHorarios(empleado.id)}>Modificar Horarios</button></td>
+                <td><button className="agregar" onClick={() => { setShowPopup(true); setIdUsuarioSeleccionado(empleado.id); }}>Agregar Horarios</button></td>
+                
               </tr>
             ))}
           </tbody>
@@ -94,9 +120,26 @@ const Horarios = () => {
         </button>
       </div>
 
+      {/* Formulario emergente para agregar horarios */}
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <span className="close" onClick={() => setShowPopup(false)}>&times;</span>
+            <h2>Agregar Horario</h2>
+            <form onSubmit={handleSubmitHorarioForm}>
+              <label htmlFor="horaEntrada">Hora de Entrada:</label>
+              <input type="time" id="horaEntrada" name="horaEntrada" required /><br/><br/>
+              <label htmlFor="horaSalida">Hora de Salida:</label>
+              <input type="time" id="horaSalida" name="horaSalida" required /><br/><br/>
+              <button type="submit">Agregar</button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Tabla de empleados aceptados */}
       <div className="v281_0">
-        <h2>Empleados Aceptados:</h2>
+    
         <table id="empleadosAceptados" className="example">
           <thead>
             <tr>

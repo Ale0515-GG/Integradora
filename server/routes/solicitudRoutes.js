@@ -1,20 +1,8 @@
 import express from 'express';
-import Solicitud from '../models/solicitudModels.js';
+import { crearSolicitud } from '../controllers/solicitudController.js';
 
 const router = express.Router();
 
-router.post('/solicitudes', async (req, res) => {
-  try {
-    const nuevaSolicitud = new Solicitud(req.body);
-    await nuevaSolicitud.save();
-    res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+router.post('/HorariosGuardado', crearSolicitud);
 
-
-export { router as solictudRoutes };
-
-export default router; // Exportar el router utilizando la sintaxis de ECMAScript
-
+export default router;

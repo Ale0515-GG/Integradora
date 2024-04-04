@@ -1,7 +1,7 @@
 .crud-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 100px;
 }
 
 .crud-header {
@@ -12,15 +12,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #007bff;
-  padding: 40px 20px; /* Agrega espacio interno */
+  background-color: #256c98;
+  padding: 4px 20px; /* Agrega espacio interno */
   color: white; /* Cambia el color del texto a blanco */
 }
 
 .crud-title {
   font-size: 24px;
   font-weight: bold;
-  margin-left: 200px;
+  margin-right: 600px;
 }
 
 .crud-table {
@@ -47,7 +47,7 @@
 
 .crud-editar button, .crud-editar select, .crud-cancelar-solicitud button {
   padding: 8px 16px;
-  background-color: #000dff;
+  background-color: #256c98;
   color: #fff;
   border: none;
   border-radius: 5px;

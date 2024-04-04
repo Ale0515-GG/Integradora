@@ -1,29 +1,48 @@
+const mongoose = require('mongoose');
 
-class Horario {
-    constructor(id, sede, area, contrato, horario) {
-      this.id = id;
-      this.sede = sede;
-      this.area = area;
-      this.contrato = contrato;
-      this.horario = horario;
-    }
+// Definir el esquema para los empleados
+const empleadoSchema = new mongoose.Schema({
+  nombre: {
+    type: String,
+    required: true
+  },
+  area: {
+    type: String,
+    required: true
+  },
+  sede: {
+    type: String,
+    required: true
+  },
+  dia: {
+    type: Date,
+    required: true
   }
-  
+});
 
-  const horarios = [
-    new Horario(1, "Sede 1", "Área 1", "Contrato 1", "Horario 1"),
-    new Horario(2, "Sede 2", "Área 2", "Contrato 2", "Horario 2"),
-    new Horario(3, "Sede 3", "Área 3", "Contrato 3", "Horario 3"),
-  ];
+// Definir el esquema para los empleados aceptados
+const empleadoAceptadoSchema = new mongoose.Schema({
+  nombre: {
+    type: String,
+    required: true
+  },
+  area: {
+    type: String,
+    required: true
+  },
+  sede: {
+    type: String,
+    required: true
+  },
+  fechaAceptacion: {
+    type: Date,
+    required: true,
+    default: Date.now
+  }
+});
 
-  const obtenerHorarios = () => {
-    return horarios;
-  };
-  
+// Crear modelos basados en los esquemas
+const Empleado = mongoose.model('Empleado', empleadoSchema);
+const EmpleadoAceptado = mongoose.model('EmpleadoAceptado', empleadoAceptadoSchema);
 
-  const obtenerHorarioPorId = (id) => {
-    return horarios.find((horario) => horario.id === id);
-  };
-  
-  export { Horario, obtenerHorarios, obtenerHorarioPorId };
-  
+module.exports = { Empleado, EmpleadoAceptado };

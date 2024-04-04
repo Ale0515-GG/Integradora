@@ -1,0 +1,105 @@
+.rectangulo-imagenes {
+  width: 1490px; /* Modifica el ancho para que ocupe toda la pantalla */
+  height: 130px;
+  background-color: #256c98;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.info-empleado {
+  margin-top: 20px;
+  margin-left: 70px;
+}
+
+.info-empleado > div {
+  margin-bottom: 10px;
+  background-color: #256c98;
+  width: 20%;
+  color: #fffbfbfd;
+}
+
+table {
+  width: 300px;
+  border-collapse: collapse;
+  margin: 0 auto; /* Alinear la tabla al centro */
+}
+
+table,
+th,
+td {
+  border: 1px solid #f2f2f2;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+select {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #eceff1;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center; /* Centra el texto */
+  margin-left: auto; /* Alinear el margen izquierdo al centro */
+  margin-right: auto; /* Alinear el margen derecho al centro */
+  color: #ddd;
+}
+
+.custom-button {
+  background-color: #256c98;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto; /* Alinear el botón al centro */
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #256c98;
+}
+
+
+
+
+.logo {
+  width: 180px;
+  height: 120px;
+  background: url("../../../Empleado/notificaciones/images/v65_10.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.regresar {
+  width: 60px; /* Nuevo tamaño del contenedor */
+  height: 60px; /* Nuevo tamaño del contenedor */
+  background: url("../../../Empleado/notificaciones/images/v65_16.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain; /* Ajustar el tamaño de la imagen para que quepa en el contenedor */
+  opacity: 1;
+  overflow: hidden;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}

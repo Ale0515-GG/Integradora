@@ -75,7 +75,7 @@ const CrudEmpleados = () => {
     <div className="crud-container">
       <div className="crud-header">
         <div className="logo"></div>
-        <Link to="/VaEmV" className="casita"></Link>
+        <Link to="/VaEmV" className="regresar"></Link>
         <h1 className="crud-title">Solicitudes Pendientes de Horarios</h1>
       </div>
       <div className="crud-table">
