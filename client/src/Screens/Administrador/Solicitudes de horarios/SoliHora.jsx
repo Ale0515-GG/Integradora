@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./css/mainSoliH.css";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 const HorarioEmpleado = () => {
@@ -31,32 +29,22 @@ const HorarioEmpleado = () => {
   const handleGuardar = () => {
     // Verificar si se han seleccionado el tipo de contrato y al menos un turno
     if (!tipoContrato || turnos.some((turno) => !turno.turno)) {
-      toast.error(
-        "Por favor selecciona el tipo de contrato y al menos un turno",
-        {
-          position: "top-center",
-        }
-      );
+      alert("Por favor selecciona el tipo de contrato y al menos un turno");
       return;
     }
 
     // Enviar la solicitud al servidor
-    axios
-      .post("http://localhost:3001/SolicitudesH/HorariosGuardado", {
+    axios.post("http://localhost:3001/SolicitudesH/HorariosGuardado", {
         tipoContrato,
         turnos,
       })
       .then((response) => {
         // Muestra un mensaje de éxito
-        toast.success("Solicitud guardada correctamente", {
-          position: "top-center",
-        });
+        alert("Solicitud guardada correctamente");
       })
       .catch((error) => {
         // Muestra un mensaje de error
-        toast.error("Error al guardar los turnos", {
-          position: "top-center",
-        });
+        alert("Error al guardar los turnos");
         console.error("Error al guardar los turnos:", error);
       });
   };
@@ -81,7 +69,7 @@ const HorarioEmpleado = () => {
   return (
     <div>
       <div className="rectangulo-imagenes">
-      <div className="title">Solicitud de horarios</div>
+        <div className="title">Solicitud de horarios</div>
         <div className="crud-container">
           <div style={{ position: "absolute", top: "4px", left: "29px" }}>
             <div className="logo"></div>

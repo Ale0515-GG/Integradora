@@ -1,74 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/mainEH.css"; // Asegúrate de tener el archivo CSS correspondiente
+import axios from "axios";
 import { Link } from "react-router-dom";
 
-const CrudEmpleados = () => {
-  // Estado para almacenar la lista de empleados con sus solicitudes pendientes
-  const [empleadosConSolicitudes, setEmpleadosConSolicitudes] = useState([
-    {
-      id: 1,
-      nombre: "Juan Perez",
-      departamento: "Desarrollo",
-      sede: "Dolores Hidalgo",
-      horarioPendiente: {
-        id: 1,
-        tipo: "10:00am (Contrato 3)",
-        estado: "pendiente",
-      },
-    },
-    {
-      id: 2,
-      nombre: "María García",
-      departamento: "Ventas",
-      sede: "Dolores Hidalgo",
-      horarioPendiente: null, // Este empleado no tiene solicitudes pendientes
-    },
-    // Agrega más empleados según lo necesites
-  ]);
-
-  // Estado para controlar la visibilidad del combo de opciones de horario
+const HorariosVistaE = () => {
+  const [empleadosConSolicitudes, setEmpleadosConSolicitudes] = useState([]);
   const [mostrarCombo, setMostrarCombo] = useState(false);
-
-  // Estado para almacenar el horario seleccionado
   const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
 
-  // Función para manejar la selección de un nuevo horario
+  useEffect(() => {
+    // Función para cargar las solicitudes pendientes al montarse el componente
+    const cargarSolicitudesPendientes = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/vistasHE/');
+        setEmpleadosConSolicitudes(response.data);
+      } catch (error) {
+        console.error('Error al obtener las solicitudes de horarios:', error);
+      }
+    };
+
+    cargarSolicitudesPendientes();
+  }, []);
+
   const handleHorarioChange = (e) => {
     setHorarioSeleccionado(e.target.value);
   };
 
-  // Función para modificar el horario pendiente de un empleado
   const modificarHorario = (empleadoId) => {
-    // Aquí iría la lógica para modificar el horario en la base de datos
-    // Por ahora, simplemente actualizamos el estado local del componente
-    setEmpleadosConSolicitudes(
-      empleadosConSolicitudes.map((empleado) =>
-        empleado.id === empleadoId
-          ? {
-              ...empleado,
-              horarioPendiente: {
-                ...empleado.horarioPendiente,
-                tipo: horarioSeleccionado, // Actualizamos el tipo de horario
-                nuevoHorario: horarioSeleccionado, // También actualizamos el nuevo horario
-              },
+    // Aquí realizas una petición al servidor para modificar el horario de un empleado
+    axios.patch(`/vistasHE/${empleadoId}`, { tipoContrato: horarioSeleccionado })
+      .then(response => {
+        setEmpleadosConSolicitudes(prevEmpleados => {
+          return prevEmpleados.map(empleado => {
+            if (empleado.id === empleadoId) {
+              return {
+                ...empleado,
+                horarioPendiente: {
+                  ...empleado.horarioPendiente,
+                  tipo: horarioSeleccionado,
+                  nuevoHorario: horarioSeleccionado
+                }
+              };
+            } else {
+              return empleado;
             }
-          : empleado
-      )
-    );
-    // Resetear el estado
-    setMostrarCombo(false);
-    setHorarioSeleccionado("");
+          });
+        });
+        setMostrarCombo(false);
+        setHorarioSeleccionado("");
+      })
+      .catch(error => {
+        console.error('Error al modificar el horario del empleado:', error);
+      });
   };
 
-  // Función para cancelar la solicitud de horario
   const cancelarSolicitud = (empleadoId) => {
-    // Aquí iría la lógica para cancelar la solicitud de horario en la base de datos
-    // Por ahora, simplemente actualizamos el estado local del componente para eliminar la solicitud
-    setEmpleadosConSolicitudes(
-      empleadosConSolicitudes.map((empleado) =>
-        empleado.id === empleadoId ? { ...empleado, horarioPendiente: null } : empleado
-      )
-    );
+    // Aquí realizas una petición al servidor para cancelar la solicitud de horario de un empleado
+    axios.delete(`/vistasHE/${empleadoId}`)
+      .then(response => {
+        setEmpleadosConSolicitudes(prevEmpleados => {
+          return prevEmpleados.map(empleado => {
+            if (empleado.id === empleadoId) {
+              return { ...empleado, horarioPendiente: null };
+            } else {
+              return empleado;
+            }
+          });
+        });
+      })
+      .catch(error => {
+        console.error('Error al cancelar la solicitud de horario del empleado:', error);
+      });
   };
 
   return (
@@ -115,11 +117,11 @@ const CrudEmpleados = () => {
             )}
           </div>
         ) : (
-          <p>No hay empleados con solicitudes pendientes de horarios.</p>
+          <p>No hay solicitudes pendientes de horarios.</p>
         )}
       </div>
     </div>
   );
 };
 
-export default CrudEmpleados;
+export default HorariosVistaE;
