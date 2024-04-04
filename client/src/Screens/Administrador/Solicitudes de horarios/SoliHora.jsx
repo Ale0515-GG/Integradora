@@ -24,31 +24,35 @@ const HorarioEmpleado = () => {
     nuevosTurnos[index].turno = valor;
     setTurnos(nuevosTurnos);
   };
-
-  // Función para manejar el clic en el botón guardar
+  
   const handleGuardar = () => {
     // Verificar si se han seleccionado el tipo de contrato y al menos un turno
     if (!tipoContrato || turnos.some((turno) => !turno.turno)) {
       alert("Por favor selecciona el tipo de contrato y al menos un turno");
       return;
     }
-
-    // Enviar la solicitud al servidor
-    axios.post("http://localhost:3001/SolicitudesH/HorariosGuardado", {
-        tipoContrato,
-        turnos,
-      })
-      .then((response) => {
-        // Muestra un mensaje de éxito
-        alert("Solicitud guardada correctamente");
-      })
-      .catch((error) => {
-        // Muestra un mensaje de error
-        alert("Error al guardar los turnos");
-        console.error("Error al guardar los turnos:", error);
-      });
+  
+    // Extraer los turnos seleccionados para enviar al servidor
+    const turnosSeleccionados = turnos.map(turno => turno.turno);
+  
+    // Enviar una solicitud al servidor para cada turno seleccionado
+    turnosSeleccionados.forEach(async turno => {
+      try {
+        // Enviar la solicitud al servidor
+        await axios.post("http://localhost:3001/SolicitudesH/HorariosGuardado", {
+          tipoContrato,
+          turno
+        });
+        // Muestra un mensaje de éxito para cada turno guardado
+        alert("Solicitud guardada correctamente para el turno: " + turno);
+      } catch (error) {
+        // Muestra un mensaje de error si no se puede guardar el turno
+        alert("Error al guardar el turno: " + turno);
+        console.error("Error al guardar el turno:", error);
+      }
+    });
   };
-
+  
   // Opciones para los tipos de contrato y sus turnos correspondientes
   const opcionesContrato = [
     {
