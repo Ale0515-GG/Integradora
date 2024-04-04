@@ -9,6 +9,7 @@
     "react-gantt-chart": "^0.3.0-rc.11",
     "react-router-dom": "^6.22.3",
     "react-select": "^5.8.0",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "vis-data": "^7.1.9"
   }
 }

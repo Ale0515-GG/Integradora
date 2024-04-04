@@ -25,6 +25,7 @@ const Horarios = () => {
   const [empleadosAceptados, setEmpleadosAceptados] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [idUsuarioSeleccionado, setIdUsuarioSeleccionado] = useState(null);
+  const [comentario, setComentario] = useState(""); // Nuevo estado para almacenar el comentario
 
   const handleEliminar = (id) => {
     const nuevosEmpleados = empleados.filter(empleado => empleado.id !== id);
@@ -32,10 +33,10 @@ const Horarios = () => {
     console.log(`Eliminando registro con ID: ${id}`);
   };
 
-  const handleAceptar = (id) => {
+  const handleAceptar = (id, comentario) => { // Modificado para aceptar un comentario
     const empleadoAceptado = empleados.find(empleado => empleado.id === id);
     if (empleadoAceptado) {
-      setEmpleadosAceptados([...empleadosAceptados, { ...empleadoAceptado, fechaAceptacion: new Date().toISOString().slice(0, 10) }]);
+      setEmpleadosAceptados([...empleadosAceptados, { ...empleadoAceptado, fechaAceptacion: new Date().toISOString().slice(0, 10), comentario }]); // Almacenar comentario
       handleEliminar(id); // Eliminar empleado de la lista principal
       console.log(`Aceptando cambios para el usuario con ID: ${id}`);
     }
@@ -79,7 +80,7 @@ const Horarios = () => {
       </div>
       
       <div className="v281_68">
-        <h2>Gestión de Horarios/Contratos</h2>
+        <h2>Gestión de Horarios</h2>
         <table id="example">
           <thead>
             <tr>
@@ -105,7 +106,12 @@ const Horarios = () => {
                 <td>{empleado.dia}</td>
                 <td>{empleado.horario}</td> {/* Mostrar horario en la nueva columna */}
                 <td><button className="eliminar" onClick={() => handleEliminar(empleado.id)}>Eliminar</button></td>
-                <td><button className="aceptar" onClick={() => handleAceptar(empleado.id)}>Aceptar</button></td>
+                <td><button className="aceptar" onClick={() => { 
+                  const comentario = prompt("Ingrese un comentario para la aceptación del horario:");
+                  if(comentario !== null) {
+                    handleAceptar(empleado.id, comentario);
+                  }
+                }}>Aceptar</button></td>
                 <td><button className="agregar" onClick={() => { setShowPopup(true); setIdUsuarioSeleccionado(empleado.id); }}>Agregar Horarios</button></td>
                 
               </tr>
@@ -148,6 +154,7 @@ const Horarios = () => {
               <th>Área</th>
               <th>Sede</th>
               <th>Fecha de Aceptación</th>
+              <th>Comentario</th> {/* Nueva columna para mostrar comentarios */}
             </tr>
           </thead>
           <tbody>
@@ -158,6 +165,7 @@ const Horarios = () => {
                 <td>{empleado.area}</td>
                 <td>{empleado.sede}</td>
                 <td>{empleado.fechaAceptacion}</td>
+                <td>{empleado.comentario}</td> {/* Mostrar comentario en la nueva columna */}
               </tr>
             ))}
           </tbody>
