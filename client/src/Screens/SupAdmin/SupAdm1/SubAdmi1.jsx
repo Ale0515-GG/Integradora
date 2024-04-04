@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import "./SubAdmi1.css";
 
-
 const opcionesTipoUsuario = ["Root", "Administrador", "Super Administrador", "Empleado"];
 
 const Administradores = () => {
@@ -16,7 +15,7 @@ const Administradores = () => {
     acceso: '',
     apellidoP: '',
     apellidoM: '',
-    corre2o: '',
+    correo: '', 
     rol: '',
     sede: '',
     area: '',
@@ -87,45 +86,57 @@ const Administradores = () => {
     }
   };
 
-  const modificarAdministrador = async (id, adminActualizado) => {
-    try {
-      await Axios.put(`http://localhost:3001/usuarios/update/${id}`, adminActualizado);
-      setAdministradores(prevAdministradores =>
-        prevAdministradores.map(admin =>
-          admin._id === id ? { ...admin, ...adminActualizado } : admin
-        )
-      );
-      setError('');
-      setAdminEditando(null);
-      setAdminCambios({});
-      alert('Usuario modificado correctamente');
-    } catch (error) {
-      console.error('Error al modificar el Usuario:', error.message);
-      setError('Error al modificar el Usuario');
+  const modificarAdministrador = async (id) => {
+    const adminActualizado = adminCambios[id];
+    if (adminActualizado) {
+      try {
+        await Axios.put(`http://localhost:3001/usuarios/update/${id}`, adminActualizado);
+        setAdministradores(prevAdministradores =>
+          prevAdministradores.map(admin =>
+            admin._id === id ? { ...admin, ...adminActualizado } : admin
+          )
+        );
+        setError('');
+        setAdminEditando(null);
+        setAdminCambios({});
+        alert('Usuario modificado correctamente');
+      } catch (error) {
+        console.error('Error al modificar el usuario:', error.message);
+        setError('Error al modificar el usuario');
+      }
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e, id) => {
     const { name, value } = e.target;
-    setNuevoAdmin(prevState => ({
+    setAdminCambios(prevState => ({
       ...prevState,
-      [name]: value === '' ? undefined : value
+      [id]: {
+        ...prevState[id],
+        [name]: value === '' ? undefined : value
+      }
     }));
   };
 
-  const handleTipoUsuarioChange = (e) => {
+  const handleTipoUsuarioChange = (e, id) => {
     const { value } = e.target;
-    setNuevoAdmin(prevState => ({
+    setAdminCambios(prevState => ({
       ...prevState,
-      tipoUsuario: value
+      [id]: {
+        ...prevState[id],
+        tipoUsuario: value
+      }
     }));
   };
 
-  const handleSedeChange = (e) => {
+  const handleSedeChange = (e, id) => {
     const { value } = e.target;
-    setNuevoAdmin(prevState => ({
+    setAdminCambios(prevState => ({
       ...prevState,
-      sede: value
+      [id]: {
+        ...prevState[id],
+        sede: value
+      }
     }));
     const areas = sedes.find(sede => sede.nombre === value)?.areas || [];
     setAreasSede(areas);
@@ -140,16 +151,7 @@ const Administradores = () => {
   };
 
   const handleGuardarClick = async (id) => {
-    const adminActualizado = adminCambios[id];
-    if (adminActualizado) {
-      try {
-        await modificarAdministrador(id, { ...adminActualizado });
-        alert('Cambios guardados correctamente');
-      } catch (error) {
-        console.error('Error al guardar los cambios:', error.message);
-        setError('Error al guardar los cambios');
-      }
-    }
+    await modificarAdministrador(id);
   };
 
   return (
@@ -167,25 +169,25 @@ const Administradores = () => {
             <div className="form-group">
               <label className='name'>
                 Nombre:
-                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleInputChange} />
+                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={(e) => setNuevoAdmin({...nuevoAdmin, nombreempleado: e.target.value})} />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Apellido Paterno:
-                <input type="text" name="apellidoP" value={nuevoAdmin.apellidoP} onChange={handleInputChange} />
+                <input type="text" name="apellidoP" value={nuevoAdmin.apellidoP} onChange={(e) => setNuevoAdmin({...nuevoAdmin, apellidoP: e.target.value})} />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Apellido Materno:
-                <input type="text" name="apellidoM" value={nuevoAdmin.apellidoM} onChange={handleInputChange} />
+                <input type="text" name="apellidoM" value={nuevoAdmin.apellidoM} onChange={(e) => setNuevoAdmin({...nuevoAdmin, apellidoM: e.target.value})} />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Tipo de Usuario:
-                <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleTipoUsuarioChange}>
+                <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={(e) => setNuevoAdmin({...nuevoAdmin, tipoUsuario: e.target.value})}>
                   <option value="">Seleccionar tipo de usuario</option>
                   {opcionesTipoUsuario.map((opcion, index) => (
                     <option key={index} value={opcion}>{opcion}</option>
@@ -196,25 +198,25 @@ const Administradores = () => {
             <div className="form-group">
               <label className='name'>
                 Acceso:
-                <input type="text" name="acceso" value={nuevoAdmin.acceso} onChange={handleInputChange} />
+                <input type="text" name="acceso" value={nuevoAdmin.acceso} onChange={(e) => setNuevoAdmin({...nuevoAdmin, acceso: e.target.value})} />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Correo:
-                <input type="email" name="correo" value={nuevoAdmin.correo} onChange={handleInputChange} />
+                <input type="email" name="correo" value={nuevoAdmin.correo} onChange={(e) => setNuevoAdmin({...nuevoAdmin, correo: e.target.value})} />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Rol:
-                <input type="text" name="rol" value={nuevoAdmin.rol} onChange={handleInputChange} />
+                <input type="text" name="rol" value={nuevoAdmin.rol} onChange={(e) => setNuevoAdmin({...nuevoAdmin, rol: e.target.value})} />
               </label>
             </div>
             <div className="form-group">
               <label className='name'>
                 Sede:
-                <select name="sede" value={nuevoAdmin.sede} onChange={handleSedeChange}>
+                <select name="sede" value={nuevoAdmin.sede} onChange={(e) => setNuevoAdmin({...nuevoAdmin, sede: e.target.value})}>
                   <option value="">Seleccionar sede</option>
                   {sedes.map((sede, index) => (
                     <option key={index} value={sede.nombre}>{sede.nombre}</option>
@@ -225,7 +227,7 @@ const Administradores = () => {
             <div className="form-group">
               <label className='name'>
                 Área:
-                <select name="area" value={nuevoAdmin.area} onChange={handleInputChange}>
+                <select name="area" value={nuevoAdmin.area} onChange={(e) => setNuevoAdmin({...nuevoAdmin, area: e.target.value})}>
                   <option value="">Seleccionar área</option>
                   {areasSede.map((area, index) => (
                     <option key={index} value={area}>{area}</option>
@@ -236,7 +238,7 @@ const Administradores = () => {
             <div className="form-group">
               <label className='name'>
                 Sexo:
-                <select name="sexo" value={String(nuevoAdmin.sexo)} onChange={handleInputChange}>
+                <select name="sexo" value={String(nuevoAdmin.sexo)} onChange={(e) => setNuevoAdmin({...nuevoAdmin, sexo: e.target.value === 'true'})}>
                   <option value="true">M</option>
                   <option value="false">F</option>
                 </select>
@@ -245,7 +247,7 @@ const Administradores = () => {
             <div className="form-group">
               <label className='name'>
                 Cumpleaños:
-                <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={handleInputChange} />
+                <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={(e) => setNuevoAdmin({...nuevoAdmin, cumpleanos: e.target.value})} />
               </label>
             </div>
           </div>
