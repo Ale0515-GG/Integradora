@@ -66,8 +66,7 @@ const Administradores = () => {
         sede: '',
         area: '',
         sexo: true,
-        cumpleanos: '',
-        tipoTurno: ''
+        cumpleanos: ''
       });
       alert('Usuario agregado correctamente');
     } catch (error) {
@@ -249,12 +248,6 @@ const Administradores = () => {
                 <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={handleInputChange} />
               </label>
             </div>
-            <div className="form-group">
-              <label className='name'>
-                Tipo de Turno:
-                <input type="number" name="tipoTurno" value={nuevoAdmin.tipoTurno} onChange={handleInputChange} />
-              </label>
-            </div>
           </div>
           <button className="button agregar" type="submit">Agregar Usuario</button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -275,7 +268,6 @@ const Administradores = () => {
               <th>Área</th>
               <th>Sexo</th>
               <th>Cumpleaños</th>
-              <th>Tipo de Turno</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -357,13 +349,6 @@ const Administradores = () => {
                     <input type="date" name="cumpleanos" value={adminCambios[admin._id]?.cumpleanos || admin.cumpleanos} onChange={(e) => handleInputChange(e, admin._id)} />
                   ) : (
                     admin.cumpleanos
-                  )}
-                </td>
-                <td>
-                  {adminEditando === admin._id ? (
-                    <input type="number" name="tipoTurno" value={adminCambios[admin._id]?.tipoTurno || admin.tipoTurno} onChange={(e) => handleInputChange(e, admin._id)} />
-                  ) : (
-                    admin.tipoTurno
                   )}
                 </td>
                 <td>

@@ -2,20 +2,33 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 0 20px; /* Añadir un padding para separar el contenido de los bordes */
+  display: flex; /* Utilizar flexbox para alinear los elementos */
+  justify-content: center; /* Centrar los elementos horizontalmente */
+  align-items: flex-start; /* Alinear los elementos hacia arriba */
 }
 
 .header {
   text-align: center;
-  margin-bottom: 20px;
   padding: 20px; /* Añadir un padding para que el encabezado sea más ancho */
+  background-color: #256c98; /* Cambiar el color del encabezado */
+  color: white; /* Cambiar el color del texto del encabezado para que sea legible */
+  width: 100%; /* Ocupar todo el ancho de la página */
+  position: fixed; /* Fijar el encabezado en la parte superior */
+  top: 0; /* Alinear el encabezado en la parte superior */
+  z-index: 999; /* Asegurar que el encabezado esté por encima del contenido */
+}
+.content {
+  margin-top: 20px; /* Ajustar según la altura del encabezado */
 }
 
 .table {
-  margin-top: 20px;
+  margin-top: 150px;
+  color: #397eab;
+  margin-left: 20px; 
 }
 
 .admin-table {
-  width: 100%;
+  width: auto;
   border-collapse: collapse;
 }
 
@@ -26,8 +39,7 @@
 }
 
 .admin-table th {
-  background-color: #397eab; /* Cambiar el color de fondo del encabezado */
-  color: white; /* Cambiar el color del texto del encabezado */
+  background-color: #f2f2f2;
 }
 
 .admin-table tr:nth-child(even) {
@@ -40,9 +52,17 @@
 
 .row-agregar {
   margin-bottom: 10px;
+  margin-top: 125px;
 }
 
+.form-grid {
+  display: flex;
+  flex-direction: column;
+}
 
+.form-group {
+  margin-bottom: 10px;
+}
 
 .button {
   padding: 8px 12px;
@@ -56,20 +76,24 @@
   color: white;
 }
 
-.modificar {
-  background-color: #008CBA;
-  color: white;
+.modificar,
+.eliminar,
+.guardar {
+  background-color: #008CBA; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 8px 12px; /* Ajustar el relleno */
+  border: none; /* Quitar el borde */
+  border-radius: 4px; /* Agregar bordes redondeados */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre ellos */
+  width: 100px; /* Ancho fijo para todos los botones */
+  text-align: center; /* Alinear texto al centro */
+  margin-right: 10px; /* Agregar separación entre botones */
 }
 
 .eliminar {
-  background-color: #f44336;
-  color: white;
+  background-color: #f44336; /* Color de fondo rojo */
 }
 
-.guardar {
-  background-color: #4caf50;
-  color: white;
-}
 
 .error-message {
   color: red;
