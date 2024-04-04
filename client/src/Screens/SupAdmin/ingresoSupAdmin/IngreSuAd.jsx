@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
  // Asegúrate de que la ruta sea correcta
- import './ingreSuAd.css'
+ import './IngreSuAd.css'
 
 
 
@@ -64,14 +64,12 @@ const IngreSuAd = () => {
             />
           </label>
         </span>
-    <div class="v281_31"></div><span class="v281_32">Cancelar</span><button type="submit">Ingresar</button>
     <div class="v281_33"></div>
     <div class="v281_34"></div>
     <div class="v281_35"></div>
     <div class="v281_36"></div>
     <div class="v281_37"></div>
-    
-    <div class="v281_38"></div><span class="v281_39">Ingresar</span><button type="submit">Ingresar</button>
+
     </form>
 </div>
   );

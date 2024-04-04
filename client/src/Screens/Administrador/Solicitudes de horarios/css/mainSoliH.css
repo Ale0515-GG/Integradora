@@ -82,7 +82,7 @@ button:hover {
 .logo {
   width: 180px;
   height: 120px;
-  background: url("../../../Empleado/notificaciones/images/v65_10.png");
+  background: url("../../../Empleado/Notificaciones/images/v65_10.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -93,7 +93,7 @@ button:hover {
 .regresar {
   width: 60px; /* Nuevo tamaño del contenedor */
   height: 60px; /* Nuevo tamaño del contenedor */
-  background: url("../../../Empleado/notificaciones/images/v65_16.png");
+  background: url("../../../Empleado/Notificaciones/images/v65_16.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain; /* Ajustar el tamaño de la imagen para que quepa en el contenedor */
