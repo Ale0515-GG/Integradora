@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-
 import { routerArea } from "./routes/routerArea.js";
 import { routerUsuarios } from './routes/routerUsuarios.js';
 import { routerSede } from './routes/routerSede.js';
