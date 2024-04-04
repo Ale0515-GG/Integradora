@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import Inicio from './Screens/Inicio/Inicio';
-import Aprobacion from './Screens/Administrador/AprobacionHorarios/Aprobacion';
+
 import IngreSuAd from './Screens/SupAdmin/ingresoSupAdmin/IngreSuAd';
 import SubAdmi1 from './Screens/SupAdmin/SupAdm1/SubAdmi1';
 
@@ -27,7 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />}></Route>
           <Route path="/VaEmV" element={<VacaEmV />}></Route> 
-          <Route path="/Apro" element={<Aprobacion />}></Route>
+          
           <Route path="/IngreSuAd" element={<IngreSuAd />}></Route>
           <Route path="/SubAdmi1" element={<SubAdmi1 />}></Route>
           <Route path='/AgregarArea'element={<AgregarArea/>}></Route>

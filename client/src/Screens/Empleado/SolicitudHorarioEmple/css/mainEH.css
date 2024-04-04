@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #007bff;
+  background-color: #256c98;
   padding: 4px 20px; /* Agrega espacio interno */
   color: white; /* Cambia el color del texto a blanco */
 }
@@ -47,7 +47,7 @@
 
 .crud-editar button, .crud-editar select, .crud-cancelar-solicitud button {
   padding: 8px 16px;
-  background-color: #000dff;
+  background-color: #256c98;
   color: #fff;
   border: none;
   border-radius: 5px;

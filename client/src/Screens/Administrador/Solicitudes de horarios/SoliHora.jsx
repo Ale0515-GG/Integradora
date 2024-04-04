@@ -81,13 +81,14 @@ const HorarioEmpleado = () => {
   return (
     <div>
       <div className="rectangulo-imagenes">
+      <div className="title">Solicitud de horarios</div>
         <div className="crud-container">
           <div style={{ position: "absolute", top: "4px", left: "29px" }}>
             <div className="logo"></div>
           </div>
           
         </div>
-
+        
         <Link to="/SoliHEmple" className="regresar"></Link>
       </div>
       <div className="info-empleado">
@@ -107,7 +108,7 @@ const HorarioEmpleado = () => {
           </select>
         </div>
         {tipoContrato && (
-          <table>
+          <table className="tablaC">
             <thead>
               <tr>
                 <th>Turnos Disponibles</th>
