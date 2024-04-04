@@ -1,9 +1,14 @@
 import mongoose from 'mongoose';
 
 const solicitudSchema = new mongoose.Schema({
-  dia: String,
-  horaInicio: String,
-  horaFin: String
+  tipoContrato: {
+    type: String,
+    required: false
+  },
+  turno: {
+    type: String,
+    required: false
+  }
 });
 
 const Solicitud = mongoose.model('Solicitud', solicitudSchema);

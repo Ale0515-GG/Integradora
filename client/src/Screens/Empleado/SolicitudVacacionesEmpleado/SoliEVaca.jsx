@@ -81,7 +81,7 @@ const SolicitudesVacaciones = () => {
     <div className="solicitudes-container">
       <div className="solicitudes-header">
         <div className="logo"></div>
-        <Link to="/SoliHEmple" className="casita"></Link>
+        <Link to="/SoliHEmple" className="regresar"></Link>
         <h1 className="solicitudes-title">Solicitudes Pendientes de Vacaciones</h1>
       </div>
       <div className="solicitudes-table">

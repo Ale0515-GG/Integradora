@@ -2,10 +2,10 @@
 
 /* Estilos para el contenedor principal */
 .solicitudes-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
-  margin-top: 10px;
+  padding: 100px;
+ 
   
 }
 
@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: #007bff;
-  padding: 40px 20px; /* Agrega espacio interno */
+  padding: 4px 20px; /* Agrega espacio interno */
   color: white; /* Cambia el color del texto a blanco */
 }
 
@@ -27,7 +27,7 @@
 .solicitudes-title {
   font-size: 24px;
   font-weight: bold;
-  margin-left: 200px;
+  margin-right: 600px;
 }
 
 /* Estilos para la tabla */
