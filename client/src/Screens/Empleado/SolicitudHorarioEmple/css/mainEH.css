@@ -27,7 +27,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .crud-row {
@@ -63,4 +63,16 @@
 
 .crud-boton-container {
   margin-bottom: 15px; /* Espacio entre los botones */
+}
+
+.traerSoli{
+  padding: 8px 8px;
+  background-color: #256c98;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-top: 50px;
 }
