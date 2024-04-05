@@ -14,11 +14,12 @@ const HorariosVistaE = () => {
     try {
       setLoading(true);
       const response = await fetch("http://localhost:3001/SolicitudesH/TraerSoli"); 
-      console.log();
+      console.log(response);
       if (!response.ok) {
-        throw new Error('Error al obtener las solicitudes de horarios');
+        throw new Error('Error al obtener las solicitudes de horarios, hubo un problema en el servidor, favor de contactar a su administrador.');
       }
       const data = await response.json();
+
       setEmpleadosConSolicitudes(data);
       setLoading(false);
     } catch (error) {

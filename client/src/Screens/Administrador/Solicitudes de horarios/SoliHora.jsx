@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./css/mainSoliH.css";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const HorarioEmpleado = () => {
   // Estado para almacenar los turnos y tipo de contrato
@@ -33,25 +35,27 @@ const HorarioEmpleado = () => {
     }
   
     // Extraer los turnos seleccionados para enviar al servidor
-    const turnosSeleccionados = turnos.map(turno => turno.turno);
+    const turnosSeleccionados = turnos.map(turno => ({
+      id: uuidv4(), // Generar un ID único
+      tipoContrato,
+      turno: turno.turno
+    }));
   
     // Enviar una solicitud al servidor para cada turno seleccionado
     turnosSeleccionados.forEach(async turno => {
       try {
         // Enviar la solicitud al servidor
-        await axios.post("http://localhost:3001/SolicitudesH/HorariosGuardado", {
-          tipoContrato,
-          turno
-        });
+        await axios.post("http://localhost:3001/SolicitudesH/HorariosGuardado", turno);
         // Muestra un mensaje de éxito para cada turno guardado
-        alert("Solicitud guardada correctamente para el turno: " + turno);
+        alert("Solicitud guardada correctamente para el turno con ID: " + turno.id);
       } catch (error) {
         // Muestra un mensaje de error si no se puede guardar el turno
-        alert("Error al guardar el turno: " + turno);
+        alert("Error al guardar el turno con ID: " + turno.id);
         console.error("Error al guardar el turno:", error);
       }
     });
   };
+  
   
   // Opciones para los tipos de contrato y sus turnos correspondientes
   const opcionesContrato = [
