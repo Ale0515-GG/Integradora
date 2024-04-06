@@ -2,62 +2,39 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./css/mainSoliH.css";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-
 
 const HorarioEmpleado = () => {
-  // Estado para almacenar los turnos y tipo de contrato
   const [turnos, setTurnos] = useState([{ tipoContrato: "", turno: "" }]);
-
-  // Estado para almacenar el tipo de contrato seleccionado
   const [tipoContrato, setTipoContrato] = useState("");
 
-  // Función para manejar cambios en el tipo de contrato
-  const handleContratoChange = (e) => {
-    const selectedContrato = e.target.value;
-    setTipoContrato(selectedContrato);
-    // Reiniciar los turnos cuando cambie el tipo de contrato
-    setTurnos([{ tipoContrato: selectedContrato, turno: "" }]);
+  const handleContratoChange = ({ target: { value } }) => {
+    setTipoContrato(value);
+    setTurnos([{ tipoContrato: value, turno: "" }]);
   };
 
-  // Función para manejar cambios en los turnos
   const handleTurnoChange = (index, valor) => {
     const nuevosTurnos = [...turnos];
     nuevosTurnos[index].turno = valor;
     setTurnos(nuevosTurnos);
   };
   
-  const handleGuardar = () => {
-    // Verificar si se han seleccionado el tipo de contrato y al menos un turno
+  const handleGuardar = async () => {
     if (!tipoContrato || turnos.some((turno) => !turno.turno)) {
       alert("Por favor selecciona el tipo de contrato y al menos un turno");
       return;
     }
   
-    // Extraer los turnos seleccionados para enviar al servidor
-    const turnosSeleccionados = turnos.map(turno => ({
-      id: uuidv4(), // Generar un ID único
-      tipoContrato,
-      turno: turno.turno
-    }));
-  
-    // Enviar una solicitud al servidor para cada turno seleccionado
-    turnosSeleccionados.forEach(async turno => {
-      try {
-        // Enviar la solicitud al servidor
+    try {
+      await Promise.all(turnos.map(async (turno) => {
         await axios.post("http://localhost:3001/SolicitudesH/HorariosGuardado", turno);
-        // Muestra un mensaje de éxito para cada turno guardado
-        alert("Solicitud guardada correctamente para el turno con ID: " + turno.id);
-      } catch (error) {
-        // Muestra un mensaje de error si no se puede guardar el turno
-        alert("Error al guardar el turno con ID: " + turno.id);
-        console.error("Error al guardar el turno:", error);
-      }
-    });
+      }));
+      alert("Solicitud guardada correctamente");
+    } catch (error) {
+      alert("Error al guardar la solicitud (solo puedes enviar 1 solicitud mensualmente) ");
+      console.error("Error al guardar la solicitud:", error);
+    }
   };
   
-  
-  // Opciones para los tipos de contrato y sus turnos correspondientes
   const opcionesContrato = [
     {
       nombre: "Tiempo Completo",
@@ -70,7 +47,6 @@ const HorarioEmpleado = () => {
     { nombre: "Por Turnos", turnos: ["7:00 - 19:00", "19:00 - 7:00"] },
   ];
 
-  // Verificar si ambos campos están seleccionados
   const isGuardarDisabled =
     !tipoContrato || !turnos.every((turno) => turno.turno);
 
@@ -96,8 +72,8 @@ const HorarioEmpleado = () => {
           <label htmlFor="contrato">Tipo de Contrato:</label>
           <select id="contrato" onChange={handleContratoChange}>
             <option value="">Seleccionar tipo de contrato</option>
-            {opcionesContrato.map((contrato, index) => (
-              <option key={index} value={contrato.nombre}>
+            {opcionesContrato.map((contrato) => (
+              <option key={contrato.nombre} value={contrato.nombre}>
                 {contrato.nombre}
               </option>
             ))}

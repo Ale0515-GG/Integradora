@@ -1,11 +1,10 @@
-import { fabClasses } from '@mui/material';
 import mongoose from 'mongoose';
 
 const solicitudSchema = new mongoose.Schema({
   id: {
     type: String,
-    required:true,
-    unique: true
+    unique: true,
+    required: true
   },
   tipoContrato: {
     type: String,
@@ -19,4 +18,4 @@ const solicitudSchema = new mongoose.Schema({
 
 const Solicitud = mongoose.model('Solicitud', solicitudSchema);
 
-export default Solicitud;
+export { Solicitud };

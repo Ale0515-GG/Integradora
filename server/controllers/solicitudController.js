@@ -1,10 +1,11 @@
-import Solicitud from '../models/solicitudModels.js';
+import { Solicitud } from '../models/solicitudModels.js';
+import axios from "axios";
 
 // Función para obtener una solicitud por su ID
 const obtenerSolicitud = async (req, res) => {
   try {
     // Obtener el ID de la solicitud de los parámetros de la solicitud
-    const { id } = req.params;
+    
 
     // Buscar la solicitud por ID en la base de datos
     const solicitud = await Solicitud.find({});
@@ -26,23 +27,14 @@ const obtenerSolicitud = async (req, res) => {
 // Función para crear una nueva solicitud
 const crearSolicitud = async (req, res) => {
   try {
-    // Generar un ID único para la nueva solicitud
-    const idUnico = uuidv4();
-
-    // Validar los datos de la solicitud
-    const { error } = solicitudSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
-
-    // Crear una nueva instancia de Solicitud con el ID único
-    const nuevaSolicitud = new Solicitud({ ...req.body, id: idUnico });
+    // Crear una nueva instancia de Solicitud con los datos recibidos
+    const nuevaSolicitud = new Solicitud(req.body);
     
     // Guardar la solicitud en la base de datos
     await nuevaSolicitud.save();
     
     // Responder con un mensaje de éxito
-    res.status(201).json({ mensaje: 'Solicitud guardada correctamente', id: idUnico });
+    res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
   } catch (error) {
     // Si hay un error en el proceso, responder con un mensaje de error
     console.error('Error al guardar la solicitud:', error);
