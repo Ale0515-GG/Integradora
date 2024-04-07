@@ -4,7 +4,7 @@ const solicitudSchema = new mongoose.Schema({
   id: {
     type: String,
     unique: true,
-    required: true
+    required: false
   },
   tipoContrato: {
     type: String,

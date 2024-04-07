@@ -41,11 +41,19 @@
   border-bottom: none;
 }
 
-.crud-name, .crud-department, .crud-sede, .crud-horario, .crud-editar, .crud-cancelar-solicitud {
+.crud-name,
+.crud-department,
+.crud-sede,
+.crud-horario,
+.crud-editar,
+.crud-cancelar-solicitud,
+.crud-tipo-contrato {
   flex: 1;
 }
 
-.crud-editar button, .crud-editar select, .crud-cancelar-solicitud button {
+.crud-editar button,
+.crud-editar select,
+.crud-cancelar-solicitud button {
   padding: 8px 16px;
   background-color: #256c98;
   color: #fff;
@@ -57,15 +65,14 @@
 }
 
 .crud-editar select {
-  margin-right: 10px;
-  
+  margin-right: 20px;
 }
 
 .crud-boton-container {
   margin-bottom: 15px; /* Espacio entre los botones */
 }
 
-.traerSoli{
+.traerSoli {
   padding: 8px 8px;
   background-color: #256c98;
   color: #fff;
@@ -75,4 +82,9 @@
   margin-bottom: 0px;
   margin-left: 5px;
   margin-top: 50px;
+}
+
+/* Nuevos estilos */
+.crud-tipo-contrato p {
+  margin-right: 20px; /* Ajusta el margen derecho */
 }
