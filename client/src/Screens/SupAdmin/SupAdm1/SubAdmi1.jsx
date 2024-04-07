@@ -25,9 +25,18 @@ const Administradores = () => {
   const [modoModificar, setModoModificar] = useState(false);
 
   useEffect(() => {
-    fetchData();
     fetchSedes();
-  }, []);
+  },);
+
+  const fetchSedes = async () => {
+    try {
+      const response = await Axios.get("http://localhost:3001/sede");
+      setSedes(response.data.data);
+      fetchData(); // Llamar a fetchData después de obtener las sedes
+    } catch (error) {
+      console.error('Error al obtener las sedes:', error.message);
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -38,13 +47,48 @@ const Administradores = () => {
     }
   };
 
-  const fetchSedes = async () => {
-    try {
-      const response = await Axios.get("http://localhost:3001/sedes");
-      setSedes(response.data.data);
-    } catch (error) {
-      console.error('Error al obtener las sedes:', error.message);
-    }
+  const handleSedeChange = (e) => {
+    const { value } = e.target;
+    setNuevoAdmin(prevState => ({
+      ...prevState,
+      sede: value
+    }));
+    const areas = sedes.find(sede => sede.nombre === value)?.areas || [];
+    setAreasSede(areas);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNuevoAdmin(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const resetNuevoAdmin = () => {
+    setNuevoAdmin({
+      nombreempleado: '',
+      apellidoP: '',
+      apellidoM: '',
+      tipoUsuario: '',
+      acceso: '',
+      correo: '',
+      rol: '',
+      sede: '',
+      area: '',
+      sexo: true,
+      cumpleanos: ''
+    });
+  };
+
+  const handleCancelarModificacion = () => {
+    resetNuevoAdmin();
+    setModoModificar(false);
+  };
+
+  const handleModificarClick = (admin) => {
+    setNuevoAdmin(admin);
+    setModoModificar(true);
   };
 
   const agregarAdministrador = async () => {
@@ -87,50 +131,6 @@ const Administradores = () => {
       console.error('Error al modificar el usuario:', error.message);
       setError('Error al modificar el usuario');
     }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNuevoAdmin(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSedeChange = (e) => {
-    const { value } = e.target;
-    setNuevoAdmin(prevState => ({
-      ...prevState,
-      sede: value
-    }));
-    const areas = sedes.find(sede => sede.nombre === value)?.areas || [];
-    setAreasSede(areas);
-  };
-
-  const handleModificarClick = (admin) => {
-    setNuevoAdmin(admin);
-    setModoModificar(true);
-  };
-
-  const resetNuevoAdmin = () => {
-    setNuevoAdmin({
-      nombreempleado: '',
-      apellidoP: '',
-      apellidoM: '',
-      tipoUsuario: '',
-      acceso: '',
-      correo: '',
-      rol: '',
-      sede: '',
-      area: '',
-      sexo: true,
-      cumpleanos: ''
-    });
-  };
-
-  const handleCancelarModificacion = () => {
-    resetNuevoAdmin();
-    setModoModificar(false);
   };
 
   return (
@@ -217,7 +217,7 @@ const Administradores = () => {
                 <select name="sede" value={nuevoAdmin.sede} onChange={handleSedeChange}>
                   <option value="">Seleccionar sede</option>
                   {sedes.map((sede, index) => (
-                    <option key={index} value={sede.nombre}>{sede.nombre}</option>
+                    <option key={index} value={sede.Nombre}>{sede.Nombre}</option>
                   ))}
                 </select>
               </label>
@@ -235,7 +235,7 @@ const Administradores = () => {
             </div>
           </div>
           <div>
-            <button className="button agregar" type="submit">{modoModificar ? 'Guardar Cambios' : 'Agregar Usuario'}</button>
+            <button className="button agregar" type="submit">{modoModificar ? 'Modificar' : 'Agregar Usuario'}</button>
             {modoModificar && <button style={{ backgroundColor: 'red', color: 'white' }} className="button cancelar" onClick={handleCancelarModificacion}>Cancelar</button>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
@@ -274,9 +274,8 @@ const Administradores = () => {
                 <td>{admin.sede}</td>
                 <td>{admin.area}</td>
                 <td>
-                  <button className="button eliminar" onClick={() => eliminarAdministrador(admin._id)}>Eliminar</button>
-                  {/* Botón o enlace para modificar usuario */}
                   <button className="button modificar" onClick={() => handleModificarClick(admin)}>Modificar</button>
+                  <button className="button eliminar" onClick={() => eliminarAdministrador(admin._id)}>Eliminar</button>
                 </td>
               </tr>
             ))}
