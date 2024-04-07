@@ -84,6 +84,7 @@ const SolicitudesVacacionesVista = () => {
         <Link to="/SoliHEmple" className="regresar"></Link>
         <h1 className="solicitudes-title">Solicitudes Pendientes de Vacaciones</h1>
       </div>
+      
       <div className="solicitudes-table">
         {solicitudesVacaciones.length > 0 ? (
           <div>

@@ -5,7 +5,7 @@ import { routerArea } from "./routes/routerArea.js";
 import { routerUsuarios } from './routes/routerUsuarios.js';
 import { routerSede } from './routes/routerSede.js';
 import solicitudRoutes from './routes/solicitudRoutes.js'; // Usar import en lugar de require
-import VistaHE from "./routes/vistaHERoutes.js";
+;
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,7 +19,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
 
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede);
-app.use('/VistaHE', VistaHE);
+
  
 app.use('/area', routerArea);
 

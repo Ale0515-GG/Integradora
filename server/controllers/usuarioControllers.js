@@ -52,16 +52,28 @@ export const postUsuarios = async(req,res)=> {
 
 
 //update date
+
+// putUsuarios
 export const putUsuarios = async (req, res) => {
     try {
-        const { id, ...rest } = req.body;
-        const data = await schemaEmpl.findOneAndUpdate(id, rest, { new: true });
-        res.send({ success: true, message: "El dato se actualizó correctamente", data: data });
+        const { id } = req.params; // Obtener el ID del usuario a actualizar
+        const newData = req.body; // Obtener los nuevos datos del cuerpo de la solicitud
+
+        const data = await schemaEmpl.findByIdAndUpdate(id, newData, { new: true });
+
+        if (!data) {
+            return res.status(404).json({ success: false, message: "Usuario no encontrado" });
+        }
+
+        res.json({ success: true, message: "El usuario se actualizó correctamente", data: data });
     } catch (error) {
         console.error("Error al actualizar el usuario:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
 };
+
+
+
 
 
 

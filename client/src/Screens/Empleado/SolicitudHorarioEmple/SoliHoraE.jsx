@@ -1,76 +1,90 @@
 import React, { useState, useEffect } from "react";
-import "./css/mainEH.css"; // Asegúrate de tener el archivo CSS correspondiente
 import axios from "axios";
+import "./css/mainEH.css"; // Asegúrate de tener el archivo CSS correspondiente
 import { Link } from "react-router-dom";
 
 const HorariosVistaE = () => {
-  const [empleadosConSolicitudes, setEmpleadosConSolicitudes] = useState([]);
-  const [mostrarCombo, setMostrarCombo] = useState(false);
-  const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
+  const [solicitudes, setSolicitudes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(-1);
+  const [editedTurno, setEditedTurno] = useState("");
+  const [opcionesContrato, setOpcionesContrato] = useState([]);
 
   useEffect(() => {
-    // Función para cargar las solicitudes pendientes al montarse el componente
-    const cargarSolicitudesPendientes = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/vistasHE/');
-        setEmpleadosConSolicitudes(response.data);
-      } catch (error) {
-        console.error('Error al obtener las solicitudes de horarios:', error);
-      }
-    };
-
     cargarSolicitudesPendientes();
+    cargarOpcionesContrato();
   }, []);
 
-  const handleHorarioChange = (e) => {
-    setHorarioSeleccionado(e.target.value);
+  const cargarSolicitudesPendientes = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("http://localhost:3001/SolicitudesH/TraerSoli");
+      if (response.status !== 200) {
+        throw new Error('Error al obtener las solicitudes de horarios, hubo un problema en el servidor, favor de contactar a su administrador.');
+      }
+      setSolicitudes(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error al obtener las solicitudes de horarios:', error);
+      setLoading(false);
+    }
   };
 
-  const modificarHorario = (empleadoId) => {
-    // Aquí realizas una petición al servidor para modificar el horario de un empleado
-    axios.patch(`/vistasHE/${empleadoId}`, { tipoContrato: horarioSeleccionado })
-      .then(response => {
-        setEmpleadosConSolicitudes(prevEmpleados => {
-          return prevEmpleados.map(empleado => {
-            if (empleado.id === empleadoId) {
-              return {
-                ...empleado,
-                horarioPendiente: {
-                  ...empleado.horarioPendiente,
-                  tipo: horarioSeleccionado,
-                  nuevoHorario: horarioSeleccionado
-                }
-              };
-            } else {
-              return empleado;
-            }
-          });
-        });
-        setMostrarCombo(false);
-        setHorarioSeleccionado("");
-      })
-      .catch(error => {
-        console.error('Error al modificar el horario del empleado:', error);
-      });
+  const cargarOpcionesContrato = () => {
+    // Aquí cargas tus opciones de contrato desde el servidor o desde un archivo
+    setOpcionesContrato([
+      {
+        nombre: "Tiempo Completo",
+        turnos: ["7:00 - 15:00", "15:00 - 23:00", "23:00 - 7:00"],
+      },
+      {
+        nombre: "Medio Tiempo",
+        turnos: ["7:00 - 12:00", "12:00 - 17:00", "17:00 - 22:00"],
+      },
+      { nombre: "Por Turnos", turnos: ["7:00 - 19:00", "19:00 - 7:00"] },
+    ]);
   };
 
-  const cancelarSolicitud = (empleadoId) => {
-    // Aquí realizas una petición al servidor para cancelar la solicitud de horario de un empleado
-    axios.delete(`/vistasHE/${empleadoId}`)
-      .then(response => {
-        setEmpleadosConSolicitudes(prevEmpleados => {
-          return prevEmpleados.map(empleado => {
-            if (empleado.id === empleadoId) {
-              return { ...empleado, horarioPendiente: null };
-            } else {
-              return empleado;
-            }
-          });
-        });
-      })
-      .catch(error => {
-        console.error('Error al cancelar la solicitud de horario del empleado:', error);
-      });
+  const handleTurnoChange = (index, valor) => {
+    const nuevasSolicitudes = [...solicitudes];
+    nuevasSolicitudes[index].turno = valor;
+    setSolicitudes(nuevasSolicitudes);
+  };
+
+  const startEdit = (index) => {
+    setEditingIndex(index);
+    setEditedTurno(solicitudes[index].turno); // Establecer el turno editado inicialmente
+  };
+
+  const cancelEdit = () => {
+    setEditingIndex(-1);
+    setEditedTurno("");
+  };
+
+  const saveChanges = async (index) => {
+    try {
+      const updatedSolicitud = solicitudes[index];
+      updatedSolicitud.turno = editedTurno;
+      await axios.put(`http://localhost:3001/SolicitudesH/updateS`, updatedSolicitud);
+      setEditingIndex(-1);
+      cargarSolicitudesPendientes();
+      alert("Solicitud actualizada correctamente");
+    } catch (error) {
+      console.error("Error al actualizar la solicitud:", error);
+      alert("Error al actualizar la solicitud");
+    }
+  };
+
+  const cancelarSolicitud = async (index) => {
+    try {
+      const solicitud = solicitudes[index];
+      await axios.delete(`http://localhost:3001/SolicitudesH/borrar`);
+      cargarSolicitudesPendientes(); // Actualizar la lista de solicitudes después de la cancelación
+      alert('Solicitud cancelada correctamente');
+    } catch (error) {
+      console.error('Error al cancelar la solicitud:', error);
+      alert('Error al cancelar la solicitud');
+    }
   };
 
   return (
@@ -78,43 +92,52 @@ const HorariosVistaE = () => {
       <div className="crud-header">
         <div className="logo"></div>
         <Link to="/VaEmV" className="regresar"></Link>
-        <h1 className="crud-title">Solicitudes Pendientes de Horarios</h1>
+        <h1 className="crud-title">Solicitudes Pendientes</h1>
       </div>
       <div className="crud-table">
-        {empleadosConSolicitudes.length > 0 ? (
+        {loading ? (
+          <p>Cargando solicitudes pendientes...</p>
+        ) : solicitudes.length > 0 ? (
           <div>
-            {empleadosConSolicitudes.map((empleado) =>
-              empleado.horarioPendiente ? (
-                <div key={empleado.id} className="crud-row">
-                  <div className="crud-name">{empleado.nombre}</div>
-                  <div className="crud-department">{empleado.departamento}</div>
-                  <div className="crud-sede">{empleado.sede}</div>
-                  <div className="crud-horario">
-                    Tipo de Horario: {empleado.horarioPendiente.tipo}
+            {solicitudes.map((solicitud, index) => (
+              <div key={index} className="crud-row">
+                {editingIndex === index ? (
+                  <div className="crud-row">
+                    <select
+                      value={editedTurno}
+                      onChange={(e) => setEditedTurno(e.target.value)}
+                    >
+                      <option value="">Seleccionar turno</option>
+                      {opcionesContrato.map((contrato) => (
+                        solicitud.tipoContrato === contrato.nombre &&
+                        contrato.turnos.map((turno, i) => (
+                          <option key={i} value={turno}>
+                            {turno}
+                          </option>
+                        ))
+                      ))}
+                    </select>
+                    <div className="crud-boton-container">
+                      <button className="crud-editar" onClick={() => saveChanges(index)}>Guardar</button>
+                      <button className="crud-cancelar-solicitud" onClick={() => cancelEdit(index)}>Cancelar</button>
+                    </div>
                   </div>
-                  
-                  <div className="crud-editar">
-                    {mostrarCombo ? (
-                      <div>
-                        <select value={horarioSeleccionado} onChange={handleHorarioChange}>
-                          <option value="">Seleccionar horario</option>
-                          <option value="08:00am (Contrato 1)">Contrato 1 '08:00 am'</option>
-                          <option value="09:00am (Contrato 2)">Contrato2  '09:00 am' </option>
-                          <option value="10:00am (Contrato 3)">Contrato 3 '10:00 am'</option>
-                        </select>
-                        <button onClick={() => modificarHorario(empleado.id)}>Guardar</button>
-                      </div>
-                    ) : (
-                      <button onClick={() => setMostrarCombo(true)}>Editar</button>
-                    )}
+                ) : (
+                  <div className="crud-row">
+                    <div className="crud-tipo-contrato">
+                      <p>Tipo de Contrato: {solicitud.tipoContrato}</p>
+                    </div>
+                    <div className="crud-turno">
+                      <p>Turno: {solicitud.turno}</p>
+                    </div>
+                    <div className="crud-boton-container">
+                      <button className="crud-editar" onClick={() => startEdit(index)}>Editar</button>
+                      <button className="crud-cancelar-solicitud" onClick={() => cancelarSolicitud(index)}>Cancelar Solicitud</button>
+                    </div>
                   </div>
-
-                  <div className="crud-cancelar-solicitud">
-                    <button onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
-                  </div>
-                </div>
-              ) : null
-            )}
+                )}
+              </div>
+            ))}
           </div>
         ) : (
           <p>No hay solicitudes pendientes de horarios.</p>
