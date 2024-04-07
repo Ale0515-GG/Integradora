@@ -3,7 +3,7 @@ import axios from "axios";
 import "./css/mainSoliH.css";
 import { Link } from "react-router-dom";
 
-const HorarioEmpleado = () => {
+const SolicitudesPendientes = () => {
   const [turnos, setTurnos] = useState([{ tipoContrato: "", turno: "" }]);
   const [tipoContrato, setTipoContrato] = useState("");
 
@@ -121,4 +121,4 @@ const HorarioEmpleado = () => {
   );
 };
 
-export default HorarioEmpleado;
+export default SolicitudesPendientes;

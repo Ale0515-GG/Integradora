@@ -1,25 +1,21 @@
 import { Solicitud } from '../models/solicitudModels.js';
-import axios from "axios";
 
-// Función para obtener una solicitud por su ID
+// Función para obtener todas las solicitudes
 const obtenerSolicitud = async (req, res) => {
   try {
-    // Obtener el ID de la solicitud de los parámetros de la solicitud
+    // Obtener todas las solicitudes de la base de datos
+    const solicitudes = await Solicitud.find({});
     
-
-    // Buscar la solicitud por ID en la base de datos
-    const solicitud = await Solicitud.find({});
-
-    if (solicitud) {
-      // Si se encuentra la solicitud, responder con los datos de la solicitud
-      res.json(solicitud);
+    // Si hay solicitudes, responder con los datos de las solicitudes
+    if (solicitudes.length > 0) {
+      res.json(solicitudes);
     } else {
-      // Si no se encuentra la solicitud, responder con un mensaje de error
-      res.status(204).json({ mensaje: 'No se encontró ninguna solicitud con ese ID' });
+      // Si no hay solicitudes, responder con un mensaje de error
+      res.status(204).json({ mensaje: 'No se encontraron solicitudes' });
     }
   } catch (error) {
     // Si hay un error en el proceso, responder con un mensaje de error
-    console.error('Error al obtener la solicitud por ID:', error);
+    console.error('Error al obtener las solicitudes:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
@@ -42,4 +38,42 @@ const crearSolicitud = async (req, res) => {
   }
 };
 
-export { obtenerSolicitud , crearSolicitud };
+// Función para actualizar una solicitud existente
+const actualizarSolicitud = async (req, res) => {
+  try {
+    const { tipoContrato } = req.body;
+    const { turno } = req.body;
+
+    // Buscar la solicitud por tipo de contrato y actualizar su turno
+    const solicitudActualizada = await Solicitud.findOneAndUpdate({ tipoContrato }, { turno }, { new: true });
+
+    if (!solicitudActualizada) {
+      return res.status(404).json({ mensaje: 'No se encontró ninguna solicitud con el tipo de contrato especificado' });
+    }
+
+    res.status(200).json({ mensaje: 'Solicitud actualizada correctamente', solicitud: solicitudActualizada });
+  } catch (error) {
+    console.error('Error al actualizar la solicitud:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+const eliminarSolicitudes = async (req, res) => {
+  try {
+    // Eliminar todas las solicitudes de la base de datos
+    const resultado = await Solicitud.deleteMany({});
+    
+    // Verificar si se eliminaron solicitudes
+    if (resultado.deletedCount > 0) {
+      res.status(200).json({ mensaje: 'Todas las solicitudes han sido eliminadas' });
+    } else {
+      res.status(404).json({ mensaje: 'No se encontraron solicitudes para eliminar' });
+    }
+  } catch (error) {
+    console.error('Error al eliminar las solicitudes:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+
+export { obtenerSolicitud, crearSolicitud, actualizarSolicitud, eliminarSolicitudes };
