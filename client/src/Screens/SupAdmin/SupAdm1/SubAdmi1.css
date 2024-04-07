@@ -24,11 +24,12 @@
 .table {
   margin-top: 150px;
   color: #397eab;
-  margin-left: 20px; 
+  margin-left: 20px;
+  overflow-x: auto; /* Agregar desplazamiento horizontal */
 }
 
 .admin-table {
-  width: auto;
+  min-width: 100%; /* Permitir que la tabla sea más ancha que su contenedor para activar el desplazamiento horizontal */
   border-collapse: collapse;
 }
 
@@ -36,6 +37,7 @@
 .admin-table td {
   border: 1px solid #ddd;
   padding: 8px;
+  white-space: nowrap; /* Evitar que los campos de texto se envuelvan */
 }
 
 .admin-table th {
@@ -98,3 +100,5 @@
 .error-message {
   color: red;
 }
+
+
