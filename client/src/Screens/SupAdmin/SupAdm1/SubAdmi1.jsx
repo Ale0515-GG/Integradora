@@ -8,12 +8,11 @@ const Administradores = () => {
   const [administradores, setAdministradores] = useState([]);
   const [error, setError] = useState('');
   const [nuevoAdmin, setNuevoAdmin] = useState({
-    _id: '', // Campo oculto para almacenar el ID del usuario seleccionado
     nombreempleado: '',
-    tipoUsuario: '',
-    acceso: '',
     apellidoP: '',
     apellidoM: '',
+    tipoUsuario: '',
+    acceso: '',
     correo: '',
     rol: '',
     sede: '',
@@ -104,6 +103,20 @@ const Administradores = () => {
       fetchData();
       setError('');
       alert('Usuario modificado correctamente');
+      // Reiniciar el formulario
+      setNuevoAdmin({
+        nombreempleado: '',
+        apellidoP: '',
+        apellidoM: '',
+        tipoUsuario: '',
+        acceso: '',
+        correo: '',
+        rol: '',
+        sede: '',
+        area: '',
+        sexo: true,
+        cumpleanos: ''
+      });
     } catch (error) {
       console.error('Error al modificar el usuario:', error.message);
       setError('Error al modificar el usuario');
