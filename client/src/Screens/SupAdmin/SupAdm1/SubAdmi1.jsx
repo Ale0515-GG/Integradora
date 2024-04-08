@@ -11,6 +11,7 @@ const Administradores = () => {
     nombreempleado: '',
     apellidoP: '',
     apellidoM: '',
+    usuario: '',
     tipoUsuario: '',
     acceso: '',
     correo: '',
@@ -67,6 +68,7 @@ const Administradores = () => {
       nombreempleado: '',
       apellidoP: '',
       apellidoM: '',
+      usuario: '',
       tipoUsuario: '',
       acceso: '',
       correo: '',
@@ -89,6 +91,7 @@ const Administradores = () => {
       !nuevoAdmin.nombreempleado ||
       !nuevoAdmin.apellidoP ||
       !nuevoAdmin.apellidoM ||
+      !nuevoAdmin.usuario ||
       !nuevoAdmin.tipoUsuario ||
       !nuevoAdmin.acceso ||
       !nuevoAdmin.correo ||
@@ -109,6 +112,7 @@ const Administradores = () => {
         nombreempleado: '',
         apellidoP: '',
         apellidoM: '',
+        usuario: '',
         tipoUsuario: '',
         acceso: '',
         correo: '',
@@ -149,6 +153,7 @@ const Administradores = () => {
         nombreempleado: '',
         apellidoP: '',
         apellidoM: '',
+        usuario: '',
         tipoUsuario: '',
         acceso: '',
         correo: '',
@@ -229,6 +234,12 @@ const Administradores = () => {
             </div>
             <div className="form-group">
               <label className='name'>
+                Usuario:
+                <input type="text" name="usuario" value={nuevoAdmin.usuario} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
                 Tipo de Usuario:
                 <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleInputChange}>
                   <option value="">Seleccionar tipo de usuario</option>
@@ -285,6 +296,7 @@ const Administradores = () => {
               <th>Sexo</th>
               <th>Correo</th>
               <th>Acceso</th>
+              <th>Usuario</th>
               <th>Tipo de Usuario</th>
               <th>Rol</th>
               <th>Sede</th>
@@ -302,6 +314,7 @@ const Administradores = () => {
                 <td>{admin.sexo ? 'M' : 'F'}</td>
                 <td>{admin.correo}</td>
                 <td>{modoModificar ? admin.acceso : '********'}</td>
+                <td>{admin.usuario}</td>
                 <td>{admin.tipoUsuario}</td>
                 <td>{admin.rol}</td>
                 <td>{admin.sede}</td>
