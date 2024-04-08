@@ -62,7 +62,7 @@ const IngreSuAd = () => {
         <div className="v281_36"></div>
         <div className="v281_37"></div>
         <div className="v281_38" onClick={handleSubmit}>Ingresar</div>
-        {error && <div>{error}</div>}
+        <div className="v281_25">{error && <div>{error}</div>}</div>
       </form>
     </div>
   );

@@ -103,6 +103,19 @@ body {
   opacity: 1;
   text-align: left;
 }
+
+.v281_25 {
+
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 670px;
+  left: 500px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 25px;
+  opacity: 1;
+  text-align: left;
+}
 .v281_30 {
   width: 194px;
   color: rgba(0,0,0,1);
