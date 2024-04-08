@@ -93,3 +93,51 @@ export const loginUsuario = async (req, res) => {
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
 };
+import fs from 'fs';
+import multer from 'multer';
+
+const upload = multer({ dest: 'uploads/' }); // Directorio donde se guardarán los archivos temporales
+
+export const subirEmpleados = async (req, res) => {
+    try {
+        // Verificar si se cargó un archivo
+        if (!req.file) {
+            return res.status(400).json({ success: false, message: "No se ha proporcionado ningún archivo" });
+        }
+
+        const rutaArchivo = req.file.path; // Ruta del archivo temporal
+        const datosCrudos = fs.readFileSync(rutaArchivo);
+        const empleados = JSON.parse(datosCrudos);
+
+        // Iterar sobre los empleados y guardarlos en la base de datos
+        for (const empleado of empleados) {
+            // Crear un nuevo objeto de empleado con campos vacíos si faltan datos
+            const nuevoEmpleado = new schemaEmpl({
+                nombreempleado: empleado.nombreempleado || '',
+                usuario: empleado.usuario || '',
+                tipoUsuario: empleado.tipoUsuario || '',
+                acceso: empleado.acceso || '', // Supongo que la contraseña se guarda en el campo "Contrasena"
+                apellidoP: empleado.apellidoP || '',
+                apellidoM: empleado.apellidoM || '',
+                correo: empleado.correo || '',
+                rol: empleado.rol || '',
+                sede: empleado.sede || '',
+                area: empleado.area || '',
+                sexo: empleado.sexo || false, // Supongo que es un booleano
+                cumpleanos: empleado.cumpleanos || null,
+                tipoTurno: empleado.tipoTurno || 0, // Supongo que es un número
+            });
+
+            // Guardar el empleado en la base de datos
+            await nuevoEmpleado.save();
+        }
+
+        // Eliminar el archivo temporal después de procesarlo
+        fs.unlinkSync(rutaArchivo);
+
+        res.json({ success: true, message: "Carga masiva de empleados completada exitosamente" });
+    } catch (error) {
+        console.error("Error al cargar empleados:", error);
+        res.status(500).json({ success: false, message: "Error del servidor al cargar empleados" });
+    }
+};

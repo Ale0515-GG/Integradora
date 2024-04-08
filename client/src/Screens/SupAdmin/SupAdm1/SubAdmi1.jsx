@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import "./SubAdmi1.css";
+import CargaMasiva from './cargamasiva';
 
 const opcionesTipoUsuario = ["Root", "Administrador", "Super Administrador", "Empleado"];
 
@@ -280,6 +281,7 @@ const Administradores = () => {
           </div>
           <div>
             <button className="button agregar" type="submit">{modoModificar ? 'Modificar' : 'Agregar Usuario'}</button>
+            <div><CargaMasiva></CargaMasiva></div>
             {modoModificar && <button style={{ backgroundColor: 'red', color: 'white' }} className="button cancelar" onClick={handleCancelarModificacion}>Cancelar</button>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
