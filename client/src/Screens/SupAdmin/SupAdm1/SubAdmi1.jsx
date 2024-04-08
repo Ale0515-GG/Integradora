@@ -44,7 +44,7 @@ const Administradores = () => {
     setNuevoAdmin(prevState => ({
       ...prevState,
       sede: value,
-      area: '' // Reiniciar el área seleccionada cuando se cambia la sede
+      area: '' 
     }));
     const sede = sedes.find(sede => sede.Nombre === value);
     if (sede) {
@@ -85,6 +85,22 @@ const Administradores = () => {
   };
 
   const agregarAdministrador = async () => {
+    if (
+      !nuevoAdmin.nombreempleado ||
+      !nuevoAdmin.apellidoP ||
+      !nuevoAdmin.apellidoM ||
+      !nuevoAdmin.tipoUsuario ||
+      !nuevoAdmin.acceso ||
+      !nuevoAdmin.correo ||
+      !nuevoAdmin.rol ||
+      !nuevoAdmin.sede ||
+      !nuevoAdmin.area ||
+      !nuevoAdmin.cumpleanos
+    ) {
+      setError('Por favor completa todos los campos');
+      return;
+    }
+
     try {
       await Axios.post("http://localhost:3001/usuarios/create", nuevoAdmin);
       fetchData();
