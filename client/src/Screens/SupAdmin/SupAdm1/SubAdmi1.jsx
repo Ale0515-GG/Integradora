@@ -11,6 +11,7 @@ const Administradores = () => {
     nombreempleado: '',
     apellidoP: '',
     apellidoM: '',
+    usuario: '',
     tipoUsuario: '',
     acceso: '',
     correo: '',
@@ -44,7 +45,7 @@ const Administradores = () => {
     setNuevoAdmin(prevState => ({
       ...prevState,
       sede: value,
-      area: '' // Reiniciar el área seleccionada cuando se cambia la sede
+      area: '' 
     }));
     const sede = sedes.find(sede => sede.Nombre === value);
     if (sede) {
@@ -67,6 +68,7 @@ const Administradores = () => {
       nombreempleado: '',
       apellidoP: '',
       apellidoM: '',
+      usuario: '',
       tipoUsuario: '',
       acceso: '',
       correo: '',
@@ -85,6 +87,23 @@ const Administradores = () => {
   };
 
   const agregarAdministrador = async () => {
+    if (
+      !nuevoAdmin.nombreempleado ||
+      !nuevoAdmin.apellidoP ||
+      !nuevoAdmin.apellidoM ||
+      !nuevoAdmin.usuario ||
+      !nuevoAdmin.tipoUsuario ||
+      !nuevoAdmin.acceso ||
+      !nuevoAdmin.correo ||
+      !nuevoAdmin.rol ||
+      !nuevoAdmin.sede ||
+      !nuevoAdmin.area ||
+      !nuevoAdmin.cumpleanos
+    ) {
+      setError('Por favor completa todos los campos');
+      return;
+    }
+
     try {
       await Axios.post("http://localhost:3001/usuarios/create", nuevoAdmin);
       fetchData();
@@ -93,6 +112,7 @@ const Administradores = () => {
         nombreempleado: '',
         apellidoP: '',
         apellidoM: '',
+        usuario: '',
         tipoUsuario: '',
         acceso: '',
         correo: '',
@@ -133,6 +153,7 @@ const Administradores = () => {
         nombreempleado: '',
         apellidoP: '',
         apellidoM: '',
+        usuario: '',
         tipoUsuario: '',
         acceso: '',
         correo: '',
@@ -213,6 +234,12 @@ const Administradores = () => {
             </div>
             <div className="form-group">
               <label className='name'>
+                Usuario:
+                <input type="text" name="usuario" value={nuevoAdmin.usuario} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
                 Tipo de Usuario:
                 <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleInputChange}>
                   <option value="">Seleccionar tipo de usuario</option>
@@ -269,6 +296,7 @@ const Administradores = () => {
               <th>Sexo</th>
               <th>Correo</th>
               <th>Acceso</th>
+              <th>Usuario</th>
               <th>Tipo de Usuario</th>
               <th>Rol</th>
               <th>Sede</th>
@@ -286,6 +314,7 @@ const Administradores = () => {
                 <td>{admin.sexo ? 'M' : 'F'}</td>
                 <td>{admin.correo}</td>
                 <td>{modoModificar ? admin.acceso : '********'}</td>
+                <td>{admin.usuario}</td>
                 <td>{admin.tipoUsuario}</td>
                 <td>{admin.rol}</td>
                 <td>{admin.sede}</td>
