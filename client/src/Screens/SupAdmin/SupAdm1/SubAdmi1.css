@@ -6,17 +6,22 @@
   justify-content: center; /* Centrar los elementos horizontalmente */
   align-items: flex-start; /* Alinear los elementos hacia arriba */
 }
-
 .header {
+  display: flex;
+  justify-content: space-between; /* Para separar los elementos y alinear el logo a la izquierda y la imagen de salir a la derecha */
+  align-items: center;
   text-align: center;
-  padding: 20px; /* Añadir un padding para que el encabezado sea más ancho */
-  background-color: #256c98; /* Cambiar el color del encabezado */
-  color: white; /* Cambiar el color del texto del encabezado para que sea legible */
-  width: 100%; /* Ocupar todo el ancho de la página */
-  position: fixed; /* Fijar el encabezado en la parte superior */
-  top: 0; /* Alinear el encabezado en la parte superior */
-  z-index: 999; /* Asegurar que el encabezado esté por encima del contenido */
+  padding: 10px;
+  background-color: #256c98;
+  color: white;
+  width: 100%;
+  height: 15%;
+  position: fixed;
+  top: 0;
+  z-index: 999px;
 }
+
+
 .content {
   margin-top: 20px; /* Ajustar según la altura del encabezado */
 }
@@ -101,4 +106,12 @@
   color: red;
 }
 
-
+.logo {
+  width: 1px;
+  height: 0px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  overflow: hidden;
+}
