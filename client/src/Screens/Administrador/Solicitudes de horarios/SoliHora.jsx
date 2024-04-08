@@ -42,7 +42,7 @@ const SolicitudesPendientes = () => {
     },
     {
       nombre: "Medio Tiempo",
-      turnos: ["7:00 - 12:00", "12:00 - 17:00", "17:00 - 22:00"],
+      turnos: ["7:00 - 12:00", "12:00 - 17:00", "18:00 - 23:59"],
     },
     { nombre: "Por Turnos", turnos: ["7:00 - 19:00", "19:00 - 7:00"] },
   ];
@@ -51,25 +51,65 @@ const SolicitudesPendientes = () => {
     !tipoContrato || !turnos.every((turno) => turno.turno);
 
   return (
-    <div>
+    <body className="bodySH">
+    <div >
       <div className="rectangulo-imagenes">
         <div className="title">Solicitud de horarios</div>
         <div className="crud-container">
           <div style={{ position: "absolute", top: "4px", left: "29px" }}>
             <div className="logo"></div>
           </div>
-          
         </div>
-        
         <Link to="/SoliHEmple" className="regresar"></Link>
       </div>
-      <div className="info-empleado">
+      <div className="info-adicional">
+      <h2>Información sobre los contratos</h2>
+      <table className="tabla-info">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Turnos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Si trabaja 5 días y descansa 2</td>
+            <td>
+              <ul>
+                <li>7:00 – 15:00</li>
+                <li>15:00 – 23:00</li>
+                <li>23:00 – 7:00</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Si trabaja 1 día y descansa 2</td>
+            <td>
+              <ul>
+                <li>7:00 – 7:00</li>
+                <li>19:00 – 19:00</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Si trabaja 6 días y descansa 1</td>
+            <td>
+              <ul>
+                <li>7:00 – 12:00</li>
+                <li>12:00 – 17:00</li>
+                <li>18:00 - 23:59</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        <div className="info-empleado">
         <div>
-          <p>Área: [Área del empleado]</p>
-          <p>Sede: [Sede del empleado]</p>
+          <p>Selecciona correctamente el tipo de contrato que deses y selecciona bien tu turno, solo podras mandar 1 solicitud por mes</p>
         </div>
         <div>
-          <label htmlFor="contrato">Tipo de Contrato:</label>
+          <label className="contrato">Tipo de Contrato:</label>
           <select id="contrato" onChange={handleContratoChange}>
             <option value="">Seleccionar tipo de contrato</option>
             {opcionesContrato.map((contrato) => (
@@ -118,6 +158,8 @@ const SolicitudesPendientes = () => {
         </button>
       </div>
     </div>
+    
+    </body>
   );
 };
 

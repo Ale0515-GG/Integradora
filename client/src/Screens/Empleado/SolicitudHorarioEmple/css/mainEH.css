@@ -1,10 +1,19 @@
-.crud-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 100px;
+* {
+  box-sizing: border-box;
 }
 
-.crud-header {
+.VisE {
+  margin: 0;
+  background-color: #76b2e2;
+  height: 100%;
+}
+.VistaE {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.VistaE-header {
   position: fixed; /* Hace que el encabezado se mantenga fijo en la pantalla */
   top: 0; /* Lo coloca en la parte superior de la pantalla */
   left: 0; /* Lo coloca en el borde izquierdo de la pantalla */
@@ -17,74 +26,69 @@
   color: white; /* Cambia el color del texto a blanco */
 }
 
-.crud-title {
-  font-size: 24px;
+
+.VistaE-title {
+  font-size: 30px;
   font-weight: bold;
-  margin-right: 600px;
+  margin-right: 150px ;
 }
 
-.crud-table {
-  border: 1px solid #ccc;
+.VistaE-table {
+  border: 1px solid #040404;
   border-radius: 5px;
   padding: 20px;
-  margin-top: 50px;
+  margin-top: 200px;
 }
 
-.crud-row {
+.VistaE-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
 
-.crud-row:last-child {
+.VistaE-row:last-child {
   border-bottom: none;
+  margin-right: 0;
 }
 
-.crud-name,
-.crud-department,
-.crud-sede,
-.crud-horario,
-.crud-editar,
-.crud-cancelar-solicitud,
-.crud-tipo-contrato {
+.VistaE-boton-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; /* Agregamos un margen arriba para separar los botones */
+}
+
+.VistaE-boton-container button {
+  margin-right: 10px; /* Agregamos un margen entre los botones */
+}
+
+.VistaE-datos {
   flex: 1;
 }
 
-.crud-editar button,
-.crud-editar select,
-.crud-cancelar-solicitud button {
-  padding: 8px 16px;
-  background-color: #256c98;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  margin-left: 30px;
-}
-
-.crud-editar select {
+.VistaE-tipo-contrato,
+.VistaE-turno {
   margin-right: 20px;
 }
 
-.crud-boton-container {
-  margin-bottom: 15px; /* Espacio entre los botones */
+.VistaE-botones {
+  display: flex;
+  align-items: center;
 }
 
-.traerSoli {
-  padding: 8px 8px;
+.VistaE-editar,
+.VistaE-cancelar-solicitud {
+  padding: 12px 20px;
   background-color: #256c98;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 0px;
-  margin-left: 5px;
-  margin-top: 50px;
+  margin-right: 10px;
 }
 
-/* Nuevos estilos */
-.crud-tipo-contrato p {
-  margin-right: 20px; /* Ajusta el margen derecho */
+.VistaE-editar:hover,
+.VistaE-cancelar-solicitud:hover {
+  background-color: #1e5372;
 }
