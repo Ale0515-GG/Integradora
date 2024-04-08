@@ -86,23 +86,24 @@ const HorariosVistaE = () => {
       alert('Error al cancelar la solicitud');
     }
   };
-
   return (
-    <div className="crud-container">
-      <div className="crud-header">
+    <body className="VisE">
+    <div className="VistaE">
+      <div className="VistaE-header">
         <div className="logo"></div>
-        <Link to="/VaEmV" className="regresar"></Link>
-        <h1 className="crud-title">Solicitudes Pendientes</h1>
+        <h1 className="VistaE-title">Solicitudes Pendientes</h1>
+        <Link to="/SolicitudesH" className="regresar"></Link>
       </div>
-      <div className="crud-table">
+      
+      <div className="VistaE-table">
         {loading ? (
           <p>Cargando solicitudes pendientes...</p>
         ) : solicitudes.length > 0 ? (
           <div>
             {solicitudes.map((solicitud, index) => (
-              <div key={index} className="crud-row">
+              <div key={index} className="VistaE-row">
                 {editingIndex === index ? (
-                  <div className="crud-row">
+                  <div className="VistaE-row">
                     <select
                       value={editedTurno}
                       onChange={(e) => setEditedTurno(e.target.value)}
@@ -117,22 +118,24 @@ const HorariosVistaE = () => {
                         ))
                       ))}
                     </select>
-                    <div className="crud-boton-container">
-                      <button className="crud-editar" onClick={() => saveChanges(index)}>Guardar</button>
-                      <button className="crud-cancelar-solicitud" onClick={() => cancelEdit(index)}>Cancelar</button>
+                    <div className="VistaE-boton-container">
+                      <button className="VistaE-editar" onClick={() => saveChanges(index)}>Guardar</button>
+                      <button className="VistaE-cancelar-solicitud" onClick={() => cancelEdit(index)}>Cancelar</button>
                     </div>
                   </div>
                 ) : (
-                  <div className="crud-row">
-                    <div className="crud-tipo-contrato">
-                      <p>Tipo de Contrato: {solicitud.tipoContrato}</p>
+                  <div className="VistaE-row">
+                    <div className="VistaE-datos">
+                      <div className="VistaE-tipo-contrato">
+                        <p>Tipo de Contrato: {solicitud.tipoContrato}</p>
+                      </div>
+                      <div className="VistaE-turno">
+                        <p>Turno: {solicitud.turno}</p>
+                      </div>
                     </div>
-                    <div className="crud-turno">
-                      <p>Turno: {solicitud.turno}</p>
-                    </div>
-                    <div className="crud-boton-container">
-                      <button className="crud-editar" onClick={() => startEdit(index)}>Editar</button>
-                      <button className="crud-cancelar-solicitud" onClick={() => cancelarSolicitud(index)}>Cancelar Solicitud</button>
+                    <div className="VistaE-botones">
+                      <button className="VistaE-editar" onClick={() => startEdit(index)}>Editar</button>
+                      <button className="VistaE-cancelar-solicitud" onClick={() => cancelarSolicitud(index)}>Cancelar Solicitud</button>
                     </div>
                   </div>
                 )}
@@ -144,7 +147,7 @@ const HorariosVistaE = () => {
         )}
       </div>
     </div>
+    </body>
   );
-};
-
+}  
 export default HorariosVistaE;

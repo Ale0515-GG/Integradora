@@ -23,7 +23,7 @@
   position: absolute;
   top: 50%; /* Centrado vertical */
   transform: translateY(-50%);
-  left: 70px; /* Espacio desde el borde izquierdo */
+  left: 150px; /* Espacio desde el borde izquierdo */
   font-family: 'Inter', sans-serif;
   font-weight: 500; /* Cambié a 700 para negrita */
   font-size: 30px;
@@ -85,6 +85,19 @@
   border: 1px solid #ffffff; /* Color del borde */
   padding: 10px; /* Espaciado interno */
   text-align: center; /* Alineación del texto */
+}
+.v358_4 {
+  width: 150px;
+  height: 50px;
+  background: url("./v358_4.png"); /* Ajustar la ruta de la imagen si es necesario */
+  background-repeat: no-repeat; /* Dejar sin repetición */
+  background-position: center center; /* Centrar la imagen */
+  background-size: cover; /* Ajustar el tamaño de la imagen */
+  opacity: 1;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  overflow: hidden;
 }
 
 #empleadosAceptados th {
