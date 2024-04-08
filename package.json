@@ -11,5 +11,11 @@
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
     "vis-data": "^7.1.9"
+  },
+  "devDependencies": {
+    "css-loader": "^7.0.0",
+    "postcss-loader": "^8.1.1",
+    "source-map-loader": "^5.0.0",
+    "webpack": "^5.91.0"
   }
 }
