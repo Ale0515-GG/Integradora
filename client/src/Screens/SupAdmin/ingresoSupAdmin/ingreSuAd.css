@@ -68,14 +68,14 @@ body {
   overflow: hidden;
 }
 .v281_27 {
-  width: 157px;
+  width: 400px;
   color: rgba(0,0,0,1);
   position: absolute;
-  top: 177px;
-  left: 647px;
+  top: 179px;
+  left: 612px;
   font-family: Inter;
   font-weight: Regular;
-  font-size: 25px;
+  font-size: 50px;
   opacity: 1;
   text-align: left;
 }
@@ -92,7 +92,7 @@ body {
   text-align: left;
 }
 .v281_29 {
-  width: 219px;
+
   color: rgba(0,0,0,1);
   position: absolute;
   top: 458px;
@@ -128,19 +128,12 @@ body {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   overflow: hidden;
-}
-.v281_32 {
-  width: 105px;
-  color: rgba(0,0,0,1);
-  position: absolute;
-  top: 765px;
-  left: 567px;
   font-family: Inter;
   font-weight: Regular;
   font-size: 25px;
-  opacity: 1;
-  text-align: left;
+  text-align: center;
 }
+
 .v281_33 {
   width: 30px;
   height: 30px;
@@ -167,6 +160,10 @@ body {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   overflow: hidden;
+  text-align: center;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 25px;
 }
 .v281_35 {
   width: 478px;
@@ -181,6 +178,10 @@ body {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   overflow: hidden;
+  text-align: center;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 25px;
 }
 .v281_36 {
   width: 30px;
@@ -214,13 +215,18 @@ body {
   background: rgba(118,178,226,1);
   opacity: 1;
   position: absolute;
-  top: 743px;
+  top: 750px;
   left: 765px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   overflow: hidden;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
 }
 .v281_39 {
   width: 97px;
@@ -232,5 +238,5 @@ body {
   font-weight: Regular;
   font-size: 25px;
   opacity: 1;
-  text-align: left;
+  text-align: center;
 }

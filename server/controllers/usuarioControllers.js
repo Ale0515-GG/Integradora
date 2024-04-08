@@ -1,70 +1,55 @@
-import schemaEmpl from "../models/usuarioModel.js"
+import schemaEmpl from "../models/usuarioModel.js";
+import bcrypt from 'bcrypt';
 
-
-//read
-export const getUsuarios = async(req,res)=>{
-    try{
-        const data = await schemaEmpl.find({})
-        res.json({success:true, data:data})
-    }catch(error){
-        console.error("Error al obtener los usuarios:", error);
-        res.status(500).json({ success: false, message: "Error del servidor" });
-    }
-}
-
-//read
-export const getUsuariosUno = async (req, res) => {
-    const { id } = req.params; // Obtener el parámetro id de la solicitud
-
+// Función para obtener todos los usuarios
+export const getUsuarios = async (req, res) => {
     try {
-        let data;
-
-        if (id) {
-            // Si se proporciona un ID, buscar solo ese usuario
-            data = await schemaEmpl.findById(id);
-        } else {
-            // Si no se proporciona un ID, buscar todos los usuarios
-            data = await schemaEmpl.find({});
-        }
-
+        const data = await schemaEmpl.find({});
         res.json({ success: true, data: data });
     } catch (error) {
         console.error("Error al obtener los usuarios:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
-}
+};
 
-
-
-//create data // save data in mondodb
-export const postUsuarios = async(req,res)=> {
-    try{
-        console.log(req.body)
-        const data = new schemaEmpl(req.body)
-        await data.save()
-
-        res.send({success:true, message: "Dato guardado exitosamente", data : data})
-    }catch(error){
+// Función para obtener un usuario por su ID
+export const getUsuariosUno = async (req, res) => {
+    const { id } = req.params;
+    try {
+        let data;
+        if (id) {
+            data = await schemaEmpl.findById(id);
+        } else {
+            data = await schemaEmpl.find({});
+        }
+        res.json({ success: true, data: data });
+    } catch (error) {
         console.error("Error al obtener los usuarios:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
-}
+};
 
+// Función para crear un nuevo usuario
+export const postUsuarios = async (req, res) => {
+    try {
+        const data = new schemaEmpl(req.body);
+        await data.save();
+        res.send({ success: true, message: "Dato guardado exitosamente", data: data });
+    } catch (error) {
+        console.error("Error al crear el usuario:", error);
+        res.status(500).json({ success: false, message: "Error del servidor" });
+    }
+};
 
-//update date
-
-// putUsuarios
+// Función para actualizar un usuario por su ID
 export const putUsuarios = async (req, res) => {
     try {
-        const { id } = req.params; // Obtener el ID del usuario a actualizar
-        const newData = req.body; // Obtener los nuevos datos del cuerpo de la solicitud
-
+        const { id } = req.params;
+        const newData = req.body;
         const data = await schemaEmpl.findByIdAndUpdate(id, newData, { new: true });
-
         if (!data) {
             return res.status(404).json({ success: false, message: "Usuario no encontrado" });
         }
-
         res.json({ success: true, message: "El usuario se actualizó correctamente", data: data });
     } catch (error) {
         console.error("Error al actualizar el usuario:", error);
@@ -72,25 +57,17 @@ export const putUsuarios = async (req, res) => {
     }
 };
 
-
-
-
-
-
-//Delete date
-export const deleteUsuarios = async(req,res)=> {
-    try{
-        const id = req.params.id
-        console.log(id)
-        const data = await schemaEmpl.deleteOne({_id: id})
-        res.send({success: true, message: "El dato se elimino con exito", data : data}) 
-    }catch(error){
-        console.error("Error al obtener los usuarios:", error);
+// Función para eliminar un usuario por su ID
+export const deleteUsuarios = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await schemaEmpl.deleteOne({ _id: id });
+        res.send({ success: true, message: "El dato se eliminó con éxito", data: data });
+    } catch (error) {
+        console.error("Error al eliminar el usuario:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
-}
-
-
+};
 
 // Función para verificar las credenciales de inicio de sesión
 export const verificarCredenciales = async (usuario, accesoPlano) => {
@@ -102,10 +79,33 @@ export const verificarCredenciales = async (usuario, accesoPlano) => {
         }
     }
     return null;
-}
+};
 
 // Función para verificar si existe el usuario
-export const verificarUsuarioExistente = async (acceso) => {
-    const usuarioEncontrado = await schemaEmpl.findOne({ acceso });
+export const verificarUsuarioExistente = async (usuario) => {
+    const usuarioEncontrado = await schemaEmpl.findOne({ usuario });
     return usuarioEncontrado ? true : false;
-}
+};
+
+
+
+// Función para iniciar sesión
+export const loginUsuario = async (req, res) => {
+    const { usuario, acceso } = req.body;
+    try {
+        const usuarioEncontrado = await schemaEmpl.findOne({ usuario });
+        if (!usuarioEncontrado) {
+            return res.status(404).json({ success: false, message: "El usuario no existe" });
+        }
+        
+        const match = await bcrypt.compare(acceso, usuarioEncontrado.acceso);
+        if (match) {
+            res.json({ success: true, message: "Inicio de sesión exitoso" });
+        } else {
+            res.status(401).json({ success: false, message: "Credenciales incorrectas" });
+        }
+    } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+        res.status(500).json({ success: false, message: "Error del servidor" });
+    }
+};

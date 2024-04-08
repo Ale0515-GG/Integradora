@@ -24,37 +24,34 @@ const Administradores = () => {
   const [areasSede, setAreasSede] = useState([]);
   const [modoModificar, setModoModificar] = useState(false);
 
-  useEffect(() => {
-    fetchSedes();
-  },);
-
-  const fetchSedes = async () => {
-    try {
-      const response = await Axios.get("http://localhost:3001/sede");
-      setSedes(response.data.data);
-      fetchData(); // Llamar a fetchData después de obtener las sedes
-    } catch (error) {
-      console.error('Error al obtener las sedes:', error.message);
-    }
-  };
-
   const fetchData = async () => {
     try {
-      const response = await Axios.get("http://localhost:3001/usuarios");
-      setAdministradores(response.data.data);
+      const sedesResponse = await Axios.get("http://localhost:3001/sede");
+      setSedes(sedesResponse.data.data);
+      const administradoresResponse = await Axios.get("http://localhost:3001/usuarios");
+      setAdministradores(administradoresResponse.data.data);
     } catch (error) {
-      console.error('Error al obtener los usuarios:', error.message);
+      console.error('Error al obtener datos:', error.message);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSedeChange = (e) => {
     const { value } = e.target;
     setNuevoAdmin(prevState => ({
       ...prevState,
-      sede: value
+      sede: value,
+      area: '' // Reiniciar el área seleccionada cuando se cambia la sede
     }));
-    const areas = sedes.find(sede => sede.nombre === value)?.areas || [];
-    setAreasSede(areas);
+    const sede = sedes.find(sede => sede.Nombre === value);
+    if (sede) {
+      setAreasSede(sede.Areas);
+    } else {
+      setAreasSede([]);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -65,7 +62,7 @@ const Administradores = () => {
     }));
   };
 
-  const resetNuevoAdmin = () => {
+  const handleCancelarModificacion = () => {
     setNuevoAdmin({
       nombreempleado: '',
       apellidoP: '',
@@ -79,10 +76,6 @@ const Administradores = () => {
       sexo: true,
       cumpleanos: ''
     });
-  };
-
-  const handleCancelarModificacion = () => {
-    resetNuevoAdmin();
     setModoModificar(false);
   };
 
@@ -96,7 +89,19 @@ const Administradores = () => {
       await Axios.post("http://localhost:3001/usuarios/create", nuevoAdmin);
       fetchData();
       setError('');
-      resetNuevoAdmin();
+      setNuevoAdmin({
+        nombreempleado: '',
+        apellidoP: '',
+        apellidoM: '',
+        tipoUsuario: '',
+        acceso: '',
+        correo: '',
+        rol: '',
+        sede: '',
+        area: '',
+        sexo: true,
+        cumpleanos: ''
+      });
       alert('Usuario agregado correctamente');
     } catch (error) {
       console.error('Error al agregar el usuario:', error.message);
@@ -124,7 +129,19 @@ const Administradores = () => {
       await Axios.put(`http://localhost:3001/usuarios/update/${id}`, newData);
       fetchData();
       setError('');
-      resetNuevoAdmin();
+      setNuevoAdmin({
+        nombreempleado: '',
+        apellidoP: '',
+        apellidoM: '',
+        tipoUsuario: '',
+        acceso: '',
+        correo: '',
+        rol: '',
+        sede: '',
+        area: '',
+        sexo: true,
+        cumpleanos: ''
+      });
       setModoModificar(false);
       alert('Usuario modificado correctamente');
     } catch (error) {
@@ -228,7 +245,7 @@ const Administradores = () => {
                 <select name="area" value={nuevoAdmin.area} onChange={handleInputChange}>
                   <option value="">Seleccionar área</option>
                   {areasSede.map((area, index) => (
-                    <option key={index} value={area}>{area}</option>
+                    <option key={index} value={area.NombreArea}>{area.NombreArea}</option>
                   ))}
                 </select>
               </label>
