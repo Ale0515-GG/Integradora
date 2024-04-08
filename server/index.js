@@ -5,7 +5,7 @@ import { routerArea } from "./routes/routerArea.js";
 import { routerUsuarios } from './routes/routerUsuarios.js';
 import { routerSede } from './routes/routerSede.js';
 import solicitudRoutes from './routes/solicitudRoutes.js'; // Usar import en lugar de require
-;
+import diaRoute from './routes/routesDia.js'
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,6 +22,7 @@ app.use('/sede', routerSede);
 
  
 app.use('/area', routerArea);
+app.use('/dia', diaRoute)
 
 app.use('/SolicitudesH', solicitudRoutes);
 

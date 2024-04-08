@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Horarios.css'; // Importa el archivo CSS
+
 
 const Horarios = () => {
   const [empleados, setEmpleados] = useState([
@@ -24,7 +26,8 @@ const Horarios = () => {
   const [empleadosAceptados, setEmpleadosAceptados] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [idUsuarioSeleccionado, setIdUsuarioSeleccionado] = useState(null);
-
+  
+  
   const handleEliminar = (id) => {
     const comentario = prompt("Justificación de Eliminación:");
     if(comentario !== null) {
@@ -71,9 +74,23 @@ const Horarios = () => {
 
   return (
     <div className="v281_0">
+      <div className="menu">
+        <div className="dropdown-container">
+          <button className="dropdown-icon">&#9660;</button> {/* Icono desplegable */}
+          <div className="dropdown-menu">
+            <ul>
+              <li><button><Link to="/">Inicio</Link></button></li>
+              <li><button><Link to="/AgregarSede">Agregar Sede</Link></button></li>
+              <li><button><Link to="/AgregarArea">Agregar Área</Link></button></li>
+              {/* Agrega las demás opciones del menú aquí */}
+            </ul>
+          </div>
+        </div>
+      </div>
       <div className="v281_61">
         <p className="v281_63">ChronoMagnament</p>
         <div className="v358_4"></div> {/* Aquí se mostrará la imagen */}
+        
       </div>
       
       <div className="v281_68">
@@ -100,8 +117,7 @@ const Horarios = () => {
                 <td>{empleado.area}</td>
                 <td>{empleado.sede}</td>
                 <td>{empleado.dia}</td>
-               
-
+                
                 <td>{empleado.horario}</td>
                 <td><button className="eliminar" onClick={() => handleEliminar(empleado.id)}>Eliminar</button></td>
                 <td><button className="aceptar" onClick={() => { 

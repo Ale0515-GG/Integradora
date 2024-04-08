@@ -209,3 +209,100 @@
   right: 10px;
   cursor: pointer;
 }
+/* Manú Depegable */
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 8px 12px;
+}
+
+.dropdown-menu ul li button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu ul li button:hover {
+  background-color: #ddd;
+}
+
+
+
+/* Estilo para el contenedor del menú */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo para el ícono del menú desplegable */
+.dropdown-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Tamaño del ícono */
+  color: #000; /* Color del ícono */
+}
+
+/* Estilo para el menú desplegable */
+.dropdown-menu {
+  position: absolute;
+  top: 30px; /* Posición vertical del menú */
+  right: 0; /* Posición horizontal del menú */
+  background-color: #fff; /* Color de fondo del menú */
+  border: 1px solid #ccc; /* Borde del menú */
+  border-radius: 5px; /* Borde redondeado del menú */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra del menú */
+}
+
+/* Estilo para la lista de opciones del menú */
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo para cada opción del menú */
+.dropdown-menu li {
+  padding: 10px;
+}
+
+/* Estilo para los botones dentro del menú desplegable */
+.dropdown-menu button {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  color: #000; /* Color del texto */
+  cursor: pointer; /* Cambia el cursor al pasar sobre los botones */
+}
+
+/* Estilo al pasar el cursor sobre los botones del menú */
+.dropdown-menu button:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el cursor */
+}
