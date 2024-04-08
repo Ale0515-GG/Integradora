@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const solicitudSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    unique: true,
+    required: false
+  },
   tipoContrato: {
     type: String,
     required: false
@@ -13,4 +18,4 @@ const solicitudSchema = new mongoose.Schema({
 
 const Solicitud = mongoose.model('Solicitud', solicitudSchema);
 
-export default Solicitud;
+export { Solicitud };
