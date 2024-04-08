@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import "./SubAdmi1.css";
 
+import { Link } from "react-router-dom";
+
 const opcionesTipoUsuario = ["Root", "Administrador", "Super Administrador", "Empleado"];
 
 const Administradores = () => {
@@ -173,8 +175,14 @@ const Administradores = () => {
 
   return (
     <div className="container">
+        
       <div className="header">
-        <h1>Control de Usuarios</h1>
+    
+      <div className="logo"></div>
+      <h1>Control de Usuarios</h1>
+      <Link to="/IngreSuAd" className="salir">
+      <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+      </Link>
       </div>
       <div className='tabla'>
         <h2 className='row-agregar'>Agregar Usuario</h2>
