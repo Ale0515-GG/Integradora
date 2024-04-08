@@ -106,11 +106,11 @@ button:hover {
 
   width: 60px; /* Nuevo tamaño del contenedor */
   height: 60px; /* Nuevo tamaño del contenedor */
-  background: url("../../../Empleado/Notificaciones/images/v65_16.png");
+
 
   width: 60px;
   height: 60px;
-  background: url("../../../Empleado/notificaciones/images/v65_16.png");
+ 
 
   background-repeat: no-repeat;
   background-position: center center;
