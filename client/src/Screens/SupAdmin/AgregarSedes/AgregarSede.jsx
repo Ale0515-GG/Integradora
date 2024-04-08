@@ -29,6 +29,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import "./AgregarSede.css";
 import FormDialog from './Sedes/sede';
+import { blue, yellow } from '@mui/material/colors';
 
 const AgregarSede = () => {
     const [sedesAreas, setSedesAreas] = useState([]);
@@ -345,13 +346,13 @@ const AgregarSede = () => {
 
 
 
-            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 105, position: 'absolute' ,
+            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 100, position: 'absolute' ,
                 color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
                 Sedes 
             </div>
             
-            <Button color='primary' style={{ left: 400,top: -30}}><FormDialog /></Button>
-            <Button onClick={handleAreaClick} color='primary' style={{ left: 500, top: -30, border: '1px solid blue' }}>Áreas</Button>
+            <Button color='primary' style={{ left: 990,top: -20}}><FormDialog /></Button>
+            <Button onClick={handleAreaClick} color='primary' style={{ left: 1100, top: -20, border: '1px solid blue' }}>Áreas</Button>
                             
         </>
     );
