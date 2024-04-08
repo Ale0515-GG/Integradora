@@ -5,9 +5,9 @@ const Notificaciones = () => {
   return (
     <div class="v60_3">
             <div class="v65_8"></div>
-            <div class="v65_10"></div><span class="v65_11">Chrono Magnament </span>
-            <div class="v65_13"></div><span class="v65_14">Valeria Ramirez
-                  Empleado </span>
+            <div class="v65_10"></div>
+            <span class="v65_11">Chrono Magnament </span>
+            <div class="v65_13"></div><span class="v65_14"></span>
             <div class="v65_16"></div>
             <div class="v65_17"></div>
             <div class="v65_18"></div>

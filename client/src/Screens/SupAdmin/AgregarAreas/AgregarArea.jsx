@@ -243,12 +243,12 @@ const AgregarArea = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 105, position: 'absolute' ,
+            <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 100, position: 'absolute' ,
             color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
             Areas 
         </div>
-        <Button color='primary' style={{ left: 400,top: 0}}><FormDialog /></Button>
-        <Button onClick={handleSedeClick} color='primary' style={{ left: 500, top: 0, border: '1px solid blue' }}>Sedes</Button>
+        <Button color='primary' style={{ left: 990,top: -20}}><FormDialog /></Button>
+        <Button onClick={handleSedeClick} color='primary' style={{ left: 1100, top: -20, border: '1px solid blue' }}>Sedes</Button>
         </>
     );
 };
