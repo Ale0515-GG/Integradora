@@ -181,8 +181,8 @@ const Administradores = () => {
     
       <div className="logo"></div>
       <h1>Control de Usuarios</h1>
-      <Link to="/IngreSuAd" className="salir">
-      <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+      <Link to="/Inicio" className="salir">
+      <img src="./SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
       </Link>
       </div>
       <div className='tabla'>
