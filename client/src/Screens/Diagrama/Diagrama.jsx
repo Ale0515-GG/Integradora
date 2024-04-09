@@ -8,14 +8,9 @@ function Diagrama() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Hacer una llamada a la API para obtener los datos
     axios.get('http://localhost:3001/dia/xd')
       .then(response => {
-        // Agrupar los datos por tipo de contrato
-        const groupedData = groupDataByTipoContrato(response.data);
-        // Ordenar los turnos dentro de cada grupo
-        const sortedData = sortTurnosInGroups(groupedData);
-        setData(sortedData);
+        setData(response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -27,21 +22,22 @@ function Diagrama() {
 
     const container = timelineRef.current;
 
-    // Procesar los datos para adaptarlos al formato necesario
-    const items = new DataSet(data.flatMap(group => (
-      group.turnos.map(turno => ({
-        id: turno._id,
-        group: group.tipoContrato,
-        content: turno.turno, // Mostrar el contenido del campo "turno"
-        start: new Date(), // Debes definir la fecha de inicio según tu lógica
-        end: new Date(),   // Debes definir la fecha de fin según tu lógica
-      }))
-    )));
+    // Definir manualmente los días de la semana
+    const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
-    // Configurar los grupos del diagrama
-    const groups = new DataSet(data.map(group => ({
-      id: group.tipoContrato,
-      content: group.tipoContrato,
+    // Crear un DataSet para los items (turnos)
+    const items = new DataSet(data.map(turno => ({
+      id: turno._id,
+      group: turno.tipoContrato, // Agrupar por tipo de contrato
+      content: turno.turno,
+      start: new Date(), // Aquí deberías definir la fecha de inicio adecuada
+      end: new Date(),   // Aquí deberías definir la fecha de fin adecuada
+    })));
+
+    // Crear un DataSet para los grupos (tipo de contrato)
+    const groups = new DataSet(data.map(turno => ({
+      id: turno.tipoContrato,
+      content: turno.tipoContrato,
     })));
 
     const options = {
@@ -53,7 +49,7 @@ function Diagrama() {
       locales: {
         es: { // Traducción de los días de la semana
           day: 'Domingo',
-          weekday: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+          weekday: days,
         },
       },
     };
@@ -66,29 +62,6 @@ function Diagrama() {
       timeline.destroy();
     };
   }, [data]);
-
-  // Función para agrupar los datos por tipo de contrato
-  const groupDataByTipoContrato = (data) => {
-    const groupedData = {};
-    data.forEach(item => {
-      if (!groupedData[item.tipoContrato]) {
-        groupedData[item.tipoContrato] = {
-          tipoContrato: item.tipoContrato,
-          turnos: [],
-        };
-      }
-      groupedData[item.tipoContrato].turnos.push(item);
-    });
-    return Object.values(groupedData);
-  };
-
-  // Función para ordenar los turnos dentro de cada grupo
-  const sortTurnosInGroups = (groupedData) => {
-    groupedData.forEach(group => {
-      group.turnos.sort((a, b) => a.turno.localeCompare(b.turno));
-    });
-    return groupedData;
-  };
 
   return (
     <div>

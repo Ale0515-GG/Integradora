@@ -92,7 +92,7 @@ const HorariosVistaE = () => {
       <div className="VistaE-header">
         <div className="logo"></div>
         <h1 className="VistaE-title">Solicitudes Pendientes</h1>
-        <Link to="/SolicitudesH" className="regresar"></Link>
+        <Link to="/Inicio" className="regresar"></Link>
       </div>
       
       <div className="VistaE-table">
