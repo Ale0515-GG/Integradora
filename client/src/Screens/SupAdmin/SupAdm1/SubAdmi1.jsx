@@ -5,11 +5,15 @@ import CargaMasiva from './cargamasiva';
 
 import { Link } from "react-router-dom";
 
+// Opciones disponibles para el tipo de usuario
 const opcionesTipoUsuario = ["Root", "Administrador", "Super Administrador", "Empleado"];
 
 const Administradores = () => {
+  // Estado para almacenar los administradores
   const [administradores, setAdministradores] = useState([]);
+  // Estado para almacenar errores
   const [error, setError] = useState('');
+  // Estado para almacenar la información del nuevo administrador
   const [nuevoAdmin, setNuevoAdmin] = useState({
     nombreempleado: '',
     apellidoP: '',
@@ -24,10 +28,14 @@ const Administradores = () => {
     sexo: true,
     cumpleanos: ''
   });
+  // Estado para almacenar las sedes
   const [sedes, setSedes] = useState([]);
+  // Estado para almacenar las áreas de la sede seleccionada
   const [areasSede, setAreasSede] = useState([]);
+  // Estado para determinar si se está modificando un administrador
   const [modoModificar, setModoModificar] = useState(false);
 
+  // Función para obtener datos de sedes y administradores
   const fetchData = async () => {
     try {
       const sedesResponse = await Axios.get("http://localhost:3001/sede");
@@ -39,10 +47,12 @@ const Administradores = () => {
     }
   };
 
+  // Se ejecuta al montar el componente para obtener los datos
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Función para manejar el cambio de sede
   const handleSedeChange = (e) => {
     const { value } = e.target;
     setNuevoAdmin(prevState => ({
@@ -58,6 +68,7 @@ const Administradores = () => {
     }
   };
 
+  // Función para manejar el cambio en los campos de entrada
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNuevoAdmin(prevState => ({
@@ -66,6 +77,7 @@ const Administradores = () => {
     }));
   };
 
+  // Función para cancelar la modificación de un administrador
   const handleCancelarModificacion = () => {
     setNuevoAdmin({
       nombreempleado: '',
@@ -84,12 +96,15 @@ const Administradores = () => {
     setModoModificar(false);
   };
 
+  // Función para manejar el clic en el botón de modificar
   const handleModificarClick = (admin) => {
     setNuevoAdmin(admin);
     setModoModificar(true);
   };
 
+  // Función para agregar un nuevo administrador
   const agregarAdministrador = async () => {
+    // Validación de campos obligatorios
     if (
       !nuevoAdmin.nombreempleado ||
       !nuevoAdmin.apellidoP ||
@@ -109,7 +124,7 @@ const Administradores = () => {
 
     try {
       await Axios.post("http://localhost:3001/usuarios/create", nuevoAdmin);
-      fetchData();
+      fetchData(); // Vuelve a obtener los datos después de agregar un nuevo administrador
       setError('');
       setNuevoAdmin({
         nombreempleado: '',
@@ -132,10 +147,11 @@ const Administradores = () => {
     }
   };
 
+  // Función para eliminar un administrador
   const eliminarAdministrador = async (id) => {
     try {
       await Axios.delete(`http://localhost:3001/usuarios/delete/${id}`);
-      fetchData();
+      fetchData(); // Vuelve a obtener los datos después de eliminar un administrador
       setError('');
       alert('Usuario eliminado correctamente');
     } catch (error) {
@@ -144,13 +160,14 @@ const Administradores = () => {
     }
   };
 
+  // Función para modificar un administrador
   const modificarAdministrador = async () => {
     try {
       const id = nuevoAdmin._id;
       const newData = { ...nuevoAdmin };
       delete newData._id;
       await Axios.put(`http://localhost:3001/usuarios/update/${id}`, newData);
-      fetchData();
+      fetchData(); // Vuelve a obtener los datos después de modificar un administrador
       setError('');
       setNuevoAdmin({
         nombreempleado: '',
@@ -176,15 +193,14 @@ const Administradores = () => {
 
   return (
     <div className="container">
-        
       <div className="header">
-    
-      <div className="logo"></div>
-      <h1>Control de Usuarios</h1>
-      <Link to="/IngreSuAd" className="salir">
-      <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
-      </Link>
+        <div className="logo"></div>
+        <h1>Control de Usuarios</h1>
+        <Link to="/IngreSuAd" className="salir">
+          <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+        </Link>
       </div>
+      {/* Formulario para agregar/Modificar usuario */}
       <div className='tabla'>
         <h2 className='row-agregar'>Agregar Usuario</h2>
         <form onSubmit={(e) => {
@@ -196,6 +212,7 @@ const Administradores = () => {
           }
         }}>
           <div className='form-grid'>
+            {/* Campos del formulario */}
             <div className="form-group">
               <label className='name'>
                 Nombre:
@@ -295,6 +312,7 @@ const Administradores = () => {
           </div>
         </form>
       </div>
+      {/* Tabla de administradores */}
       <div className='table'>
         <table className="admin-table">
           <thead>
@@ -317,6 +335,7 @@ const Administradores = () => {
           <tbody>
             {administradores.map((admin) => (
               <tr key={admin._id}>
+                {/* Datos de cada administrador */}
                 <td>{admin.nombreempleado}</td>
                 <td>{admin.apellidoP}</td>
                 <td>{admin.apellidoM}</td>
