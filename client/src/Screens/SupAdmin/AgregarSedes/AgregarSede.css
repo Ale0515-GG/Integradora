@@ -50,7 +50,7 @@
 
 .Tablas th {
   background-color: #0C789C;
-  color: white;
+  color: rgb(247, 242, 242);
   font-size: 20px;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .Tablas tr:hover {
-  background-color: #ddd;
+  background-color: #ffffff;
 }
 
 .Tablas .MuiButton-root {

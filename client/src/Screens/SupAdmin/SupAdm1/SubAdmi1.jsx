@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import "./SubAdmi1.css";
+import CargaMasiva from './cargamasiva';
 
+import { Link } from "react-router-dom";
+
+// Opciones disponibles para el tipo de usuario
 const opcionesTipoUsuario = ["Root", "Administrador", "Super Administrador", "Empleado"];
 
 const Administradores = () => {
+  // Estado para almacenar los administradores
   const [administradores, setAdministradores] = useState([]);
+  // Estado para almacenar errores
   const [error, setError] = useState('');
+  // Estado para almacenar la información del nuevo administrador
   const [nuevoAdmin, setNuevoAdmin] = useState({
     nombreempleado: '',
     apellidoP: '',
     apellidoM: '',
+    usuario: '',
     tipoUsuario: '',
     acceso: '',
     correo: '',
@@ -20,10 +28,14 @@ const Administradores = () => {
     sexo: true,
     cumpleanos: ''
   });
+  // Estado para almacenar las sedes
   const [sedes, setSedes] = useState([]);
+  // Estado para almacenar las áreas de la sede seleccionada
   const [areasSede, setAreasSede] = useState([]);
+  // Estado para determinar si se está modificando un administrador
   const [modoModificar, setModoModificar] = useState(false);
 
+  // Función para obtener datos de sedes y administradores
   const fetchData = async () => {
     try {
       const sedesResponse = await Axios.get("http://localhost:3001/sede");
@@ -35,16 +47,18 @@ const Administradores = () => {
     }
   };
 
+  // Se ejecuta al montar el componente para obtener los datos
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Función para manejar el cambio de sede
   const handleSedeChange = (e) => {
     const { value } = e.target;
     setNuevoAdmin(prevState => ({
       ...prevState,
       sede: value,
-      area: '' // Reiniciar el área seleccionada cuando se cambia la sede
+      area: '' 
     }));
     const sede = sedes.find(sede => sede.Nombre === value);
     if (sede) {
@@ -54,6 +68,7 @@ const Administradores = () => {
     }
   };
 
+  // Función para manejar el cambio en los campos de entrada
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNuevoAdmin(prevState => ({
@@ -62,11 +77,13 @@ const Administradores = () => {
     }));
   };
 
+  // Función para cancelar la modificación de un administrador
   const handleCancelarModificacion = () => {
     setNuevoAdmin({
       nombreempleado: '',
       apellidoP: '',
       apellidoM: '',
+      usuario: '',
       tipoUsuario: '',
       acceso: '',
       correo: '',
@@ -79,20 +96,41 @@ const Administradores = () => {
     setModoModificar(false);
   };
 
+  // Función para manejar el clic en el botón de modificar
   const handleModificarClick = (admin) => {
     setNuevoAdmin(admin);
     setModoModificar(true);
   };
 
+  // Función para agregar un nuevo administrador
   const agregarAdministrador = async () => {
+    // Validación de campos obligatorios
+    if (
+      !nuevoAdmin.nombreempleado ||
+      !nuevoAdmin.apellidoP ||
+      !nuevoAdmin.apellidoM ||
+      !nuevoAdmin.usuario ||
+      !nuevoAdmin.tipoUsuario ||
+      !nuevoAdmin.acceso ||
+      !nuevoAdmin.correo ||
+      !nuevoAdmin.rol ||
+      !nuevoAdmin.sede ||
+      !nuevoAdmin.area ||
+      !nuevoAdmin.cumpleanos
+    ) {
+      setError('Por favor completa todos los campos');
+      return;
+    }
+
     try {
       await Axios.post("http://localhost:3001/usuarios/create", nuevoAdmin);
-      fetchData();
+      fetchData(); // Vuelve a obtener los datos después de agregar un nuevo administrador
       setError('');
       setNuevoAdmin({
         nombreempleado: '',
         apellidoP: '',
         apellidoM: '',
+        usuario: '',
         tipoUsuario: '',
         acceso: '',
         correo: '',
@@ -109,10 +147,11 @@ const Administradores = () => {
     }
   };
 
+  // Función para eliminar un administrador
   const eliminarAdministrador = async (id) => {
     try {
       await Axios.delete(`http://localhost:3001/usuarios/delete/${id}`);
-      fetchData();
+      fetchData(); // Vuelve a obtener los datos después de eliminar un administrador
       setError('');
       alert('Usuario eliminado correctamente');
     } catch (error) {
@@ -121,18 +160,20 @@ const Administradores = () => {
     }
   };
 
+  // Función para modificar un administrador
   const modificarAdministrador = async () => {
     try {
       const id = nuevoAdmin._id;
       const newData = { ...nuevoAdmin };
       delete newData._id;
       await Axios.put(`http://localhost:3001/usuarios/update/${id}`, newData);
-      fetchData();
+      fetchData(); // Vuelve a obtener los datos después de modificar un administrador
       setError('');
       setNuevoAdmin({
         nombreempleado: '',
         apellidoP: '',
         apellidoM: '',
+        usuario: '',
         tipoUsuario: '',
         acceso: '',
         correo: '',
@@ -153,8 +194,22 @@ const Administradores = () => {
   return (
     <div className="container">
       <div className="header">
+
+    
+      <div className="logo"></div>
+      <h1>Control de Usuarios</h1>
+      <Link to="/Inicio" className="salir">
+      <img src="./SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+      </Link>
+
+        <div className="logo"></div>
         <h1>Control de Usuarios</h1>
+        <Link to="/IngreSuAd" className="salir">
+          <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+        </Link>
+
       </div>
+      {/* Formulario para agregar/Modificar usuario */}
       <div className='tabla'>
         <h2 className='row-agregar'>Agregar Usuario</h2>
         <form onSubmit={(e) => {
@@ -166,6 +221,7 @@ const Administradores = () => {
           }
         }}>
           <div className='form-grid'>
+            {/* Campos del formulario */}
             <div className="form-group">
               <label className='name'>
                 Nombre:
@@ -213,6 +269,12 @@ const Administradores = () => {
             </div>
             <div className="form-group">
               <label className='name'>
+                Usuario:
+                <input type="text" name="usuario" value={nuevoAdmin.usuario} onChange={handleInputChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className='name'>
                 Tipo de Usuario:
                 <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleInputChange}>
                   <option value="">Seleccionar tipo de usuario</option>
@@ -253,11 +315,13 @@ const Administradores = () => {
           </div>
           <div>
             <button className="button agregar" type="submit">{modoModificar ? 'Modificar' : 'Agregar Usuario'}</button>
+            <div><CargaMasiva></CargaMasiva></div>
             {modoModificar && <button style={{ backgroundColor: 'red', color: 'white' }} className="button cancelar" onClick={handleCancelarModificacion}>Cancelar</button>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
         </form>
       </div>
+      {/* Tabla de administradores */}
       <div className='table'>
         <table className="admin-table">
           <thead>
@@ -269,6 +333,7 @@ const Administradores = () => {
               <th>Sexo</th>
               <th>Correo</th>
               <th>Acceso</th>
+              <th>Usuario</th>
               <th>Tipo de Usuario</th>
               <th>Rol</th>
               <th>Sede</th>
@@ -279,6 +344,7 @@ const Administradores = () => {
           <tbody>
             {administradores.map((admin) => (
               <tr key={admin._id}>
+                {/* Datos de cada administrador */}
                 <td>{admin.nombreempleado}</td>
                 <td>{admin.apellidoP}</td>
                 <td>{admin.apellidoM}</td>
@@ -286,6 +352,7 @@ const Administradores = () => {
                 <td>{admin.sexo ? 'M' : 'F'}</td>
                 <td>{admin.correo}</td>
                 <td>{modoModificar ? admin.acceso : '********'}</td>
+                <td>{admin.usuario}</td>
                 <td>{admin.tipoUsuario}</td>
                 <td>{admin.rol}</td>
                 <td>{admin.sede}</td>

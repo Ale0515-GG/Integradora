@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './ingreSuAd.css';
+import './css/ingreSuAd.css'
 
 const IngreSuAd = () => {
   const [usuario, setUsuario] = useState('');
@@ -37,7 +37,7 @@ const IngreSuAd = () => {
         <div className="v281_26"></div>
         
         <span className="v281_27">Iniciar Sesión</span>
-        <span className="v281_28">Mostrar Contraseña</span>
+
 
         <div className="v281_29">Ingresar Contraseña:</div>
         <label>
@@ -58,7 +58,7 @@ const IngreSuAd = () => {
         </label>
 
         <div className="v281_31" onClick={handleInicioClick}>Cancelar</div>
-        <div className="v281_33"></div>
+       
         <div className="v281_36"></div>
         <div className="v281_37"></div>
         <div className="v281_38" onClick={handleSubmit}>Ingresar</div>

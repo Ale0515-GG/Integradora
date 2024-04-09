@@ -60,7 +60,7 @@ const SolicitudesPendientes = () => {
             <div className="logo"></div>
           </div>
         </div>
-        <Link to="/SoliHEmple" className="regresar"></Link>
+        <Link to="/Inicio" className="regresar"></Link>
       </div>
       <div className="info-adicional">
       <h2>Información sobre los contratos</h2>

@@ -3,7 +3,7 @@ import DiaH from '../models/modelDia.js';
 
 export const obtenerHorarios = async (req, res) => {
   try {
-    const horarios = await DiaH.find();
+    const horarios = await DiaH.find({});
     res.json(horarios);
   } catch (error) {
     console.error('Error al obtener los horarios:', error);
