@@ -29,6 +29,8 @@ https://docs.google.com/document/d/119Jf0QvwwltLrrF9cAymkuq4Tmuh2GK6pHvc65vT5ac/
 ### Diagrama de Actividades
 
 ## Modelo de base de datos refinada
+![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/480c6451-dc04-4915-bcf5-6b50c83a8ce9)
+
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive
