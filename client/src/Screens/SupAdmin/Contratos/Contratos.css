@@ -1,112 +1,108 @@
 /* Estilos para el contenedor principal */
 .v281_60 {
-    width: 100%;
-    min-height: 120vh;
-    background-color: #f9f9f9;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* Estilos para el encabezado */
-  .v281_61 {
-    width: 100%;
-    height: 80px;
-    background-color: #256c98;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .v281_63 {
-    width: auto;
-    color: #ffffff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 200px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 30px;
-    opacity: 1;
-  }
-  
-  /* Estilos para el contenedor de la tabla */
-  .v281_68 {
-    width: 100%;
-    max-width: 1000px;
-    background-color: #f1f4f6;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 40px auto;
-  }
-  
-  /* Estilos para la tabla */
-  .v281_68 table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .v281_68 th,
-  .v281_68 td {
-    border: 1px solid #ffffff;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .v281_68 th {
-    background-color: #256c98;
-    color: #ffffff;
-    font-weight: 100;
-  }
-  
-  .v281_68 tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .v281_68 tr:hover {
-    background-color: #8cb0d4;
-  }
-  
-  /* Estilos para el botón "Agregar Contrato" */
-  .nuevo-contrato button {
-    background-color: #76b2e2;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    display: block;
-    margin: 0 auto;
-    max-width: 200px;
-  }
-  
-  /* Estilos para los botones de acciones dentro de la tabla */
-  .v281_68 button.eliminar,
-  .v281_68 button.aceptar,
-  .v281_68 button.agregar,
-  .v281_68 button.modificar {
-    background-color: transparent;
-    color: #000000;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Estilos específicos para botones dentro de la tabla */
-  .v281_68 button.eliminar {
-    background-color: #d60303; /* Color rojo */
-  }
-  
-  .v281_68 button.aceptar {
-    background-color: #07a707; /* Color verde */
-  }
-  
-  .v281_68 button.agregar,
-  .v281_68 button.modificar {
-    background-color: #ffffff; /* Color blanco */
-  }
-  
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+/* Estilos para el encabezado */
+.v281_61 {
+  width: 100%;
+  height: 80px;
+  background-color: #256c98;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.v281_61 h1 {
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 80px;
+  margin-left: 20px;
+}
+
+/* Estilos para el contenedor de la tabla */
+.v281_68 {
+  width: 90%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  margin: 100px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Estilos para la tabla */
+.v281_68 table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.v281_68 th,
+.v281_68 td {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  text-align: center;
+}
+
+.v281_68 th {
+  background-color: #256c98;
+  color: #ffffff;
+}
+
+.v281_68 tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.v281_68 tr:hover {
+  background-color: #e5f0fa;
+}
+
+/* Estilos para el botón "Agregar Contrato" */
+.nuevo-contrato button {
+  background-color: #256c98;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+}
+
+.nuevo-contrato button:hover {
+  background-color: #1c5375;
+}
+
+/* Estilos para los botones de acciones dentro de la tabla */
+.v281_68 button {
+  background-color: transparent;
+  color: #256c98;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.v281_68 button:hover {
+  color: #1c5375;
+}
+
+/* Estilos específicos para botones dentro de la tabla */
+.v281_68 button.eliminar {
+  color: #d60303; /* Color rojo */
+}
+
+.v281_68 button.aceptar {
+  color: #07a707; /* Color verde */
+}
+
+.v281_68 button.agregar,
+.v281_68 button.modificar {
+  color: #256c98; /* Color azul */
+}

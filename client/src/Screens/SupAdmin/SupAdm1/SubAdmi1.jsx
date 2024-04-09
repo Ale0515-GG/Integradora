@@ -194,11 +194,20 @@ const Administradores = () => {
   return (
     <div className="container">
       <div className="header">
+
+    
+      <div className="logo"></div>
+      <h1>Control de Usuarios</h1>
+      <Link to="/Inicio" className="salir">
+      <img src="./SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+      </Link>
+
         <div className="logo"></div>
         <h1>Control de Usuarios</h1>
         <Link to="/IngreSuAd" className="salir">
           <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
         </Link>
+
       </div>
       {/* Formulario para agregar/Modificar usuario */}
       <div className='tabla'>
