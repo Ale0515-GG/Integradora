@@ -214,31 +214,31 @@ const Administradores = () => {
           <div className='form-grid'>
             {/* Campos del formulario */}
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Nombre:
-                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleInputChange} />
+                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleInputChange}  />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Apellido Paterno:
                 <input type="text" name="apellidoP" value={nuevoAdmin.apellidoP} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Apellido Materno:
                 <input type="text" name="apellidoM" value={nuevoAdmin.apellidoM} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Cumpleaños:
                 <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Sexo:
                 <select name="sexo" value={String(nuevoAdmin.sexo)} onChange={handleInputChange}>
                   <option value="true">M</option>
@@ -247,25 +247,25 @@ const Administradores = () => {
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Correo:
                 <input type="email" name="correo" value={nuevoAdmin.correo} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Acceso (Contraseña):
                 <input type={modoModificar ? "text" : "password"} name="acceso" value={nuevoAdmin.acceso} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Usuario:
                 <input type="text" name="usuario" value={nuevoAdmin.usuario} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Tipo de Usuario:
                 <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleInputChange}>
                   <option value="">Seleccionar tipo de usuario</option>
@@ -276,13 +276,13 @@ const Administradores = () => {
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Rol:
                 <input type="text" name="rol" value={nuevoAdmin.rol} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Sede:
                 <select name="sede" value={nuevoAdmin.sede} onChange={handleSedeChange}>
                   <option value="">Seleccionar sede</option>
@@ -293,7 +293,7 @@ const Administradores = () => {
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Área:
                 <select name="area" value={nuevoAdmin.area} onChange={handleInputChange}>
                   <option value="">Seleccionar área</option>

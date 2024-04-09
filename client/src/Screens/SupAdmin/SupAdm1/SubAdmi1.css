@@ -65,11 +65,15 @@
 .form-grid {
   display: flex;
   flex-direction: column;
+  color: #000;
 }
 
 .form-group {
   margin-bottom: 10px;
+  color: #000 !important; 
+  text-shadow: #000;/* Agrega !important para forzar la prioridad */
 }
+
 
 .button {
   padding: 8px 12px;
@@ -114,4 +118,7 @@
   background-size: cover;
   opacity: 1;
   overflow: hidden;
+}
+.name-text{
+  color:#000
 }
