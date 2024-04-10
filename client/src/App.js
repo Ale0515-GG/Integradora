@@ -15,6 +15,7 @@ import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'; // Importa el componente del diagrama de Gantt
 import Contratos from './Screens/SupAdmin/Contratos/Contratos.jsx';
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
+import Empleado from './Screens/Empleado/NavegacionEmpleado.jsx';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/diagrama" element={<Diagrama />} /> {/* Agrega la ruta para el diagrama de Gantt */}
           <Route path="/Horarios" element={<Horarios />} />
           <Route path="/Contratos" element={<Contratos />}/>
+          <Route path='/NavegacionEmpleado' element={<Empleado/>}/>
         </Routes>
       </Router>
     </div>
