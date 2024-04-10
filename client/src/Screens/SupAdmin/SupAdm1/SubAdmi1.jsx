@@ -367,10 +367,11 @@ const Administradores = () => {
                 <td>{admin.sede}</td>
                 <td>{admin.area}</td>
                 <td>
-                <div className="acciones-button">
-                  <button onClick={() => handleModificarClick(admin)}>Modificar</button></div>
-                 <div className="acciones-button">
-                  <button onClick={() => eliminarAdministrador(admin._id)}>Eliminar</button></div>
+                <button onClick={() => handleModificarClick(admin)} className=" button acciones-button-modificar">
+                 Modificar</button>
+                 
+                 <button onClick={() => eliminarAdministrador(admin._id)} className=" button acciones-button-eliminar">
+                 Eliminar</button>
                 </td>
               </tr>
             ))}

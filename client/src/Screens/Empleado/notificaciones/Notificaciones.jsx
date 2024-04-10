@@ -2,9 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'; 
 import './css/main.css'
 
-const Notificaciones = () => {
+const Notificaciones = ({ nombreempleado }) => {
 
       const navigate = useNavigate(); 
+
+
 
   const handleUsuarioClick = () => {
     navigate('/SubAdmi1');
@@ -13,7 +15,15 @@ const Notificaciones = () => {
   const handleSedesClick = () => {
       navigate('/AgregarSede');
     };
-
+  const handleHorarioClick = () => {
+      navigate('/Horarios');
+    };
+  const handleVacacionesClick = () => {
+      navigate('/VaEmV');
+    };
+  const handleContratosClick = () => {
+      navigate('/Contratos');
+    };
   return (
     <div class="v60_3">
             <div class="v65_8"></div>
@@ -24,17 +34,18 @@ const Notificaciones = () => {
             <div class="v65_17"></div>
             <div class="v65_18" onClick={handleSedesClick}></div>
             <div class="v65_24"></div>
-            <div class="v136_3"></div>
+            <div class="v136_3"></div> 
             <div class="v65_36"></div>
             <div class="v65_22"></div>
             <div class="v65_21" onClick={handleUsuarioClick}></div>
             <span class="v65_19" onClick={handleSedesClick}>Sedes</span>
-            <span class="v65_27" onClick={handleUsuarioClick}>Usuarios </span><span
-                  class="v65_30">Vacaciones</span><span class="v139_8">Contrato</span><span
-                  class="v65_41">Horario</span>
+            <span class="v65_27" onClick={handleUsuarioClick}>Usuarios </span>
+            <span class="v65_30" onClick={handleVacacionesClick}>Vacaciones</span>
+            <span class="v139_8" onClick={handleContratosClick}>Contrato</span>
+            <span class="v65_41" onClick={handleHorarioClick}>Horario</span>
             <div class="v65_26"></div>
             <div class="v65_29"></div>
-            <span class="v65_33"> Buenos días </span>
+            <span class="v65_33"> Buenos días, {nombreempleado}</span>
             <span class="v65_34">¿Tienes dudas? consulta con el dpto.RR.HH</span>
             
             <div class="v65_40"></div>
