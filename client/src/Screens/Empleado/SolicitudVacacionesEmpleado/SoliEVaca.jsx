@@ -1,69 +1,79 @@
-import React, { useState } from "react";
-import "./mainEV.css"; // Asegúrate de tener el archivo CSS correspondiente
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-
+import "./mainEV.css"; // Importa tu archivo CSS de estilos
+import { Link } from "react-router-dom";
 
 const SolicitudesVacacionesVista = () => {
-  const [solicitudesVacaciones, setSolicitudesVacaciones] = useState([
-    {
-      id: 1,
-      nombre: "Juan Perez",
-      departamento: "Desarrollo",
-      sede: "Dolores Hidalgo",
-      vacacionesPendientes: {
-        id: 1,
-        dias: ["2024-04-15", "2024-04-21"],
-        estado: "pendiente",
-      },
-    },
-    {
-      id: 2,
-      nombre: "María García",
-      departamento: "Ventas",
-      sede: "Dolores Hidalgo",
-      vacacionesPendientes: null,
-      },
-  ]);
-
-  const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
+  const [error, setError] = useState('');
+  const [mostrarFormulario, setMostrarFormulario] = useState(false); // Estado para mostrar el formulario de solicitud
+  const [historialSolicitudes, setHistorialSolicitudes] = useState([]); // Estado para almacenar el historial de solicitudes
+  const [empleado, setEmpleado] = useState(null); // Estado para almacenar los datos del empleado
 
   const handleDateChange = (date) => {
     setFechasSeleccionadas(date);
   };
 
+  const guardarSolicitud = async () => {
+    try {
+      const fechasTexto = fechasSeleccionadas.map((date) =>
+        date.toISOString().split("T")[0]
+      );
+
+      await Axios.post("http://localhost:3001/solicitudVacaciones/create", {
+        fechas: fechasTexto,
+        // Agrega los demás datos de la solicitud aquí si es necesario
+      });
+
+      setError("");
+      obtenerHistorialSolicitudes(); // Actualizar el historial después de guardar una solicitud
+      setMostrarFormulario(false); // Ocultar el formulario después de guardar o modificar la solicitud
+      setFechasSeleccionadas([]); // Limpiar las fechas seleccionadas
+    } catch (error) {
+      console.error("Error al solicitar las vacaciones:", error.message);
+      setError("Error al solicitar las vacaciones");
+    }
+  };
   
-
-  const modificarVacaciones = (empleadoId) => {
-    const fechasTexto = fechasSeleccionadas.map((date) =>
-      date.toISOString().split("T")[0]
-    );
-
-    setSolicitudesVacaciones(
-      solicitudesVacaciones.map((empleado) =>
-        empleado.id === empleadoId
-          ? {
-              ...empleado,
-              vacacionesPendientes: {
-                ...empleado.vacacionesPendientes,
-                dias: fechasTexto,
-              },
-            }
-          : empleado
-      )
-    );
-
-    setMostrarCalendario(false);
-    setFechasSeleccionadas([]);
+  const obtenerHistorialSolicitudes = async () => {
+    try {
+      const response = await Axios.get("http://localhost:3001/solicitudVacaciones");
+      setHistorialSolicitudes(response.data.data); // Suponiendo que el servidor devuelve un objeto con una propiedad 'data' que contiene el historial de solicitudes
+    } catch (error) {
+      console.error('Error al obtener el historial de solicitudes:', error.message);
+      // Aquí puedes manejar el error de acuerdo a tus necesidades
+    }
   };
 
-  const cancelarSolicitud = (empleadoId) => {
-    // Implementa la lógica para cancelar la solicitud de vacaciones al backend
-    console.log("Cancelando la solicitud de vacaciones para el empleado con ID:", empleadoId);
-    // Aquí deberías enviar una solicitud al backend para cancelar la solicitud de vacaciones
-    // y actualizar el estado en consecuencia
+  useEffect(() => {
+    obtenerHistorialSolicitudes();
+    // Simulando la carga de los datos del empleado
+    const empleadoSimulado = {
+      nombreempleado: 'Alejandra',
+      sede: 'UTNG',
+      area: 'RH'
+      // Agrega más datos del empleado según sea necesario
+    };
+    setEmpleado(empleadoSimulado);
+  }, []);
+
+  const solicitarVacaciones = () => {
+    setMostrarFormulario(true);
+    setFechasSeleccionadas([]); // Limpiar las fechas seleccionadas al solicitar nuevas vacaciones
+  };
+
+  // Función para eliminar una solicitud
+  const eliminarSolicitud = async (solicitudId) => {
+    try {
+      await Axios.delete(`http://localhost:3001/solicitudVacaciones/delete/${solicitudId}`);
+      setError('');
+      obtenerHistorialSolicitudes(); // Actualizar el historial después de eliminar una solicitud
+    } catch (error) {
+      console.error('Error al eliminar la solicitud:', error.message);
+      setError('Error al eliminar la solicitud');
+    }
   };
 
   return (
@@ -73,47 +83,63 @@ const SolicitudesVacacionesVista = () => {
         <Link to="/NavegacionEmpleado" className="regresar"></Link>
         <h1 className="solicitudes-title">Solicitud de Vacaciones</h1>
       </div>
-      
-      <div className="solicitudes-table">
-        {solicitudesVacaciones.length > 0 ? (
-          <div>
-            {solicitudesVacaciones.map((empleado) =>
-              empleado.vacacionesPendientes ? (
-                <div key={empleado.id} className="solicitudes-row">
-                  <div className="solicitudes-name">{empleado.nombre}</div>
-                  <div className="solicitudes-department">{empleado.departamento}</div>
-                  <div className="solicitudes-sede">{empleado.sede}</div>
-                  <div className="solicitudes-dias-vacaciones">
-                    Dias de Vacaciones:
-                    {empleado.vacacionesPendientes.dias.map((dia) => (
-                      <span key={dia}> {dia} </span>
-                    ))}
-                  </div>
-                  <div className="solicitudes-acciones">
-                    {mostrarCalendario ? (
-                      <div>
-                        <Calendar onChange={handleDateChange} value={fechasSeleccionadas} selectRange />
-                        <div className="boton-container">
-                          <button className="solicitud-boton" onClick={() => modificarVacaciones(empleado.id)}>Guardar</button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="boton-container">
-                        <button className="solicitud-boton" onClick={() => setMostrarCalendario(true)}>Editar</button>
-                      </div>
-                    )}
-                    <div className="boton-container">
-                      <button className="solicitud-boton" onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
-                    </div>
-                  </div>
-                </div>
-              ) : null
-            )}
-          </div>
-        ) : (
-          <p>No hay empleados con solicitudes pendientes de vacaciones.</p>
-        )}
+
+      {empleado && (
+        <div className="empleado-info">
+          <h2>Datos del Empleado</h2>
+          <p><strong>Nombre:</strong> {empleado.nombreempleado}</p>
+          <p><strong>Sede:</strong> {empleado.sede}</p>
+          <p><strong>Área:</strong> {empleado.area}</p>
+          {/* Agrega más campos del empleado según sea necesario */}
+        </div>
+      )}
+
+      <div className="boton-container">
+        <button className="solicitud-boton" onClick={solicitarVacaciones}>Solicitar vacaciones</button>
       </div>
+
+      {mostrarFormulario && (
+        <div className="solicitud-formulario">
+          <Calendar onChange={handleDateChange} value={fechasSeleccionadas} selectRange />
+          <div className="boton-container">
+            <button className="solicitud-boton" onClick={guardarSolicitud}>Guardar</button>
+          </div>
+        </div>
+      )}
+
+      {historialSolicitudes.length > 0 && (
+        <div className="historial-container">
+          <h2>Historial de Solicitudes</h2>
+          <table className="solicitudes-table">
+            <thead>
+              <tr>
+                <th>Empleado</th>
+                <th>Sede</th>
+                <th>Área</th>
+                <th>Fecha inicio</th>
+                <th>Fecha término</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {historialSolicitudes.map((solicitud) => (
+                <tr key={solicitud._id}>
+                  <td>{solicitud.nombreempleado}</td>
+                  <td>{solicitud.sede}</td>
+                  <td>{solicitud.area}</td>
+                  <td>{solicitud.fechaIni}</td>
+                  <td>{solicitud.fechaTer}</td>
+                  <td>
+                    <button onClick={() => eliminarSolicitud(solicitud._id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

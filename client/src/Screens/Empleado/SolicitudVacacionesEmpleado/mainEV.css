@@ -1,6 +1,6 @@
 .solicitudes-container {
-    margin-top: 70px; /* Ajusta el margen superior según el tamaño de tu encabezado */
-    padding: 20px; /* Añade relleno para separar el contenido del borde */
+    margin-top: 70px; 
+    padding: 20px; 
   }
   
   .solicitudes-header {
@@ -10,8 +10,8 @@
     padding: 60px;
     background-color: #256c98;
     color: white;
-    width: 100vw; /* Cambia el ancho para que sea el ancho total de la ventana */
-    height: 70px; /* Ajusta la altura según tus necesidades */
+    width: 100vw; 
+    height: 70px; 
     position: fixed;
     top: 0;
     left: 0;
@@ -24,20 +24,61 @@
 }
 
 .regresar {
-    margin-left: 250px; /* Mueve el botón de regreso hacia la derecha */
-    flex: 100px;
-}
+    margin-left: 250px; 
+    flex: 100px;}
+
 
 .solicitudes-title {
-    margin: 0; /* Establece el margen superior e inferior del título a 0 */
+    margin: 0; 
     font-size: 40px;
-    flex-grow: 1; /* Hace que el título ocupe el espacio restante */
-    text-align: center; /* Alinea el texto del título a la izquierda */
+    flex-grow: 1; 
+    text-align: center; 
 }
 
 .solicitudes-table {
-    margin-top: 100px; /* Ajusta el margen superior según el tamaño del encabezado */
-    padding: 20px; /* Añade relleno para separar el contenido del borde */
+    margin-top: 100px; 
+    padding: 20px; 
 }
 
+.solicitud-boton {
+    padding: 10px 20px;
+    font-size: 16px; 
+    background-color: #0056b3; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-top: 100px; 
+  }
+  
+  .solicitud-boton:hover {
+    background-color: #004080; 
+  }
 
+  .empleado-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 90px;
+    padding-left: 20px;
+  }
+  
+  .empleado-info p {
+    margin-bottom: 10px;
+  }
+  
+  .historial-container {
+    margin-top: -750px; /* Ajusta este valor según sea necesario */
+    margin-bottom: 20px; /* Ajusta este valor según sea necesario */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .solicitudes-title {
+    margin-bottom: -10000px; /* Ajusta este valor según sea necesario */
+    font-size: 40px;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  

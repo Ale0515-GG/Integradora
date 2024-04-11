@@ -7,6 +7,7 @@ import { routerSede } from './routes/routerSede.js';
 import solicitudRoutes from './routes/solicitudRoutes.js'; // Usar import en lugar de require
 import diaRoute from './routes/routesDia.js'
 import actividadRoutes from './routes/activitiRoute.js';
+import { routerSolicitudesVacaciones } from "./routes/routerSolicitudVacaciones.js";
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -20,6 +21,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, u
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede);
 app.use('/activi', actividadRoutes)
+app.use('/solicitudVacaciones', routerSolicitudesVacaciones);
+
  
 app.use('/area', routerArea);
 app.use('/dia', diaRoute)

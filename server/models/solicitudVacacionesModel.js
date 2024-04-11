@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-// Define el esquema para la solicitud de vacaciones
 const vacacionesSchema = new Schema({
   fechaIni: Date,
   fechaTer: Date,
