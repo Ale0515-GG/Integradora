@@ -5,51 +5,43 @@ import axios from 'axios';
 
 function Diagrama() {
   const timelineRef = useRef(null);
-  const [employeeData, setEmployeeData] = useState([]);
-  const [isEmployeeDataLoaded, setIsEmployeeDataLoaded] = useState(false);
+  const [activitiesData, setActivitiesData] = useState([]);
+  const [isActivitiesDataLoaded, setIsActivitiesDataLoaded] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:3001/actividades')
       .then(response => {
-        if (response.data && Array.isArray(response.data.data)) {
-          setEmployeeData(response.data.data);
-          setIsEmployeeDataLoaded(true);
+        if (Array.isArray(response.data)) {
+          setActivitiesData(response.data);
+          setIsActivitiesDataLoaded(true);
         } else {
-          console.error('Los datos de empleados no son un array:', response.data);
+          console.error('Error fetching activities data: Data is not an array');
         }
       })
       .catch(error => {
-        console.error('Error al obtener datos de empleados:', error);
+        console.error('Error fetching activities data:', error);
       });
   }, []);
 
   useEffect(() => {
-    if (!isEmployeeDataLoaded) return;
+    if (!isActivitiesDataLoaded) return;
 
     const container = timelineRef.current;
 
     const itemsDataSet = new DataSet();
     const groupsDataSet = new DataSet();
 
-    employeeData.forEach(employee => {
-      const turnos = employee.turno.split(' - ');
-      if (turnos.length === 2) {
-        const startTime = new Date(`01/01/2000 ${turnos[0]}`);
-        const endTime = new Date(`01/01/2000 ${turnos[1]}`);
+    activitiesData.forEach(activity => {
+      const startDate = new Date(activity.fechaInicio);
+      const endDate = new Date(activity.fechaFin);
 
-        // Agregar el turno al DataSet
-        itemsDataSet.add({
-          id: employee._id,
-          content: `Empleado: ${employee.nombreempleado}, Horario: ${turnos[0]} - ${turnos[1]}`, // Mostrar el nombre del empleado y el horario
-          start: startTime,
-          end: endTime,
-        });
-
-        // Agregar el empleado como grupo
-        groupsDataSet.add({ id: employee._id, content: employee.nombreempleado });
-      } else {
-        console.error(`El formato del turno para el empleado ${employee._id} no es válido.`);
-      }
+      itemsDataSet.add({
+        id: activity._id,
+        content: activity.nombre,
+        start: startDate,
+        end: endDate,
+        group: activity.empleado // Usamos el ID del empleado como grupo
+      });
     });
 
     const options = {
@@ -57,11 +49,11 @@ function Diagrama() {
         axis: 'top',
       },
       locale: 'es',
-      groupOrder: 'content' // Ordenar los grupos alfabéticamente por nombre de empleado
+      groupOrder: 'content' // Ordenar grupos alfabéticamente por contenido
     };
 
-    new Timeline(container, itemsDataSet, groupsDataSet, options);
-  }, [employeeData, isEmployeeDataLoaded]);
+    new Timeline(container, itemsDataSet, options);
+  }, [activitiesData, isActivitiesDataLoaded]);
 
   return (
     <div>
