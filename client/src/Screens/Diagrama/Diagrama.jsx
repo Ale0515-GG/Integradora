@@ -5,63 +5,63 @@ import axios from 'axios';
 
 function Diagrama() {
   const timelineRef = useRef(null);
-  const [data, setData] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
+  const [isEmployeeDataLoaded, setIsEmployeeDataLoaded] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/dia/xd')
+    axios.get('http://localhost:3001/actividades')
       .then(response => {
-        setData(response.data);
+        if (response.data && Array.isArray(response.data.data)) {
+          setEmployeeData(response.data.data);
+          setIsEmployeeDataLoaded(true);
+        } else {
+          console.error('Los datos de empleados no son un array:', response.data);
+        }
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('Error al obtener datos de empleados:', error);
       });
   }, []);
 
   useEffect(() => {
-    if (data.length === 0 || !timelineRef.current) return;
+    if (!isEmployeeDataLoaded) return;
 
     const container = timelineRef.current;
 
-    // Definir manualmente los días de la semana
-    const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const itemsDataSet = new DataSet();
+    const groupsDataSet = new DataSet();
 
-    // Crear un DataSet para los items (turnos)
-    const items = new DataSet(data.map(turno => ({
-      id: turno._id,
-      group: turno.tipoContrato, // Agrupar por tipo de contrato
-      content: turno.turno,
-      start: new Date(), // Aquí deberías definir la fecha de inicio adecuada
-      end: new Date(),   // Aquí deberías definir la fecha de fin adecuada
-    })));
+    employeeData.forEach(employee => {
+      const turnos = employee.turno.split(' - ');
+      if (turnos.length === 2) {
+        const startTime = new Date(`01/01/2000 ${turnos[0]}`);
+        const endTime = new Date(`01/01/2000 ${turnos[1]}`);
 
-    // Crear un DataSet para los grupos (tipo de contrato)
-    const groups = new DataSet(data.map(turno => ({
-      id: turno.tipoContrato,
-      content: turno.tipoContrato,
-    })));
+        // Agregar el turno al DataSet
+        itemsDataSet.add({
+          id: employee._id,
+          content: `Empleado: ${employee.nombreempleado}, Horario: ${turnos[0]} - ${turnos[1]}`, // Mostrar el nombre del empleado y el horario
+          start: startTime,
+          end: endTime,
+        });
+
+        // Agregar el empleado como grupo
+        groupsDataSet.add({ id: employee._id, content: employee.nombreempleado });
+      } else {
+        console.error(`El formato del turno para el empleado ${employee._id} no es válido.`);
+      }
+    });
 
     const options = {
-      // Configurar opciones del diagrama aquí
       orientation: {
-        axis: 'top', // Colocar el eje horizontal en la parte superior
+        axis: 'top',
       },
-      locale: 'es', // Configurar el idioma del diagrama a español
-      locales: {
-        es: { // Traducción de los días de la semana
-          day: 'Domingo',
-          weekday: days,
-        },
-      },
+      locale: 'es',
+      groupOrder: 'content' // Ordenar los grupos alfabéticamente por nombre de empleado
     };
 
-    // Crear el diagrama de Gantt
-    const timeline = new Timeline(container, items, groups, options);
-
-    return () => {
-      // Limpiar el timeline cuando el componente se desmonte
-      timeline.destroy();
-    };
-  }, [data]);
+    new Timeline(container, itemsDataSet, groupsDataSet, options);
+  }, [employeeData, isEmployeeDataLoaded]);
 
   return (
     <div>
