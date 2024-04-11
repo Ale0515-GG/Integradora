@@ -6,54 +6,81 @@ import axios from 'axios';
 function Diagrama() {
   const timelineRef = useRef(null);
   const [activitiesData, setActivitiesData] = useState([]);
-  const [isActivitiesDataLoaded, setIsActivitiesDataLoaded] = useState(false);
+  const [employeeData, setEmployeeData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/actividades')
+    axios.get('http://localhost:3001/activi')
       .then(response => {
-        if (Array.isArray(response.data)) {
-          setActivitiesData(response.data);
-          setIsActivitiesDataLoaded(true);
-        } else {
-          console.error('Error fetching activities data: Data is not an array');
-        }
+        setActivitiesData(response.data);
       })
       .catch(error => {
         console.error('Error fetching activities data:', error);
       });
+
+    axios.get('http://localhost:3001/usuarios')
+      .then(response => {
+        setEmployeeData(response.data.data); // Corregido: se utiliza response.data.data
+      })
+      .catch(error => {
+        console.error('Error fetching employee data:', error);
+      });
   }, []);
 
   useEffect(() => {
-    if (!isActivitiesDataLoaded) return;
-
     const container = timelineRef.current;
 
     const itemsDataSet = new DataSet();
     const groupsDataSet = new DataSet();
 
-    activitiesData.forEach(activity => {
-      const startDate = new Date(activity.fechaInicio);
-      const endDate = new Date(activity.fechaFin);
-
-      itemsDataSet.add({
-        id: activity._id,
-        content: activity.nombre,
-        start: startDate,
-        end: endDate,
-        group: activity.empleado // Usamos el ID del empleado como grupo
+    // Verificar si los datos están cargados y son arrays
+    if (Array.isArray(employeeData)) {
+      employeeData.forEach(employee => {
+        // Verificar si los datos del empleado están completos
+        if (employee.nombreempleado) {
+          groupsDataSet.add({
+            id: employee._id,
+            content: employee.nombreempleado
+          });
+        } else {
+          console.error('Nombre de empleado no encontrado para el empleado:', employee);
+        }
       });
-    });
+    } else {
+      console.error('employeeData is not an array:', employeeData);
+    }
+
+    if (Array.isArray(activitiesData)) {
+      activitiesData.forEach(activity => {
+        // Verificar si los datos de la actividad están completos
+        if (activity.nombre) {
+          const startDate = new Date(activity.fechaInicio);
+          const endDate = new Date(activity.fechaFin);
+
+          itemsDataSet.add({
+            id: activity._id,
+            content: activity.nombre,
+            start: startDate,
+            end: endDate,
+            group: activity.empleado
+          });
+        } else {
+          console.error('Nombre de actividad no encontrado para la actividad:', activity);
+        }
+      });
+    } else {
+      console.error('activitiesData is not an array:', activitiesData);
+    }
 
     const options = {
       orientation: {
         axis: 'top',
       },
       locale: 'es',
-      groupOrder: 'content' // Ordenar grupos alfabéticamente por contenido
+      groupOrder: 'content'
     };
 
-    new Timeline(container, itemsDataSet, options);
-  }, [activitiesData, isActivitiesDataLoaded]);
+    new Timeline(container, itemsDataSet, groupsDataSet, options);
+  }, [activitiesData, employeeData]);
 
   return (
     <div>
