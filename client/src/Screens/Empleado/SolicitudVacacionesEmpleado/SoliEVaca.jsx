@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
+
 const SolicitudesVacacionesVista = () => {
-  // Estado para almacenar la lista de empleados con sus solicitudes pendientes de vacaciones
   const [solicitudesVacaciones, setSolicitudesVacaciones] = useState([
     {
       id: 1,
@@ -24,29 +24,23 @@ const SolicitudesVacacionesVista = () => {
       departamento: "Ventas",
       sede: "Dolores Hidalgo",
       vacacionesPendientes: null,
-    },
-    // Agrega más empleados según lo necesites
+      },
   ]);
 
-  // Estado para controlar la visibilidad del calendario de selección de fechas
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
-
-  // Estado para almacenar las fechas seleccionadas
   const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
 
-  // Función para manejar la selección de fechas en el calendario
   const handleDateChange = (date) => {
     setFechasSeleccionadas(date);
   };
 
-  // Función para modificar las fechas de vacaciones pendientes de un empleado
+  
+
   const modificarVacaciones = (empleadoId) => {
-    // Convertir las fechas seleccionadas a cadenas de texto antes de actualizar el estado
     const fechasTexto = fechasSeleccionadas.map((date) =>
       date.toISOString().split("T")[0]
     );
 
-    // Actualizar el estado de las fechas seleccionadas como cadenas de texto
     setSolicitudesVacaciones(
       solicitudesVacaciones.map((empleado) =>
         empleado.id === empleadoId
@@ -61,28 +55,23 @@ const SolicitudesVacacionesVista = () => {
       )
     );
 
-    // Resetear el estado
     setMostrarCalendario(false);
     setFechasSeleccionadas([]);
   };
 
-  // Función para cancelar una solicitud de vacaciones
   const cancelarSolicitud = (empleadoId) => {
-    // Aquí iría la lógica para eliminar la solicitud de vacaciones de la base de datos
-    // Por ahora, simplemente actualizamos el estado local del componente para eliminar la solicitud
-    setSolicitudesVacaciones(
-      solicitudesVacaciones.map((empleado) =>
-        empleado.id === empleadoId ? { ...empleado, vacacionesPendientes: null } : empleado
-      )
-    );
+    // Implementa la lógica para cancelar la solicitud de vacaciones al backend
+    console.log("Cancelando la solicitud de vacaciones para el empleado con ID:", empleadoId);
+    // Aquí deberías enviar una solicitud al backend para cancelar la solicitud de vacaciones
+    // y actualizar el estado en consecuencia
   };
 
   return (
     <div className="solicitudes-container">
       <div className="solicitudes-header">
         <div className="logo"></div>
-        <Link to="/SoliHEmple" className="regresar"></Link>
-        <h1 className="solicitudes-title">Solicitudes Pendientes de Vacaciones</h1>
+        <Link to="/NavegacionEmpleado" className="regresar"></Link>
+        <h1 className="solicitudes-title">Solicitud de Vacaciones</h1>
       </div>
       
       <div className="solicitudes-table">
@@ -101,23 +90,22 @@ const SolicitudesVacacionesVista = () => {
                     ))}
                   </div>
                   <div className="solicitudes-acciones">
-  {mostrarCalendario ? (
-    <div>
-      <Calendar onChange={handleDateChange} value={fechasSeleccionadas} selectRange />
-      <div className="boton-container">
-        <button className="solicitud-boton" onClick={() => modificarVacaciones(empleado.id)}>Guardar</button>
-      </div>
-    </div>
-  ) : (
-    <div className="boton-container">
-      <button className="solicitud-boton" onClick={() => setMostrarCalendario(true)}>Editar</button>
-    </div>
-  )}
-  <div className="boton-container">
-    <button className="solicitud-boton" onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
-  </div>
-</div>
-
+                    {mostrarCalendario ? (
+                      <div>
+                        <Calendar onChange={handleDateChange} value={fechasSeleccionadas} selectRange />
+                        <div className="boton-container">
+                          <button className="solicitud-boton" onClick={() => modificarVacaciones(empleado.id)}>Guardar</button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="boton-container">
+                        <button className="solicitud-boton" onClick={() => setMostrarCalendario(true)}>Editar</button>
+                      </div>
+                    )}
+                    <div className="boton-container">
+                      <button className="solicitud-boton" onClick={() => cancelarSolicitud(empleado.id)}>Cancelar Solicitud</button>
+                    </div>
+                  </div>
                 </div>
               ) : null
             )}

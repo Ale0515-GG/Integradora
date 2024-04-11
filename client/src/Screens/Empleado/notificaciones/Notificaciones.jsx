@@ -16,10 +16,10 @@ const Notificaciones = ({ nombreempleado }) => {
       navigate('/AgregarSede');
     };
   const handleHorarioClick = () => {
-      navigate('/Horarios');
+      navigate('/SoliHEmple');
     };
   const handleVacacionesClick = () => {
-      navigate('/VaEmV');
+      navigate('/SoliHEmple');
     };
   const handleContratosClick = () => {
       navigate('/Contratos');
@@ -32,16 +32,16 @@ const Notificaciones = ({ nombreempleado }) => {
             <div class="v65_13"></div><span class="v65_14"></span>
             <div class="v65_16"></div>
             <div class="v65_17"></div>
-            <div class="v65_18" onClick={handleSedesClick}></div>
+            <div class="sedes-click" onClick={handleSedesClick}></div>
             <div class="v65_24"></div>
-            <div class="v136_3"></div> 
+            <div class="vacaciones2"></div> 
             <div class="v65_36"></div>
             <div class="v65_22"></div>
-            <div class="v65_21" onClick={handleUsuarioClick}></div>
-            <span class="v65_19" onClick={handleSedesClick}>Sedes</span>
-            <span class="v65_27" onClick={handleUsuarioClick}>Usuarios </span>
-            <span class="v65_30" onClick={handleVacacionesClick}>Vacaciones</span>
-            <span class="v139_8" onClick={handleContratosClick}>Contrato</span>
+            <div class="usuario-click" onClick={handleUsuarioClick}></div>
+            <span class="sedes2" onClick={handleSedesClick}>Sedes</span>
+            <span class="usuario2" onClick={handleUsuarioClick}>Usuarios </span>
+            <span class="vacaciones-click" onClick={handleVacacionesClick}>Vacaciones</span>
+            <span class="contratos-click" onClick={handleContratosClick}>Contrato</span>
             <span class="v65_41" onClick={handleHorarioClick}>Horario</span>
             <div class="v65_26"></div>
             <div class="v65_29"></div>

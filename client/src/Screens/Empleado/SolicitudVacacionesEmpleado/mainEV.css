@@ -1,0 +1,43 @@
+.solicitudes-container {
+    margin-top: 70px; /* Ajusta el margen superior según el tamaño de tu encabezado */
+    padding: 20px; /* Añade relleno para separar el contenido del borde */
+  }
+  
+  .solicitudes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+    background-color: #256c98;
+    color: white;
+    width: 100vw; /* Cambia el ancho para que sea el ancho total de la ventana */
+    height: 70px; /* Ajusta la altura según tus necesidades */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.regresar {
+    margin-left: 250px; /* Mueve el botón de regreso hacia la derecha */
+    flex: 100px;
+}
+
+.solicitudes-title {
+    margin: 0; /* Establece el margen superior e inferior del título a 0 */
+    font-size: 40px;
+    flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+    text-align: center; /* Alinea el texto del título a la izquierda */
+}
+
+.solicitudes-table {
+    margin-top: 100px; /* Ajusta el margen superior según el tamaño del encabezado */
+    padding: 20px; /* Añade relleno para separar el contenido del borde */
+}
+
+
