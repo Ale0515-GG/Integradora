@@ -34,6 +34,8 @@ const Administradores = () => {
   const [areasSede, setAreasSede] = useState([]);
   // Estado para determinar si se está modificando un administrador
   const [modoModificar, setModoModificar] = useState(false);
+  // Estado para el término de búsqueda
+  const [filtroNombre, setFiltroNombre] = useState('');
 
   // Función para obtener datos de sedes y administradores
   const fetchData = async () => {
@@ -191,23 +193,22 @@ const Administradores = () => {
     }
   };
 
+  // Filtrar administradores según el término de búsqueda
+  const handleNombreCompletoChange = (e) => {
+    const { value } = e.target;
+    setFiltroNombre(value);
+  };
+  const administradoresFiltrados = administradores.filter(admin =>
+    `${admin.nombreempleado} ${admin.apellidoP} ${admin.apellidoM}`.toLowerCase().includes(filtroNombre.toLowerCase())
+  );
+
   return (
     <div className="container">
       <div className="header">
-
-    
-      <div className="logo"></div>
-      <h1>Control de Usuarios</h1>
-      <Link to="/Inicio" className="salir">
-      <img src="./SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
-      </Link>
-
         <div className="logo"></div>
         <h1>Control de Usuarios</h1>
-        <Link to="/IngreSuAd" className="salir">
-          <img src="SupAdm1/images/v65_16.png" alt="Salir" className="salir-imagen" />
+        <Link to="/Inicio" className="salir-imagen">
         </Link>
-
       </div>
       {/* Formulario para agregar/Modificar usuario */}
       <div className='tabla'>
@@ -223,31 +224,33 @@ const Administradores = () => {
           <div className='form-grid'>
             {/* Campos del formulario */}
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Nombre:
-                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleInputChange} />
+                <input type="text" name="nombreempleado" value={nuevoAdmin.nombreempleado} onChange={handleInputChange}  />
               </label>
             </div>
+            {/* Agrega la clase input-busqueda al input de búsqueda */}
+           
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Apellido Paterno:
                 <input type="text" name="apellidoP" value={nuevoAdmin.apellidoP} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Apellido Materno:
                 <input type="text" name="apellidoM" value={nuevoAdmin.apellidoM} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Cumpleaños:
                 <input type="date" name="cumpleanos" value={nuevoAdmin.cumpleanos} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Sexo:
                 <select name="sexo" value={String(nuevoAdmin.sexo)} onChange={handleInputChange}>
                   <option value="true">M</option>
@@ -256,25 +259,25 @@ const Administradores = () => {
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Correo:
                 <input type="email" name="correo" value={nuevoAdmin.correo} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Acceso (Contraseña):
                 <input type={modoModificar ? "text" : "password"} name="acceso" value={nuevoAdmin.acceso} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Usuario:
                 <input type="text" name="usuario" value={nuevoAdmin.usuario} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Tipo de Usuario:
                 <select name="tipoUsuario" value={nuevoAdmin.tipoUsuario} onChange={handleInputChange}>
                   <option value="">Seleccionar tipo de usuario</option>
@@ -285,13 +288,13 @@ const Administradores = () => {
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Rol:
                 <input type="text" name="rol" value={nuevoAdmin.rol} onChange={handleInputChange} />
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Sede:
                 <select name="sede" value={nuevoAdmin.sede} onChange={handleSedeChange}>
                   <option value="">Seleccionar sede</option>
@@ -302,7 +305,7 @@ const Administradores = () => {
               </label>
             </div>
             <div className="form-group">
-              <label className='name'>
+              <label className='name-text'>
                 Área:
                 <select name="area" value={nuevoAdmin.area} onChange={handleInputChange}>
                   <option value="">Seleccionar área</option>
@@ -323,7 +326,12 @@ const Administradores = () => {
       </div>
       {/* Tabla de administradores */}
       <div className='table'>
+      <div className="form-group">
+  <input type="text" placeholder="Buscar..." value={filtroNombre} onChange={handleNombreCompletoChange} className="input-busqueda" />
+</div>
+            
         <table className="admin-table">
+          {/* Encabezados de la tabla */}
           <thead>
             <tr>
               <th>Nombre</th>
@@ -341,8 +349,9 @@ const Administradores = () => {
               <th>Acciones</th>
             </tr>
           </thead>
+          {/* Cuerpo de la tabla */}
           <tbody>
-            {administradores.map((admin) => (
+            {administradoresFiltrados.map((admin) => (
               <tr key={admin._id}>
                 {/* Datos de cada administrador */}
                 <td>{admin.nombreempleado}</td>
@@ -351,15 +360,18 @@ const Administradores = () => {
                 <td>{admin.cumpleanos}</td>
                 <td>{admin.sexo ? 'M' : 'F'}</td>
                 <td>{admin.correo}</td>
-                <td>{modoModificar ? admin.acceso : '********'}</td>
+                <td>{modoModificar ? admin.acceso : '*******'}</td>
                 <td>{admin.usuario}</td>
                 <td>{admin.tipoUsuario}</td>
                 <td>{admin.rol}</td>
                 <td>{admin.sede}</td>
                 <td>{admin.area}</td>
                 <td>
-                  <button className="button modificar" onClick={() => handleModificarClick(admin)}>Modificar</button>
-                  <button className="button eliminar" onClick={() => eliminarAdministrador(admin._id)}>Eliminar</button>
+                <button onClick={() => handleModificarClick(admin)} className=" button acciones-button-modificar">
+                 Modificar</button>
+                 
+                 <button onClick={() => eliminarAdministrador(admin._id)} className=" button acciones-button-eliminar">
+                 Eliminar</button>
                 </td>
               </tr>
             ))}

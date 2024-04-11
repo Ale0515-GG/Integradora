@@ -16,6 +16,7 @@ import Diagrama from './Screens/Diagrama/Diagrama.jsx';
 import Contratos from './Screens/SupAdmin/Contratos/Contratos.jsx';
 import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
 import Actividades from './Screens/Actividades/Actividades.jsx'
+import Empleado from './Screens/Empleado/NavegacionEmpleado.jsx';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/diagrama" element={<Diagrama />} /> {/* Agrega la ruta para el diagrama de Gantt */}
           <Route path="/Horarios" element={<Horarios />} />
           <Route path="/Contratos" element={<Contratos />}/>
+          <Route path='/NavegacionEmpleado' element={<Empleado/>}/>
         </Routes>
       </Router>
     </div>
