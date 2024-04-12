@@ -96,7 +96,7 @@ body {
   top: 118px;
   left: 0px;
 }
-.v65_18 {
+.sedes-click {
   width: 257px;
   height: 60px;
   background: rgba(118,178,226,1);
@@ -124,7 +124,7 @@ body {
   border-bottom-right-radius: 15px;
   overflow: hidden;
 }
-.v136_3 {
+.vacaciones2 {
   width: 257px;
   height: 60px;
   background: rgba(118,178,226,1);
@@ -166,7 +166,7 @@ body {
   border-bottom-right-radius: 15px;
   overflow: hidden;
 }
-.v65_21 {
+.usuario-click {
   width: 28px;
   height: 30px;
   background: url("../images/v65_21.png");
@@ -179,7 +179,7 @@ body {
   left: 89px;
   overflow: hidden;
 }
-.v65_19 {
+.sedes2 {
   width: 62px;
   color: rgba(255,255,255,1);
   position: absolute;
@@ -191,7 +191,7 @@ body {
   opacity: 1;
   text-align: left;
 }
-.v65_27 {
+.usuario2{
   width: 69px;
   color: rgba(255,255,255,1);
   position: absolute;
@@ -203,7 +203,7 @@ body {
   opacity: 1;
   text-align: left;
 }
-.v65_30 {
+.vacaciones-click {
   width: 135px;
   color: rgba(255,255,255,1);
   position: absolute;
@@ -215,7 +215,7 @@ body {
   opacity: 1;
   text-align: left;
 }
-.v139_8 {
+.contratos-click {
   width: 105px;
   color: rgba(255,255,255,1);
   position: absolute;

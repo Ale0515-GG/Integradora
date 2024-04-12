@@ -2,20 +2,7 @@ import React, { useState } from 'react';
 import './Contratos.css'; // Importa el archivo CSS
 
 const Contratos = () => {
-  const [contratos, setContratos] = useState([
-    {
-      id: 1,
-      area: 'Desarrollo de aplicaciones y programas',
-      sede: 'Leon Gto',
-      tipoContrato: 1
-    },
-    {
-      id: 2,
-      area: 'Diseño gráfico',
-      sede: 'Ciudad de México',
-      tipoContrato: 2
-    }
-  ]);
+  const [contratos, setContratos] = useState([]);
 
   const [nuevoContrato, setNuevoContrato] = useState({
     area: '',
@@ -40,9 +27,8 @@ const Contratos = () => {
     });
   };
 
-  const handleEliminarContrato = (id) => {
-    const nuevosContratos = contratos.filter(contrato => contrato.id !== id);
-    setContratos(nuevosContratos);
+  const handleEliminarContrato = () => {
+    setContratos([]);
   };
 
   const handleEditarContrato = (id, field, value) => {
@@ -56,13 +42,13 @@ const Contratos = () => {
   };
 
   return (
-    <div className="contratos-container">
-      <div className="contratos-header">
-        <p className="contratos-title">ChronoMagnament</p>
+    <div className="v281_60 contratos-container">
+      <div className="v281_61">
+        <p className="v281_63">ChronoMagnament</p>
         <div className="v358_4"></div> {/* Aquí se mostrará la imagen */}
       </div>
       <h2>Contratos</h2>
-      <div className="contratos-table-container">
+      <div className="v281_68 contratos-table-container">
         <table className="contratos-table">
           <thead>
             <tr>
@@ -73,28 +59,31 @@ const Contratos = () => {
             </tr>
           </thead>
           <tbody>
-            {contratos.map(contrato => (
-              <tr key={contrato.id}>
+            {contratos.map((contrato, index) => (
+              <tr key={index}>
                 <td>
-                  <input type="text" className="contratos-input" value={contrato.area} onChange={(e) => handleEditarContrato(contrato.id, 'area', e.target.value)} />
+                  <input type="text" className="contratos-input" value={contrato.area} onChange={(e) => handleEditarContrato(index, 'area', e.target.value)} />
                 </td>
                 <td>
-                  <input type="text" className="contratos-input" value={contrato.sede} onChange={(e) => handleEditarContrato(contrato.id, 'sede', e.target.value)} />
+                  <input type="text" className="contratos-input" value={contrato.sede} onChange={(e) => handleEditarContrato(index, 'sede', e.target.value)} />
                 </td>
                 <td>
-                  <select className="contratos-select" value={contrato.tipoContrato} onChange={(e) => handleEditarContrato(contrato.id, 'tipoContrato', parseInt(e.target.value))}>
+                  <select className="contratos-select" value={contrato.tipoContrato} onChange={(e) => handleEditarContrato(index, 'tipoContrato', parseInt(e.target.value))}>
                     <option value={1}>Tipo 1</option>
                     <option value={2}>Tipo 2</option>
                     <option value={3}>Tipo 3</option>
                   </select>
                 </td>
                 <td>
-                  <button className="action-button eliminar" onClick={() => handleEliminarContrato(contrato.id)}>Eliminar</button>
+                  <button className="action-button eliminar" onClick={() => handleEliminarContrato(index)}>Eliminar</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="eliminar-todos-contratos">
+        <button className="action-button eliminar" onClick={handleEliminarContrato}>Eliminar Todos los Contratos</button>
       </div>
       <div className="nuevo-contrato">
         <h3>Agregar Nuevo Contrato</h3>

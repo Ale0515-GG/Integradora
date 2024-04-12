@@ -5,63 +5,82 @@ import axios from 'axios';
 
 function Diagrama() {
   const timelineRef = useRef(null);
-  const [data, setData] = useState([]);
+  const [activitiesData, setActivitiesData] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/dia/xd')
+    axios.get('http://localhost:3001/activi')
       .then(response => {
-        setData(response.data);
+        setActivitiesData(response.data);
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching activities data:', error);
+      });
+
+    axios.get('http://localhost:3001/usuarios')
+      .then(response => {
+        setEmployeeData(response.data.data); // Corregido: se utiliza response.data.data
+      })
+      .catch(error => {
+        console.error('Error fetching employee data:', error);
       });
   }, []);
 
   useEffect(() => {
-    if (data.length === 0 || !timelineRef.current) return;
-
     const container = timelineRef.current;
 
-    // Definir manualmente los días de la semana
-    const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const itemsDataSet = new DataSet();
+    const groupsDataSet = new DataSet();
 
-    // Crear un DataSet para los items (turnos)
-    const items = new DataSet(data.map(turno => ({
-      id: turno._id,
-      group: turno.tipoContrato, // Agrupar por tipo de contrato
-      content: turno.turno,
-      start: new Date(), // Aquí deberías definir la fecha de inicio adecuada
-      end: new Date(),   // Aquí deberías definir la fecha de fin adecuada
-    })));
+    // Verificar si los datos están cargados y son arrays
+    if (Array.isArray(employeeData)) {
+      employeeData.forEach(employee => {
+        // Verificar si los datos del empleado están completos
+        if (employee.nombreempleado) {
+          groupsDataSet.add({
+            id: employee._id,
+            content: employee.nombreempleado
+          });
+        } else {
+          console.error('Nombre de empleado no encontrado para el empleado:', employee);
+        }
+      });
+    } else {
+      console.error('employeeData is not an array:', employeeData);
+    }
 
-    // Crear un DataSet para los grupos (tipo de contrato)
-    const groups = new DataSet(data.map(turno => ({
-      id: turno.tipoContrato,
-      content: turno.tipoContrato,
-    })));
+    if (Array.isArray(activitiesData)) {
+      activitiesData.forEach(activity => {
+        // Verificar si los datos de la actividad están completos
+        if (activity.nombre) {
+          const startDate = new Date(activity.fechaInicio);
+          const endDate = new Date(activity.fechaFin);
+
+          itemsDataSet.add({
+            id: activity._id,
+            content: activity.nombre,
+            start: startDate,
+            end: endDate,
+            group: activity.empleado
+          });
+        } else {
+          console.error('Nombre de actividad no encontrado para la actividad:', activity);
+        }
+      });
+    } else {
+      console.error('activitiesData is not an array:', activitiesData);
+    }
 
     const options = {
-      // Configurar opciones del diagrama aquí
       orientation: {
-        axis: 'top', // Colocar el eje horizontal en la parte superior
+        axis: 'top',
       },
-      locale: 'es', // Configurar el idioma del diagrama a español
-      locales: {
-        es: { // Traducción de los días de la semana
-          day: 'Domingo',
-          weekday: days,
-        },
-      },
+      locale: 'es',
+      groupOrder: 'content'
     };
 
-    // Crear el diagrama de Gantt
-    const timeline = new Timeline(container, items, groups, options);
-
-    return () => {
-      // Limpiar el timeline cuando el componente se desmonte
-      timeline.destroy();
-    };
-  }, [data]);
+    new Timeline(container, itemsDataSet, groupsDataSet, options);
+  }, [activitiesData, employeeData]);
 
   return (
     <div>
