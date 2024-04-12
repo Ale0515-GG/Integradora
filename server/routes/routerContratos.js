@@ -1,5 +1,5 @@
 import express from "express";
-import * as contratoControllers from "../controllers/contratoControllers.js";
+import * as contratoControllers from "../controllers/contratosController.js";
 
 const router = express.Router();
 

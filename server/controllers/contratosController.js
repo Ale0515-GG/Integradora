@@ -1,4 +1,4 @@
-import Contrato from '../models/contrato.js';
+import Contrato from '../models/contratosModel.js';
 
 export const getContratos = async (req, res) => {
   try {
@@ -22,7 +22,9 @@ export const getContratoById = async (req, res) => {
   }
 };
 
-exports.agregarContrato = async (req, res) => {
+
+
+export const agregarContrato = async (req, res) => {
   try {
     const nuevoContrato = new Contrato(req.body);
     const contratoGuardado = await nuevoContrato.save();
@@ -33,7 +35,8 @@ exports.agregarContrato = async (req, res) => {
   }
 };
 
-exports.actualizarContrato = async (req, res) => {
+
+export const actualizarContrato = async (req, res) => {
   const { id } = req.params;
   const newData = req.body;
 
@@ -42,12 +45,11 @@ exports.actualizarContrato = async (req, res) => {
     res.json({ success: true, message: "Contrato actualizado exitosamente", data: contratoActualizado });
   } catch (error) {
     console.error("Error al actualizar el contrato:", error);
-    res.status(500¿).json({ success: false, message: "Error del servidor" });
-
+    res.status(500).json({ success: false, message: "Error del servidor" });
   }
 };
 
-exports.eliminarContrato = async (req, res) => {
+export const eliminarContrato = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -55,9 +57,6 @@ exports.eliminarContrato = async (req, res) => {
     res.json({ success: true, message: "Contrato eliminado exitosamente", data: contratoEliminado });
   } catch (error) {
     console.error("Error al eliminar el contrato:", error);
-    res.status(500¿).json({ success: false, message: "Error del servidor" });
-
+    res.status(500).json({ success: false, message: "Error del servidor" });
   }
 };
-
-export default (getContratos, getContratoById,agregarContrato,eliminarContrato,actualizarContrato);
