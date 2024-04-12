@@ -1,84 +1,59 @@
-.solicitudes-container {
-    margin-top: 70px; 
-    padding: 20px; 
-  }
-  
-  .solicitudes-header {
+.solicitudes-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 60px;
-    background-color: #256c98;
-    color: white;
-    width: 100vw; 
-    height: 70px; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #256C98; /* Nuevo color de fondo */
+    padding: 0 20px; /* Añade un espacio entre el borde del encabezado y los elementos internos */
 }
-
-.logo {
-    width: 100px;
-    height: auto;
-}
-
-.regresar {
-    margin-left: 250px; 
-    flex: 100px;}
-
 
 .solicitudes-title {
-    margin: 0; 
-    font-size: 40px;
-    flex-grow: 1; 
-    text-align: center; 
+    color: white; /* Color blanco */
+    text-align: center; /* Alinea el texto al centro */
+  }
+
+.logo {
+    width: 100px; /* Establece un ancho fijo para el logo */
+    margin-top: 0%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    
+}
+  
+.empleado-info {
+    margin-bottom: 20px;
+}
+
+.boton-container {
+    margin-bottom: 20px;
+}
+
+.solicitud-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.historial-container {
+    width: 100%;
 }
 
 .solicitudes-table {
-    margin-top: 100px; 
-    padding: 20px; 
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.solicitud-boton {
-    padding: 10px 20px;
-    font-size: 16px; 
-    background-color: #0056b3; 
-    color: #fff; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    margin-top: 100px; 
-  }
-  
-  .solicitud-boton:hover {
-    background-color: #004080; 
-  }
+.solicitudes-table th,
+.solicitudes-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
 
-  .empleado-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 90px;
-    padding-left: 20px;
-  }
-  
-  .empleado-info p {
-    margin-bottom: 10px;
-  }
-  
-  .historial-container {
-    margin-top: -750px; /* Ajusta este valor según sea necesario */
-    margin-bottom: 20px; /* Ajusta este valor según sea necesario */
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .solicitudes-title {
-    margin-bottom: -10000px; /* Ajusta este valor según sea necesario */
-    font-size: 40px;
-    flex-grow: 1;
-    text-align: center;
-  }
-  
-  
+.error-message {
+    color: red;
+}
