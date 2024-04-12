@@ -69,30 +69,40 @@ export const deleteUsuarios = async (req, res) => {
     }
 };
 
-
-
-
-
-// Función para iniciar sesión
-export const loginUsuario = async (req, res) => {
+// Login
+export const login = async (req, res) => {
     const { usuario, acceso } = req.body;
+
     try {
-        const usuarioEncontrado = await schemaEmpl.findOne({ usuario });
-        if (!usuarioEncontrado) {
-            return res.status(404).json({ success: false, message: "El usuario no existe" });
+        const user = await UsuarioModel.findOne({ usuario });
+
+        if (!user || user.acceso !== acceso) {
+            return res.status(401).json({ success: false, message: "Credenciales incorrectas" });
         }
-        
-        const match = await bcrypt.compare(acceso, usuarioEncontrado.acceso);
-        if (match) {
-            res.json({ success: true, message: "Inicio de sesión exitoso" });
-        } else {
-            res.status(401).json({ success: false, message: "Credenciales incorrectas" });
-        }
+
+        res.json({ 
+            success: true, 
+            message: "Inicio de sesión exitoso", 
+            tipoUsuario: user.tipoUsuario,
+            usuario: {
+                nombreempleado: user.nombreempleado,
+                correo: user.correo,
+                numero: user.Numero_Empleado,
+                area: user.area,
+                sede: user.sede,
+                contrato: user.Contrato
+            }
+        });
     } catch (error) {
         console.error("Error al iniciar sesión:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
 };
+
+
+
+
+
 import fs from 'fs';
 import multer from 'multer';
 

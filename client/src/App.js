@@ -14,7 +14,7 @@ import AgregarArea from './Screens/SupAdmin/AgregarAreas/AgregarArea.jsx';
 import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora.jsx';
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'; // Importa el componente del diagrama de Gantt
 import Contratos from './Screens/SupAdmin/Contratos/Contratos.jsx';
-import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
+import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones.jsx';
 
 function App() {
   return (
