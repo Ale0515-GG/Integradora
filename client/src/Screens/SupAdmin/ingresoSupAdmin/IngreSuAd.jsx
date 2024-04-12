@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './css/ingreSuAd.css'
+import './css/ingreSuAd.css';
 
 function IngreSuAd() {
   const [usuario, setUsuario] = useState('');
@@ -13,9 +13,9 @@ function IngreSuAd() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/usuarios/login', {
+      const response = await axios.post(`http://localhost:3001/usuarios/login`, {
         usuario: usuario,
-        Contrasena: acceso,
+        acceso: acceso,
       });
 
       const data = response.data;
@@ -30,9 +30,7 @@ function IngreSuAd() {
             navigate('/AgregarSedes');
             break;
           case 'Empleado':
-            navigate('/inicio');
-            break;
-          case 'Root':
+          case 'Root': 
             navigate('/inicio');
             break;
           default:

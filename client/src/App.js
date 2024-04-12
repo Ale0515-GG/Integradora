@@ -16,8 +16,6 @@ import Diagrama from './Screens/Diagrama/Diagrama.jsx';
 import Contratos from './Screens/SupAdmin/Contratos/Contratos.jsx';
 
 import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones.jsx';
-
-import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
 import Actividades from './Screens/Actividades/Actividades.jsx'
 import Empleado from './Screens/Empleado/NavegacionEmpleado.jsx';
 
