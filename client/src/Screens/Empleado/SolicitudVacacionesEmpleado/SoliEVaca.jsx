@@ -116,7 +116,7 @@ const SolicitudesVacacionesVista = () => {
       <div className="solicitudes-header">
       <div className="logo-container">
         <div className="logo"></div></div>
-        <Link to="/NavegacionEmpleado" className="regresar"></Link>
+        <Link to="/" className="regresar"></Link>
         <h1 className="solicitudes-title">Solicitud de Vacaciones</h1>
       </div>
 

@@ -11,7 +11,14 @@ const Notificaciones = ({ nombreempleado }) => {
       navigate('/Horarios');
     };
   const handleVacacionesClick = () => {
-      navigate('/VaEmV');
+      navigate('/Vaciones');
+    };
+
+    const handleDiagraClick = () => {
+      navigate('/Diagrama');
+    };
+    const handleSedesClick = () => {
+      navigate('/AgregarSede');
     };
   return (
     <div class="v60_3">
@@ -26,6 +33,8 @@ const Notificaciones = ({ nombreempleado }) => {
   
             <span class="v65_30" onClick={handleVacacionesClick}>Vacaciones</span>
             <span class="v65_41" onClick={handleHorarioClick}>Horario</span>
+            <span class="v65_3" onClick={handleDiagraClick}>Diagrama</span>
+            <span class="v65_36" onClick={handleSedesClick}>Sedes</span>
           
             <span class="v65_33"> Buenos días, {nombreempleado}</span>
             <span class="v65_34">¿Tienes dudas? consulta con el dpto.RR.HH</span>

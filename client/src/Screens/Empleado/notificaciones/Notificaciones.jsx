@@ -16,16 +16,16 @@ const Notificaciones = ({ nombreempleado }) => {
       navigate('/AgregarSede');
     };
   const handleHorarioClick = () => {
-      navigate('/SoliHEmple');
+      navigate('/SolicitudesH');
     };
   const handleVacacionesClick = () => {
-      navigate('/SoliHEmple');
+      navigate('/Vacaciones');
     };
   const handleContratosClick = () => {
       navigate('/Contratos');
     };
     const handleGanttClick = () => {
-      navigate('/diagrama');
+      navigate('/Activiti');
     };
 
   return (
@@ -43,7 +43,7 @@ const Notificaciones = ({ nombreempleado }) => {
             <span class="vacaciones-click" onClick={handleVacacionesClick}>Vacaciones</span>
             <span class="contratos-click" onClick={handleContratosClick}>Contrato</span>
             <span class="horarios2" onClick={handleHorarioClick}>Horario</span>
-            <span class="gantt-click" onClick={handleGanttClick}>Diagrama Gantt</span>
+            <span class="gantt-click" onClick={handleGanttClick}>Actividades</span>
             <div class="gantt2"></div> 
             <div class="v65_26"></div>
             <div class="v65_29"></div>

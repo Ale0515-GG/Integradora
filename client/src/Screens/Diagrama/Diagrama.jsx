@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DataSet, Timeline } from 'vis-timeline/standalone';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 function Diagrama() {
   const timelineRef = useRef(null);
@@ -19,7 +20,7 @@ function Diagrama() {
 
     axios.get('http://localhost:3001/usuarios')
       .then(response => {
-        setEmployeeData(response.data.data); // Corregido: se utiliza response.data.data
+        setEmployeeData(response.data.data);
       })
       .catch(error => {
         console.error('Error fetching employee data:', error);
@@ -32,40 +33,39 @@ function Diagrama() {
     const itemsDataSet = new DataSet();
     const groupsDataSet = new DataSet();
 
-    // Verificar si los datos están cargados y son arrays
+    // Verificar si los datos de los empleados están cargados y son un array
     if (Array.isArray(employeeData)) {
-      employeeData.forEach(employee => {
-        // Verificar si los datos del empleado están completos
-        if (employee.nombreempleado) {
-          groupsDataSet.add({
-            id: employee._id,
-            content: employee.nombreempleado
-          });
-        } else {
-          console.error('Nombre de empleado no encontrado para el empleado:', employee);
-        }
+      // Filtrar los empleados que tienen un nombre válido
+      const validEmployees = employeeData.filter(employee => employee.nombreempleado);
+
+      // Agregar los empleados válidos al conjunto de datos de grupos
+      validEmployees.forEach(employee => {
+        groupsDataSet.add({
+          id: employee._id,
+          content: employee.nombreempleado
+        });
       });
     } else {
       console.error('employeeData is not an array:', employeeData);
     }
 
+    // Verificar si los datos de las actividades están cargados y son un array
     if (Array.isArray(activitiesData)) {
-      activitiesData.forEach(activity => {
-        // Verificar si los datos de la actividad están completos
-        if (activity.nombre) {
-          const startDate = new Date(activity.fechaInicio);
-          const endDate = new Date(activity.fechaFin);
+      // Filtrar las actividades que tienen un nombre y fechas de inicio y fin válidas
+      const validActivities = activitiesData.filter(activity => activity.nombre && activity.fechaInicio && activity.fechaFin);
 
-          itemsDataSet.add({
-            id: activity._id,
-            content: activity.nombre,
-            start: startDate,
-            end: endDate,
-            group: activity.empleado
-          });
-        } else {
-          console.error('Nombre de actividad no encontrado para la actividad:', activity);
-        }
+      // Agregar las actividades válidas al conjunto de datos de ítems
+      validActivities.forEach(activity => {
+        const startDate = new Date(activity.fechaInicio);
+        const endDate = new Date(activity.fechaFin);
+
+        itemsDataSet.add({
+          id: activity._id,
+          content: activity.nombre,
+          start: startDate,
+          end: endDate,
+          group: activity.empleado
+        });
       });
     } else {
       console.error('activitiesData is not an array:', activitiesData);
@@ -84,9 +84,11 @@ function Diagrama() {
 
   return (
     <div>
+      
       <div className="dia-container">
         <div className="dia-header">
           <div className="logo"></div>
+          <Link to="/" className="regresar"></Link>
           <h1 className="dia-title">Diagrama de Gantt</h1>
         </div>
       </div>

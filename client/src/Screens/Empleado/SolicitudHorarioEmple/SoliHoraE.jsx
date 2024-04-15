@@ -3,13 +3,16 @@ import axios from "axios";
 import "./css/mainEH.css"; // Asegúrate de tener el archivo CSS correspondiente
 import { Link } from "react-router-dom";
 
-const HorariosVistaE = () => {
+const SolicitudesPendientesE = () => {
   const [solicitudes, setSolicitudes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingIndex, setEditingIndex] = useState(-1);
   const [editedTurno, setEditedTurno] = useState("");
   const [opcionesContrato, setOpcionesContrato] = useState([]);
   const [empleados, setEmpleados] = useState([]); // Cambié el nombre de la variable a empleados
+  const [error, setError] = useState("");
+  const [historialSolicitudes, setHistorialSolicitudes] = useState([]); // Añade el estado para las solicitudes de historial
+  
 
   useEffect(() => {
     cargarSolicitudesPendientes();
@@ -60,6 +63,9 @@ const HorariosVistaE = () => {
     }
   };
 
+  
+
+
   const handleTurnoChange = (index, valor) => {
     const nuevasSolicitudes = [...solicitudes];
     nuevasSolicitudes[index].turno = valor;
@@ -102,13 +108,54 @@ const HorariosVistaE = () => {
     }
   };
 
+  const SolicitudesVaciones = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/solicitudVacaciones");
+      setHistorialSolicitudes(response.data); // Actualiza el estado con las solicitudes obtenidas
+    } catch (error) {
+      console.error('Error al obtener el historial de solicitudes:', error.message);
+      setError('Error al obtener el historial de solicitudes');
+    }
+  };
+
+  useEffect(() => {
+    SolicitudesVaciones();
+  }, []);
+
+  const modificarSolicitud = async (id, fechas) => {
+    try {
+      await axios.put(
+        `http://localhost:3001/solicitudVacaciones/update/${id}`,
+        { fechas }
+      );
+      setError('');
+      await SolicitudesVaciones(); // Actualiza el historial después de la modificación
+      alert("Solicitud de vacaciones modificada correctamente");
+    } catch (error) {
+      console.error("Error al modificar la solicitud de vacaciones:", error.message);
+      setError("Error al modificar la solicitud de vacaciones");
+    }
+  };
+
+  const eliminarSolicitud = async (solicitudId) => {
+    try {
+      await axios.delete(`http://localhost:3001/solicitudVacaciones/delete/${solicitudId}`);
+      setError('');
+      await SolicitudesVaciones(); // Actualiza el historial después de la eliminación
+      alert("Solicitud de vacaciones eliminada correctamente");
+    } catch (error) {
+      console.error('Error al eliminar la solicitud de vacaciones:', error.message);
+      setError('Error al eliminar la solicitud de vacaciones');
+    }
+  };
+
   return (
     <body className="VisE">
       <div className="VistaE">
         <div className="VistaE-header">
           <div className="logo"></div>
           <h1 className="VistaE-title">Solicitudes Pendientes</h1>
-          <Link to="/Inicio" className="regresar"></Link>
+          <Link to="/" className="regresar"></Link>
         </div>
         
         <div className="VistaE-table">
@@ -181,4 +228,4 @@ const HorariosVistaE = () => {
   );
 }  
 
-export default HorariosVistaE;
+export default SolicitudesPendientesE;
