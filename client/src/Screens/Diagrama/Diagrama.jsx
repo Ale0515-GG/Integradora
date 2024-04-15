@@ -8,6 +8,7 @@ function Diagrama() {
   const timelineRef = useRef(null);
   const [activitiesData, setActivitiesData] = useState([]);
   const [employeeData, setEmployeeData] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false); // Bandera para indicar si los datos están cargados
 
   useEffect(() => {
     axios.get('http://localhost:3001/activi')
@@ -28,33 +29,21 @@ function Diagrama() {
   }, []);
 
   useEffect(() => {
-    const container = timelineRef.current;
+    if (activitiesData.length > 0 && employeeData.length > 0 && !dataLoaded) {
+      const container = timelineRef.current;
 
-    const itemsDataSet = new DataSet();
-    const groupsDataSet = new DataSet();
+      const itemsDataSet = new DataSet();
+      const groupsDataSet = new DataSet();
 
-    // Verificar si los datos de los empleados están cargados y son un array
-    if (Array.isArray(employeeData)) {
-      // Filtrar los empleados que tienen un nombre válido
       const validEmployees = employeeData.filter(employee => employee.nombreempleado);
-
-      // Agregar los empleados válidos al conjunto de datos de grupos
       validEmployees.forEach(employee => {
         groupsDataSet.add({
           id: employee._id,
           content: employee.nombreempleado
         });
       });
-    } else {
-      console.error('employeeData is not an array:', employeeData);
-    }
 
-    // Verificar si los datos de las actividades están cargados y son un array
-    if (Array.isArray(activitiesData)) {
-      // Filtrar las actividades que tienen un nombre y fechas de inicio y fin válidas
       const validActivities = activitiesData.filter(activity => activity.nombre && activity.fechaInicio && activity.fechaFin);
-
-      // Agregar las actividades válidas al conjunto de datos de ítems
       validActivities.forEach(activity => {
         const startDate = new Date(activity.fechaInicio);
         const endDate = new Date(activity.fechaFin);
@@ -67,32 +56,29 @@ function Diagrama() {
           group: activity.empleado
         });
       });
-    } else {
-      console.error('activitiesData is not an array:', activitiesData);
+
+      const options = {
+        orientation: {
+          axis: 'top',
+        },
+        locale: 'es',
+        groupOrder: 'content'
+      };
+
+      new Timeline(container, itemsDataSet, groupsDataSet, options);
+      setDataLoaded(true); // Establecer la bandera de datos cargados a true
     }
-
-    const options = {
-      orientation: {
-        axis: 'top',
-      },
-      locale: 'es',
-      groupOrder: 'content'
-    };
-
-    new Timeline(container, itemsDataSet, groupsDataSet, options);
-  }, [activitiesData, employeeData]);
+  }, [activitiesData, employeeData, dataLoaded]);
 
   return (
     <div>
-      
       <div className="dia-container">
         <div className="dia-header">
-          <div className="logo"></div>
-          <Link to="/" className="regresar"></Link>
           <h1 className="dia-title">Diagrama de Gantt</h1>
+          <Link to="/" className="regresar"></Link>
         </div>
       </div>
-      <div ref={timelineRef} style={{ height: '400px' }} />
+      <div ref={timelineRef} style={{ height: '400px', top: '50px' }} />
     </div>
   );
 }
