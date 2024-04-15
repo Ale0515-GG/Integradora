@@ -207,7 +207,7 @@ const Administradores = () => {
       <div className="header">
         <div className="logo"></div>
         <h1>Control de Usuarios</h1>
-        <Link to="/Inicio" className="salir-imagen">
+        <Link to="/" className="salir-imagen">
         </Link>
       </div>
       {/* Formulario para agregar/Modificar usuario */}

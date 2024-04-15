@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DataSet, Timeline } from 'vis-timeline/standalone';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 function Diagrama() {
   const timelineRef = useRef(null);
   const [activitiesData, setActivitiesData] = useState([]);
   const [employeeData, setEmployeeData] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false); // Bandera para indicar si los datos están cargados
 
   useEffect(() => {
     axios.get('http://localhost:3001/activi')
@@ -19,7 +21,7 @@ function Diagrama() {
 
     axios.get('http://localhost:3001/usuarios')
       .then(response => {
-        setEmployeeData(response.data.data); // Corregido: se utiliza response.data.data
+        setEmployeeData(response.data.data);
       })
       .catch(error => {
         console.error('Error fetching employee data:', error);
@@ -27,70 +29,56 @@ function Diagrama() {
   }, []);
 
   useEffect(() => {
-    const container = timelineRef.current;
+    if (activitiesData.length > 0 && employeeData.length > 0 && !dataLoaded) {
+      const container = timelineRef.current;
 
-    const itemsDataSet = new DataSet();
-    const groupsDataSet = new DataSet();
+      const itemsDataSet = new DataSet();
+      const groupsDataSet = new DataSet();
 
-    // Verificar si los datos están cargados y son arrays
-    if (Array.isArray(employeeData)) {
-      employeeData.forEach(employee => {
-        // Verificar si los datos del empleado están completos
-        if (employee.nombreempleado) {
-          groupsDataSet.add({
-            id: employee._id,
-            content: employee.nombreempleado
-          });
-        } else {
-          console.error('Nombre de empleado no encontrado para el empleado:', employee);
-        }
+      const validEmployees = employeeData.filter(employee => employee.nombreempleado);
+      validEmployees.forEach(employee => {
+        groupsDataSet.add({
+          id: employee._id,
+          content: employee.nombreempleado
+        });
       });
-    } else {
-      console.error('employeeData is not an array:', employeeData);
-    }
 
-    if (Array.isArray(activitiesData)) {
-      activitiesData.forEach(activity => {
-        // Verificar si los datos de la actividad están completos
-        if (activity.nombre) {
-          const startDate = new Date(activity.fechaInicio);
-          const endDate = new Date(activity.fechaFin);
+      const validActivities = activitiesData.filter(activity => activity.nombre && activity.fechaInicio && activity.fechaFin);
+      validActivities.forEach(activity => {
+        const startDate = new Date(activity.fechaInicio);
+        const endDate = new Date(activity.fechaFin);
 
-          itemsDataSet.add({
-            id: activity._id,
-            content: activity.nombre,
-            start: startDate,
-            end: endDate,
-            group: activity.empleado
-          });
-        } else {
-          console.error('Nombre de actividad no encontrado para la actividad:', activity);
-        }
+        itemsDataSet.add({
+          id: activity._id,
+          content: activity.nombre,
+          start: startDate,
+          end: endDate,
+          group: activity.empleado
+        });
       });
-    } else {
-      console.error('activitiesData is not an array:', activitiesData);
+
+      const options = {
+        orientation: {
+          axis: 'top',
+        },
+        locale: 'es',
+        groupOrder: 'content'
+      };
+
+      new Timeline(container, itemsDataSet, groupsDataSet, options);
+      setDataLoaded(true); // Establecer la bandera de datos cargados a true
     }
-
-    const options = {
-      orientation: {
-        axis: 'top',
-      },
-      locale: 'es',
-      groupOrder: 'content'
-    };
-
-    new Timeline(container, itemsDataSet, groupsDataSet, options);
-  }, [activitiesData, employeeData]);
+  }, [activitiesData, employeeData, dataLoaded]);
 
   return (
     <div>
       <div className="dia-container">
         <div className="dia-header">
-          <div className="logo"></div>
           <h1 className="dia-title">Diagrama de Gantt</h1>
+          <Link to="/" className="regresar"></Link>
         </div>
       </div>
-      <div ref={timelineRef} style={{ height: '400px' }} />
+      <div ref={timelineRef} style={{ height: '400px', top: '50px' }} />
     </div>
   );
 }

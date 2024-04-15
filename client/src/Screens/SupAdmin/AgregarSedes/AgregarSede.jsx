@@ -30,6 +30,7 @@ import { useNavigate } from 'react-router-dom';
 import "./AgregarSede.css";
 import FormDialog from './Sedes/sede';
 import { blue, yellow } from '@mui/material/colors';
+import { Link } from "react-router-dom";
 
 const AgregarSede = () => {
     const [sedesAreas, setSedesAreas] = useState([]);
@@ -180,8 +181,10 @@ const AgregarSede = () => {
             />
 
             <div className="Sede">
-                
+            <Link to="/" className="salir-imagen" style={{ marginLeft: 'auto' }}></Link>
+
                 <div className="Rectangle" />
+                
                 <input type="text" value={nombreSedeBuscado} onChange={handleNombreSedeChange} placeholder="Buscar Nombre de Área" className='v141_18 ' style={{left: 1050, top: 160}}/>
                 <div className="Tablas" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <TableContainer component={Paper}>
@@ -259,6 +262,7 @@ const AgregarSede = () => {
                         </Table>
                     </TableContainer>
                 </div>
+                
             </div>
             <Dialog open={openDialog} onClose={handleCloseDialog}>
                 <DialogTitle>Actualizar Sede o Área</DialogTitle>
@@ -299,7 +303,7 @@ const AgregarSede = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-
+              
 
 
 
@@ -349,12 +353,14 @@ const AgregarSede = () => {
             <div className="AgregarNuevoEmpleado" style={{ width: 440, height: 50, left: 80, top: 100, position: 'absolute' ,
                 color: 'black' , fontSize: 30, fontFamily: 'Roboto' , fontWeight: '400' , wordWrap: 'break-word' }}>
                 Sedes 
+            
             </div>
             
             <Button color='primary' style={{ left: 990,top: -20}}><FormDialog /></Button>
             <Button onClick={handleAreaClick} color='primary' style={{ left: 1100, top: -20, border: '1px solid blue' }}>Áreas</Button>
                             
         </>
+        
     );
 };
 

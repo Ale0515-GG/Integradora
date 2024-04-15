@@ -3,6 +3,7 @@ import axios from 'axios';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../Actividades/Activi.css'
+import { Link } from "react-router-dom";
 
 function ActivityCRUD() {
   const [employeeData, setEmployeeData] = useState([]);
@@ -79,8 +80,9 @@ function ActivityCRUD() {
   };
 
   return (
+    <header><Link to="/diagrama" className="regresar"></Link>
     <div className="Activi-container">
-    <h1 className="Activi-title">CRUD de Actividades</h1>
+    <h1 className="Activi-title">Asignacion de Actividades</h1>
     {isEmployeeDataLoaded ? (
       <div className="Activi-select-container">
         <label className="Activi-select-label">Selecciona un empleado:</label>
@@ -113,7 +115,7 @@ function ActivityCRUD() {
         <button type="submit" className="Activi-button">Agregar</button>
       </form>
     )}
-  </div>
+  </div></header>
   
   );
 }
