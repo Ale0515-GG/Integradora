@@ -13,7 +13,7 @@ import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora
 import Diagrama from './Screens/Diagrama/Diagrama.jsx'; 
 import Contratos from './Screens/SupAdmin/Contratos/Contratos.jsx';
 import Vacaciones from './Screens/Empleado/SolicitudVacacionesEmpleado/SoliEVaca.jsx'
-import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
+import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones.jsx';
 import Actividades from './Screens/Actividades/Actividades.jsx'
 import Empleado from './Screens/Empleado/NavegacionEmpleado.jsx';
 

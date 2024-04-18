@@ -22,8 +22,10 @@ function IngreSuAd() {
         usuario: usuario,
         acceso: acceso,
       });
-
+      
+      
       const data = response.data;
+
 
       if (response.status === 200) {
         console.log('Inicio de sesión exitoso:', data);

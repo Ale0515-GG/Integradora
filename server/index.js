@@ -16,12 +16,10 @@ app.use(cors());
 app.use(express.json());
 
 // Cadena de conexión a MongoDB Atlas (reemplaza <usuario>, <contraseña> y <basededatos>)
-const uri = 'mongodb+srv://mayra:Tx1xnowEWqYRYc1O@<cluster>.smyne7t.mongodb.net/gatitos?retryWrites=true&w=majority';
-
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conectado a MongoDB Atlas'))
-  .catch(error => console.error('Error al conectar a MongoDB Atlas:', error));
-
+mongoose.connect("mongodb://127.0.0.1:27017/gatitos", { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Conectado a MongoDB'))
+    .catch(error => console.error('Error al conectar a MongoDB:', error));
+    
 app.use('/usuarios', routerUsuarios);
 app.use('/sede', routerSede);
 app.use('/activi', actividadRoutes)
