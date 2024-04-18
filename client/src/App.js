@@ -12,9 +12,13 @@ import VEmpleadoH from './Screens/Empleado/SolicitudHorarioEmple/SoliHoraE.jsx';
 import VacaEmV from './Screens/Empleado/SolicitudVacacionesEmpleado/SoliEVaca.jsx';
 import AgregarArea from './Screens/SupAdmin/AgregarAreas/AgregarArea.jsx';
 import SolicitudH from './Screens/Administrador/Solicitudes de horarios/SoliHora.jsx';
-import Diagrama from './Screens/Diagrama/Diagrama.jsx'; // Importa el componente del diagrama de Gantt
+import Diagrama from './Screens/Diagrama/Diagrama.jsx'; 
 import Contratos from './Screens/SupAdmin/Contratos/Contratos.jsx';
-import Notificaciones from './Screens/Empleado/notificaciones/Notificaciones.jsx';
+
+import Notificaciones from './Screens/Empleado/Notificaciones/Notificaciones.jsx';
+import Actividades from './Screens/Actividades/Actividades.jsx'
+import Empleado from './Screens/Empleado/NavegacionEmpleado.jsx';
+
 
 function App() {
   return (
@@ -30,9 +34,11 @@ function App() {
           <Route path="/SolicitudesH" element={<SolicitudH />} />
           <Route path='/Inicio' element={<Notificaciones/>}/>
           <Route path="/VaEmV" element={<VacaEmV />} />
+          <Route path="/activiti" element={<Actividades />} />
           <Route path="/diagrama" element={<Diagrama />} /> {/* Agrega la ruta para el diagrama de Gantt */}
           <Route path="/Horarios" element={<Horarios />} />
           <Route path="/Contratos" element={<Contratos />}/>
+          <Route path='/NavegacionEmpleado' element={<Empleado/>}/>
         </Routes>
       </Router>
     </div>

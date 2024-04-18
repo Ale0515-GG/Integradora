@@ -1,0 +1,59 @@
+.solicitudes-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #256C98; /* Nuevo color de fondo */
+    padding: 0 20px; /* Añade un espacio entre el borde del encabezado y los elementos internos */
+}
+
+.solicitudes-title {
+    color: white; /* Color blanco */
+    text-align: center; /* Alinea el texto al centro */
+  }
+
+.logo {
+    width: 100px; /* Establece un ancho fijo para el logo */
+    margin-top: 0%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    
+}
+  
+.empleado-info {
+    margin-bottom: 20px;
+}
+
+.boton-container {
+    margin-bottom: 20px;
+}
+
+.solicitud-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.historial-container {
+    width: 100%;
+}
+
+.solicitudes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.solicitudes-table th,
+.solicitudes-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.error-message {
+    color: red;
+}

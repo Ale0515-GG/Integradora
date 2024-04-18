@@ -9,10 +9,12 @@ const HorariosVistaE = () => {
   const [editingIndex, setEditingIndex] = useState(-1);
   const [editedTurno, setEditedTurno] = useState("");
   const [opcionesContrato, setOpcionesContrato] = useState([]);
+  const [empleados, setEmpleados] = useState([]); // Cambié el nombre de la variable a empleados
 
   useEffect(() => {
     cargarSolicitudesPendientes();
     cargarOpcionesContrato();
+    cargarEmpleados(); // Llama a la función para cargar los empleados
   }, []);
 
   const cargarSolicitudesPendientes = async () => {
@@ -43,6 +45,19 @@ const HorariosVistaE = () => {
       },
       { nombre: "Por Turnos", turnos: ["7:00 - 19:00", "19:00 - 7:00"] },
     ]);
+  };
+
+  const cargarEmpleados = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/usuarios');
+      console.log(response.data); // Agrega esta línea para imprimir la respuesta en la consola
+      if (!Array.isArray(response.data)) {
+        throw new Error('La respuesta no es un array de usuarios');
+      }
+      setEmpleados(response.data);
+    } catch (error) {
+      console.error('Error al obtener los usuarios:', error);
+    }
   };
 
   const handleTurnoChange = (index, valor) => {
@@ -86,68 +101,84 @@ const HorariosVistaE = () => {
       alert('Error al cancelar la solicitud');
     }
   };
+
   return (
     <body className="VisE">
-    <div className="VistaE">
-      <div className="VistaE-header">
-        <div className="logo"></div>
-        <h1 className="VistaE-title">Solicitudes Pendientes</h1>
-        <Link to="/Inicio" className="regresar"></Link>
-      </div>
-      
-      <div className="VistaE-table">
-        {loading ? (
-          <p>Cargando solicitudes pendientes...</p>
-        ) : solicitudes.length > 0 ? (
-          <div>
-            {solicitudes.map((solicitud, index) => (
-              <div key={index} className="VistaE-row">
-                {editingIndex === index ? (
-                  <div className="VistaE-row">
-                    <select
-                      value={editedTurno}
-                      onChange={(e) => setEditedTurno(e.target.value)}
-                    >
-                      <option value="">Seleccionar turno</option>
-                      {opcionesContrato.map((contrato) => (
-                        solicitud.tipoContrato === contrato.nombre &&
-                        contrato.turnos.map((turno, i) => (
-                          <option key={i} value={turno}>
-                            {turno}
-                          </option>
-                        ))
-                      ))}
-                    </select>
-                    <div className="VistaE-boton-container">
-                      <button className="VistaE-editar" onClick={() => saveChanges(index)}>Guardar</button>
-                      <button className="VistaE-cancelar-solicitud" onClick={() => cancelEdit(index)}>Cancelar</button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="VistaE-row">
-                    <div className="VistaE-datos">
-                      <div className="VistaE-tipo-contrato">
-                        <p>Tipo de Contrato: {solicitud.tipoContrato}</p>
-                      </div>
-                      <div className="VistaE-turno">
-                        <p>Turno: {solicitud.turno}</p>
+      <div className="VistaE">
+        <div className="VistaE-header">
+          <div className="logo"></div>
+          <h1 className="VistaE-title">Solicitudes Pendientes</h1>
+          <Link to="/Inicio" className="regresar"></Link>
+        </div>
+        
+        <div className="VistaE-table">
+          {loading ? (
+            <p>Cargando solicitudes pendientes...</p>
+          ) : solicitudes.length > 0 ? (
+            <div>
+              {solicitudes.map((solicitud, index) => (
+                <div key={index} className="VistaE-row">
+                  {editingIndex === index ? (
+                    <div className="VistaE-row">
+                      <select
+                        value={editedTurno}
+                        onChange={(e) => setEditedTurno(e.target.value)}
+                      >
+                        <option value="">Seleccionar turno</option>
+                        {opcionesContrato.map((contrato) => (
+                          solicitud.tipoContrato === contrato.nombre &&
+                          contrato.turnos.map((turno, i) => (
+                            <option key={i} value={turno}>
+                              {turno}
+                            </option>
+                          ))
+                        ))}
+                      </select>
+                      <div className="VistaE-boton-container">
+                        <button className="VistaE-editar" onClick={() => saveChanges(index)}>Guardar</button>
+                        <button className="VistaE-cancelar-solicitud" onClick={() => cancelEdit(index)}>Cancelar</button>
                       </div>
                     </div>
-                    <div className="VistaE-botones">
-                      <button className="VistaE-editar" onClick={() => startEdit(index)}>Editar</button>
-                      <button className="VistaE-cancelar-solicitud" onClick={() => cancelarSolicitud(index)}>Cancelar Solicitud</button>
+                  ) : (
+                    <div className="VistaE-row">
+                      <div className="VistaE-datos">
+                        <div className="VistaE-tipo-contrato">
+                          <p>Tipo de Contrato: {solicitud.tipoContrato}</p>
+                        </div>
+                        <div className="VistaE-turno">
+                          <p>Turno: {solicitud.turno}</p>
+                        </div>
+                        {/* Muestra los datos del empleado */}
+                        {empleados.map((empleado) => {
+                          if (empleado._id === solicitud.idEmpleado) {
+                            return (
+                              <div key={empleado._id}>
+                                <p>Nombre: {empleado.nombreempleado}</p>
+                                <p>Rol: {empleado.rol}</p>
+                                <p>Área: {empleado.area}</p>
+                                <p>Sede: {empleado.sede}</p>
+                              </div>
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                      <div className="VistaE-botones">
+                        <button className="VistaE-editar" onClick={() => startEdit(index)}>Editar</button>
+                        <button className="VistaE-cancelar-solicitud" onClick={() => cancelarSolicitud(index)}>Cancelar Solicitud</button>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No hay solicitudes pendientes de horarios.</p>
-        )}
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No hay solicitudes pendientes de horarios.</p>
+          )}
+        </div>
       </div>
-    </div>
     </body>
   );
 }  
+
 export default HorariosVistaE;

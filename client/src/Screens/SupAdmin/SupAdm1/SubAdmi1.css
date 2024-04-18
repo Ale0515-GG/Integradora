@@ -36,6 +36,7 @@
 .admin-table {
   min-width: 100%; /* Permitir que la tabla sea más ancha que su contenedor para activar el desplazamiento horizontal */
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .admin-table th,
@@ -83,27 +84,11 @@
 }
 
 .agregar {
-  background-color: #4caf50;
+  background-color: green;
   color: white;
 }
 
-.modificar,
-.eliminar,
-.guardar {
-  background-color: #008CBA; /* Color de fondo */
-  color: white; /* Color del texto */
-  padding: 8px 12px; /* Ajustar el relleno */
-  border: none; /* Quitar el borde */
-  border-radius: 4px; /* Agregar bordes redondeados */
-  cursor: pointer; /* Cambiar el cursor al pasar sobre ellos */
-  width: 100px; /* Ancho fijo para todos los botones */
-  text-align: center; /* Alinear texto al centro */
-  margin-right: 10px; /* Agregar separación entre botones */
-}
 
-.eliminar {
-  background-color: #f44336; /* Color de fondo rojo */
-}
 
 
 .error-message {
@@ -120,4 +105,51 @@
   overflow: hidden;
 }
 
+.salir-imagen {
+  /* URL de la imagen */
+  background-image: url('../SupAdm1/images/v65_16.png');
+  /* Ajuste del tamaño de la imagen */
+  background-size: cover;
+  /* Altura y ancho del contenedor */
+  width: 40px;
+  height: 40px;
+}
 
+/* Estilo para el input de búsqueda */
+.input-busqueda {
+  margin-bottom: 0px;
+  border: 1px solid #76B2E2;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 16px;
+  outline: none;
+  display: block; /* Para que ocupe todo el ancho disponible */
+  margin: 0 auto; /* Para centrarlo horizontalmente */
+}
+
+
+/* Cambia el color del texto del placeholder */
+.input-busqueda::placeholder {
+  color: #76B2E2;
+}
+
+.input-busqueda {
+  color: #000; 
+}
+
+.input-busqueda:focus {
+  border-color: #4D8EB8; 
+}
+
+.acciones-button-modificar {
+  display: inline-block;
+  margin-right: 5px; /* Ajusta el espacio entre los botones si es necesario */
+  background-color: #4D8EB8; /* Color azul claro */
+  color: white; /* Texto en blanco para mejor contraste */
+}
+
+.acciones-button-eliminar {
+  display: inline-block;
+  margin-right: 5px; /* Ajusta el espacio entre los botones si es necesario */
+  background-color: red; /* Color rojo claro */
+  color: white;}

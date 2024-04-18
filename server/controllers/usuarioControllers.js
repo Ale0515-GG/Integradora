@@ -30,10 +30,24 @@ export const getUsuariosUno = async (req, res) => {
 };
 
 // Función para crear un nuevo usuario
+// Función para crear un nuevo usuario
 export const postUsuarios = async (req, res) => {
     try {
-        const data = new schemaEmpl(req.body);
+        // Extraer la contraseña del cuerpo de la solicitud
+        const { acceso } = req.body;
+
+        // Encriptar la contraseña antes de guardarla en la base de datos
+        const hashedPassword = await bcrypt.hash(acceso, 10); // El segundo argumento es el número de rondas de hashing
+
+        // Crear un nuevo objeto de usuario con la contraseña encriptada
+        const data = new schemaEmpl({
+            ...req.body,
+            acceso: hashedPassword // Usar la contraseña encriptada
+        });
+
+        // Guardar el usuario en la base de datos
         await data.save();
+
         res.send({ success: true, message: "Dato guardado exitosamente", data: data });
     } catch (error) {
         console.error("Error al crear el usuario:", error);
@@ -73,26 +87,30 @@ export const deleteUsuarios = async (req, res) => {
 
 
 
-// Función para iniciar sesión
-export const loginUsuario = async (req, res) => {
+export const login = async (req, res) => {
     const { usuario, acceso } = req.body;
+
     try {
-        const usuarioEncontrado = await schemaEmpl.findOne({ usuario });
-        if (!usuarioEncontrado) {
-            return res.status(404).json({ success: false, message: "El usuario no existe" });
+        const user = await schemaEmpl.findOne({ usuario });
+
+        if (!user) {
+            return res.status(401).json({ success: false, message: "Usuario no encontrado" });
         }
-        
-        const match = await bcrypt.compare(acceso, usuarioEncontrado.acceso);
-        if (match) {
-            res.json({ success: true, message: "Inicio de sesión exitoso" });
-        } else {
-            res.status(401).json({ success: false, message: "Credenciales incorrectas" });
+
+        const passwordMatch = await bcrypt.compare(acceso, user.acceso);
+        if (!passwordMatch) {
+            return res.status(401).json({ success: false, message: "Credenciales incorrectas" });
         }
     } catch (error) {
         console.error("Error al iniciar sesión:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });
     }
 };
+
+
+
+
+
 import fs from 'fs';
 import multer from 'multer';
 
@@ -116,7 +134,7 @@ export const subirEmpleados = async (req, res) => {
                 nombreempleado: empleado.nombreempleado || '',
                 usuario: empleado.usuario || '',
                 tipoUsuario: empleado.tipoUsuario || '',
-                acceso: empleado.acceso || '', // Supongo que la contraseña se guarda en el campo "Contrasena"
+                acceso: empleado.acceso || '', 
                 apellidoP: empleado.apellidoP || '',
                 apellidoM: empleado.apellidoM || '',
                 correo: empleado.correo || '',
