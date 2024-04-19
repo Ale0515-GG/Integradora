@@ -21,17 +21,5 @@ const schemaEmpl = new Schema({
     timestamps: true
 })
 
-schemaEmpl.pre('save', async function (next) {
-    if (!this.isModified('acceso')) {
-        return next();
-    }
-    try {
-        const hashedPassword = await bcrypt.hash(this.acceso, 10);
-        this.acceso = hashedPassword;
-        next();
-    } catch (error) {
-        return next(error);
-    }
-});
 
 export default mongoose.model("empleados", schemaEmpl);

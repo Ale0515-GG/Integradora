@@ -83,39 +83,43 @@ export const deleteUsuarios = async (req, res) => {
     }
 };
 
-
-
-
-//login
 export const login = async (req, res) => {
-    const { usuario, contrasena } = req.body;
-  
-    try {
-      const usuarios = await schemaEmpl.findOne({ usuario });
-      res.json({usuario})
+    const { usuario, acceso } = req.body;
 
-      if (usuarios) {
-        const passwordMatch = await bcrypt.compare(contrasena, usuarios.contrasena);
-        if (passwordMatch) {
-  
-          res.json({ 
-            success: true, 
-            message: "Inicio de sesión exitoso", 
-            usuario: usuario ,
-           
-          });
-        } else {
-          res.status(401).json({ success: false, message: "Contraseña incorrecta" });
+    try {
+        // Busca el usuario en la base de datos
+        const usuarioEncontrado = await schemaEmpl.findOne({ usuario });
+
+        // Si el usuario no se encuentra, devuelve un error 401 (no autorizado)
+        if (!usuarioEncontrado) {
+            return res.status(401).json({ success: false, message: "Usuario no encontrado" });
         }
-      } else {
-        res.status(401).json({ success: false, message: "Usuario no encontrado" });
-      }
+
+        // Desencriptar la contraseña almacenada
+        const storedPassword = usuarioEncontrado.acceso;
+
+        // Comparar la contraseña proporcionada con la contraseña almacenada desencriptada
+        if (acceso === storedPassword) {
+            // Si las contraseñas coinciden, devuelve un mensaje de inicio de sesión exitoso
+            // y también envía el tipo de usuario en la respuesta
+            res.status(200).json({ 
+                success: true, 
+                message: "Inicio de sesión exitoso", 
+                tipoUsuario: usuarioEncontrado.tipoUsuario
+            });
+        } else {
+            // Si las contraseñas no coinciden, devuelve un error 401 (no autorizado)
+            console.log('Contraseña proporcionada:', acceso);
+            console.log('Contraseña almacenada encriptada:', storedPassword);
+            return res.status(401).json({ success: false, message: "Contraseña incorrecta" });
+        }
+
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-      res.status(500).json({ success: false, message: "Error del servidor" });
+        // Si ocurre algún error durante el proceso, devuelve un error 500 (error interno del servidor)
+        console.error("Error al iniciar sesión:", error);
+        res.status(500).json({ success: false, message: "Error del servidor" });
     }
-  };
-  
+};
 
 import fs from 'fs';
 import multer from 'multer';
