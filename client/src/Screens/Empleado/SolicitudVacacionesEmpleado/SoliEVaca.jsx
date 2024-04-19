@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./mainEV.css"; // Importa tu archivo CSS de estilos
+import "./mainEV.css";
 import { Link } from "react-router-dom";
 
 const SolicitudesVacacionesVista = () => {
@@ -21,19 +21,25 @@ const SolicitudesVacacionesVista = () => {
   };
 
   const guardarSolicitud = async () => {
+    if (fechasSeleccionadas.length === 0) {
+      setError('Por favor selecciona al menos una fecha');
+      return;
+    }
+  
     try {
       const fechasTexto = fechasSeleccionadas.map((date) =>
         date.toISOString().split("T")[0]
       );
-
+  
       await Axios.post("http://localhost:3001/solicitudVacaciones/create", {
         fechas: fechasTexto,
       });
-
+  
       setError("");
       obtenerHistorialSolicitudes(); 
       setMostrarFormulario(false); 
       setFechasSeleccionadas([]); 
+      alert('Solicitud de vacaciones creada correctamente');
     } catch (error) {
       console.error("Error al solicitar las vacaciones:", error.message);
       setError("Error al solicitar las vacaciones");
@@ -68,10 +74,6 @@ const SolicitudesVacacionesVista = () => {
 
   const modificarSolicitud = async () => {
     try {
-      console.log("Fecha de inicio seleccionada:", fechaIni);
-      console.log("Fecha de fin seleccionada:", fechaTer);
-      console.log("Solicitud seleccionada:", solicitudSeleccionada);
-
       if (solicitudSeleccionada) {
         const id = solicitudSeleccionada._id;
         const fechasTexto = [fechaIni.toISOString().split("T")[0], fechaTer.toISOString().split("T")[0]];
@@ -82,7 +84,7 @@ const SolicitudesVacacionesVista = () => {
         );
   
         setError("");
-        await obtenerHistorialSolicitudes(); // Esperar a que se complete la actualización antes de obtener el historial
+        await obtenerHistorialSolicitudes(); 
         setMostrarFormulario(false); 
         setFechasSeleccionadas([]); 
         setMostrarModificar(false); 
@@ -114,8 +116,9 @@ const SolicitudesVacacionesVista = () => {
   return (
     <div className="solicitudes-container">
       <div className="solicitudes-header">
-      <div className="logo-container">
-        <div className="logo"></div></div>
+        <div className="logo-container">
+          <div className="logo"></div>
+        </div>
         <Link to="/" className="regresar"></Link>
         <h1 className="solicitudes-title">Solicitud de Vacaciones</h1>
       </div>
@@ -194,4 +197,3 @@ const SolicitudesVacacionesVista = () => {
 };
 
 export default SolicitudesVacacionesVista;
-
