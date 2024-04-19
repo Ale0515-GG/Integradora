@@ -86,7 +86,7 @@ export const deleteUsuarios = async (req, res) => {
 
 
 
-
+//Login
 export const login = async (req, res) => {
     const { usuario, acceso } = req.body;
 
@@ -98,9 +98,11 @@ export const login = async (req, res) => {
         }
 
         const passwordMatch = await bcrypt.compare(acceso, user.acceso);
+
         if (!passwordMatch) {
-            return res.status(401).json({ success: false, message: "Credenciales incorrectas" });
+            return res.status(401).json({ success: false, message: "Contraseña no es correcta lo siento" });
         }
+
     } catch (error) {
         console.error("Error al iniciar sesión:", error);
         res.status(500).json({ success: false, message: "Error del servidor" });

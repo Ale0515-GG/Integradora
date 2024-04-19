@@ -14,23 +14,28 @@
 }
 
 .VistaE-header {
-  position: fixed; /* Hace que el encabezado se mantenga fijo en la pantalla */
-  top: 0; /* Lo coloca en la parte superior de la pantalla */
-  left: 0; /* Lo coloca en el borde izquierdo de la pantalla */
-  width: 100%; /* Lo hace ocupar todo el ancho de la pantalla */
+  position: absolute;
+  top: 0px; /* Aumenta este valor para mover el encabezado hacia abajo */
+  left: 0;
+  height: 130px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #256c98;
-  padding: 4px 20px; /* Agrega espacio interno */
-  color: white; /* Cambia el color del texto a blanco */
+  padding: 20px 0; /* Modifica el espacio interno para centrar verticalmente */
+  color: white;
+  
 }
 
 
 .VistaE-title {
   font-size: 30px;
   font-weight: bold;
-  margin-right: 150px ;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ddd;
 }
 
 .VistaE-table {

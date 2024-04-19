@@ -16,33 +16,35 @@ const Notificaciones = ({ nombreempleado }) => {
       navigate('/AgregarSede');
     };
   const handleHorarioClick = () => {
-      navigate('/SoliHEmple');
+      navigate('/SolicitudesH');
     };
   const handleVacacionesClick = () => {
-      navigate('/SoliHEmple');
+      navigate('/Vacaciones');
     };
   const handleContratosClick = () => {
       navigate('/Contratos');
     };
+    const handleGanttClick = () => {
+      navigate('/Activiti');
+    };
+
   return (
     <div class="v60_3">
             <div class="v65_8"></div>
-            <div class="v65_10"></div>
+            <div clas= "logo" img="./Empleado/notificaciones/images/logo.png"></div>
             <span class="v65_11">Chrono Magnament </span>
             <div class="v65_13"></div><span class="v65_14"></span>
-            <div class="v65_16"></div>
+           
             <div class="v65_17"></div>
             <div class="sedes-click" onClick={handleSedesClick}></div>
-            <div class="v65_24"></div>
-            <div class="vacaciones2"></div> 
-            <div class="v65_36"></div>
-            <div class="v65_22"></div>
             <div class="usuario-click" onClick={handleUsuarioClick}></div>
             <span class="sedes2" onClick={handleSedesClick}>Sedes</span>
             <span class="usuario2" onClick={handleUsuarioClick}>Usuarios </span>
             <span class="vacaciones-click" onClick={handleVacacionesClick}>Vacaciones</span>
             <span class="contratos-click" onClick={handleContratosClick}>Contrato</span>
-            <span class="v65_41" onClick={handleHorarioClick}>Horario</span>
+            <span class="horarios2" onClick={handleHorarioClick}>Horario</span>
+            <span class="gantt-click" onClick={handleGanttClick}>Actividades</span>
+            <div class="gantt2"></div> 
             <div class="v65_26"></div>
             <div class="v65_29"></div>
             <span class="v65_33"> Buenos días, {nombreempleado}</span>

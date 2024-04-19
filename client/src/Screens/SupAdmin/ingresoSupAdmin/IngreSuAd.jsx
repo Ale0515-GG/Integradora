@@ -13,6 +13,11 @@ function IngreSuAd() {
     e.preventDefault();
 
     try {
+      if (!usuario || !acceso) {
+        setError('Por favor, ingresa el usuario y la contraseña.');
+        return;
+      }
+
       const response = await axios.post(`http://localhost:3001/usuarios/login`, {
         usuario: usuario,
         acceso: acceso,
@@ -30,19 +35,34 @@ function IngreSuAd() {
             navigate('/AgregarSedes');
             break;
           case 'Empleado':
+            navigate('/Inicio');
+            break;
           case 'Root': 
-            navigate('/inicio');
+            navigate('/NavegacionEmpleado');
             break;
           default:
             console.log('Tipo de usuario desconocido');
             break;
         }
       } else {
-        setError(data.message || 'Error al iniciar sesión');
+        if (response.status === 401 && data.message === "Usuario no encontrado") {
+          setError('El usuario ingresado no existe.');
+        } else {
+          setError('Contraseña incorrecta. Por favor, inténtalo de nuevo.');
+        }
       }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
-      setError('Error al iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
+      if (error.response) {
+        // Error de respuesta del servidor
+        setError(error.response.data.message || 'Error al iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
+      } else if (error.request) {
+        // Error de comunicación con el servidor
+        setError('Error de comunicación con el servidor. Por favor, inténtalo de nuevo más tarde.');
+      } else {
+        // Error en el cliente
+        setError('Error inesperado. Por favor, inténtalo de nuevo más tarde.');
+      }
     }
   };
 

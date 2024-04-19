@@ -65,7 +65,7 @@ select {
   background-color: #eceff1;
 }
 
-.title {
+.titleH {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
@@ -109,26 +109,22 @@ button:hover {
 border-color: #000000;
 }
 
-.logo {
-  width: 180px;
-  height: 120px;
-  background: url("../../../Empleado/Notificaciones/images/v65_10.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  overflow: hidden;
-}
 
 .regresar {
-  width: 60px; /* Nuevo tamaño del contenedor */
-  height: 60px; /* Nuevo tamaño del contenedor */
-  background: url("../../../Empleado/Notificaciones/images/v65_16.png");
-  background-repeat: no-repeat;
-  background-position: center center;
+  
+  /* Ajuste del tamaño de la imagen */
   background-size: cover;
-  opacity: 1;
-  overflow: hidden;
+  /* Altura y ancho del contenedor */
+  width: 40px;
+  height: 40px;
+  background-image: url('../../../Empleado/notificaciones/images/v65_16.png');
+  
+}
+.logo {
+  background-image: url('../images/v281_64.png');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
 }
 
 

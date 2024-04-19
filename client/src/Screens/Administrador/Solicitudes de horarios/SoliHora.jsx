@@ -54,13 +54,13 @@ const SolicitudesPendientes = () => {
     <body className="bodySH">
     <div >
       <div className="rectangulo-imagenes">
-        <div className="title">Solicitud de horarios</div>
+        <div className="titleH">Solicitud de horarios</div>
         <div className="crud-container">
           <div style={{ position: "absolute", top: "4px", left: "29px" }}>
             <div className="logo"></div>
           </div>
         </div>
-        <Link to="/Inicio" className="regresar"></Link>
+        <Link to="/SoliHEmple" className="regresar"></Link>
       </div>
       <div className="info-adicional">
       <h2>Información sobre los contratos</h2>
