@@ -1,108 +1,308 @@
-/* Estilos para el contenedor principal */
+/* Contenedor principal */
 .v281_60 {
   width: 100%;
-  min-height: 100vh;
-  background-color: #f9f9f9;
+  min-height: 100vh; /* Cambié a min-height para cubrir el viewport */
+  background-color: #f9f9f9; /* Color de fondo suave */
   position: relative;
-}
-
-/* Estilos para el encabezado */
-.v281_61 {
-  width: 100%;
-  height: 80px;
-  background-color: #256c98;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.v281_61 h1 {
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 80px;
-  margin-left: 20px;
-}
-
-/* Estilos para el contenedor de la tabla */
-.v281_68 {
-  width: 90%;
-  max-width: 1200px;
-  background-color: #ffffff;
-  margin: 100px auto;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
-/* Estilos para la tabla */
-.v281_68 table {
+/* Encabezado */
+.v281_61 {
+  width: 100%;
+  height: 100px;
+  background-color: #256c98; /* Color de fondo del encabezado */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.v281_63 {
+  width: auto; /* Ajusté el ancho al contenido */
+  color: #ffffff;
+  position: absolute;
+  top: 50%; /* Centrado vertical */
+  transform: translateY(-50%);
+  left: 150px; /* Espacio desde el borde izquierdo */
+  font-family: 'Inter', sans-serif;
+  font-weight: 500; /* Cambié a 700 para negrita */
+  font-size: 30px;
+  opacity: 1;
+}
+
+/* Contenedor de la tabla */
+.v281_68 {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #f1f4f6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10 auto; /* Añadir margen automático */
+}
+
+/* Tabla */
+#example {
   width: 100%;
   border-collapse: collapse;
 }
 
-.v281_68 th,
-.v281_68 td {
-  border: 1px solid #e0e0e0;
-  padding: 15px;
-  text-align: center;
+#example th,
+#example td {
+  border: 1px solid #ffffff; /* Color del borde */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
 }
 
-.v281_68 th {
-  background-color: #256c98;
-  color: #ffffff;
+#example th {
+  background-color: #256c98; /* Color de fondo para las celdas de encabezado */
+  color: #ffffff; /* Color del texto del encabezado */
+  font-weight: 200; /* Fuente negrita para los encabezados */
 }
 
-.v281_68 tr:nth-child(even) {
-  background-color: #f2f2f2;
+#example tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para las filas pares */
 }
 
-.v281_68 tr:hover {
-  background-color: #e5f0fa;
+#example tr:hover {
+  background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
 }
 
-/* Estilos para el botón "Agregar Contrato" */
-.nuevo-contrato button {
-  background-color: #256c98;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+/***************************************************************************************************/
+
+/* Estilos para la tabla de empleados aceptados */
+#empleadosAceptados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 800px; /* Espacio superior */
+}
+
+#empleadosAceptados th,
+#empleadosAceptados td {
+  border: 1px solid #ffffff; /* Color del borde */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+}
+.v358_4 {
+  width: 150px;
+  height: 50px;
+  background: url("./v358_4.png"); /* Ajustar la ruta de la imagen si es necesario */
+  background-repeat: no-repeat; /* Dejar sin repetición */
+  background-position: center center; /* Centrar la imagen */
+  background-size: cover; /* Ajustar el tamaño de la imagen */
+  opacity: 1;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  overflow: hidden;
+}
+
+#empleadosAceptados th {
+  background-color: #256c98; /* Color de fondo para las celdas de encabezado */
+  color: #ffffff; /* Color del texto del encabezado */
+  font-weight: 600; /* Fuente negrita para los encabezados */
+}
+
+#empleadosAceptados tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para las filas pares */
+}
+
+#empleadosAceptados tr:hover {
+  background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
+}
+
+/* Estilos para el botón "Guardar Cambios" */
+.v359_1 {
+  background-color: #76b2e2; /* Color azul */
+  color: #ffffff; /* Texto blanco */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Esquinas redondeadas */
   cursor: pointer;
-  display: block;
-  margin: 20px auto;
-  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Espacio superior */
+  display: block; /* Cambié a bloque para que ocupe el ancho completo */
+  margin: 0 auto; /* Centrado horizontal */
+  max-width: 200px; /* Ancho máximo */
 }
-
-.nuevo-contrato button:hover {
-  background-color: #1c5375;
-}
-
-/* Estilos para los botones de acciones dentro de la tabla */
-.v281_68 button {
-  background-color: transparent;
-  color: #256c98;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.v281_68 button:hover {
-  color: #1c5375;
-}
-
-/* Estilos específicos para botones dentro de la tabla */
+/* Estilos para el botón "Eliminar" */
 .v281_68 button.eliminar {
-  color: #d60303; /* Color rojo */
+  background-color: #d60303; /* Color rojo */
+  color: #ffffff; /* Texto blanco */
 }
 
+/* Estilos para el botón "Eliminar" */
 .v281_68 button.aceptar {
-  color: #07a707; /* Color verde */
+  background-color: #07a707; /* Color rojo */
+  color: #ffffff; /* Texto blanco */
 }
 
-.v281_68 button.agregar,
+/* Estilos para el botón "Agregar Horarios" */
+.v281_68 button.agregar {
+  background-color: #ffffff; /* Color blanco */
+  color: #000000; /* Texto negro */
+}
+
+/* Estilos para el botón "Modificar Horarios" */
 .v281_68 button.modificar {
-  color: #256c98; /* Color azul */
+  background-color: #ffffff; /* Color blanco */
+  color: #000000; /* Texto negro */
+}
+
+/* Estilos para la tabla de empleados aceptados */
+#empleadosAceptados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 500px; /* Espacio superior ajustado */
+}
+
+#empleadosAceptados th,
+#empleadosAceptados td {
+  border: 1px solid #ffffff; /* Color del borde */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+}
+
+#empleadosAceptados th {
+  background-color: #256c98; /* Color de fondo para las celdas de encabezado */
+  color: #ffffff; /* Color del texto del encabezado */
+  font-weight: 60; /* Fuente negrita para los encabezados */
+}
+
+#empleadosAceptados tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para las filas pares */
+}
+
+#empleadosAceptados tr:hover {
+  background-color: #8cb0d4; /* Color de fondo al pasar el ratón sobre la fila */
+}
+/* Estilos para la tabla */
+#example th:nth-child(5),
+#example td:nth-child(5) {
+  white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+/*****************************************************************/
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 9999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+/* Manú Depegable */
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 8px 12px;
+}
+
+.dropdown-menu ul li button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu ul li button:hover {
+  background-color: #ddd;
+}
+
+
+
+/* Estilo para el contenedor del menú */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo para el ícono del menú desplegable */
+.dropdown-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Tamaño del ícono */
+  color: #000; /* Color del ícono */
+}
+
+/* Estilo para el menú desplegable */
+.dropdown-menu {
+  position: absolute;
+  top: 30px; /* Posición vertical del menú */
+  right: 0; /* Posición horizontal del menú */
+  background-color: #fff; /* Color de fondo del menú */
+  border: 1px solid #ccc; /* Borde del menú */
+  border-radius: 5px; /* Borde redondeado del menú */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra del menú */
+}
+
+/* Estilo para la lista de opciones del menú */
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo para cada opción del menú */
+.dropdown-menu li {
+  padding: 10px;
+}
+
+/* Estilo para los botones dentro del menú desplegable */
+.dropdown-menu button {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  color: #000; /* Color del texto */
+  cursor: pointer; /* Cambia el cursor al pasar sobre los botones */
+}
+
+/* Estilo al pasar el cursor sobre los botones del menú */
+.dropdown-menu button:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el cursor */
 }

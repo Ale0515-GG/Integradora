@@ -1,101 +1,349 @@
-import React, { useState } from 'react';
-import './Contratos.css'; // Importa el archivo CSS
+import React, { useState, useEffect } from "react";
+import { Button, FormControl, Table, Form, Modal } from "react-bootstrap";
+import "./Contratos.css";
 
 const Contratos = () => {
   const [contratos, setContratos] = useState([]);
-
   const [nuevoContrato, setNuevoContrato] = useState({
-    area: '',
-    sede: '',
-    tipoContrato: 1
+    nombreContrato: "",
+    fechaInicio: "",
+    fechaFin: "",
+    diasLaborales: "",
+    diasDescanso: "",
   });
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [contratoSeleccionado, setContratoSeleccionado] = useState(null);
+  const [valoresContratoSeleccionado, setValoresContratoSeleccionado] = useState({
+    nombreContrato: "",
+    fechaInicio: "",
+    fechaFin: "",
+    diasLaborales: "",
+    diasDescanso: "",
+  });
+  const [mostrarModalActualizar, setMostrarModalActualizar] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNuevoContrato({
-      ...nuevoContrato,
-      [name]: value
-    });
-  };
-
-  const handleAgregarContrato = () => {
-    setContratos([...contratos, { ...nuevoContrato, id: contratos.length + 1 }]);
-    setNuevoContrato({
-      area: '',
-      sede: '',
-      tipoContrato: 1
-    });
-  };
-
-  const handleEliminarContrato = () => {
-    setContratos([]);
-  };
-
-  const handleEditarContrato = (id, field, value) => {
-    const nuevosContratos = contratos.map(contrato => {
-      if (contrato.id === id) {
-        return { ...contrato, [field]: value };
+  useEffect(() => {
+    const fetchContratos = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/contratos");
+        if (!response.ok) {
+          throw new Error("No se pudo obtener la lista de contratos");
+        }
+        const data = await response.json();
+        setContratos(data);
+      } catch (error) {
+        console.error(error);
       }
-      return contrato;
+    };
+
+    fetchContratos();
+  }, []);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNuevoContrato((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleAgregarContrato = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/contratos/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevoContrato),
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo agregar el contrato");
+      }
+
+      const data = await response.json();
+      setContratos([...contratos, data]);
+      resetFormulario();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEliminarContrato = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3001/contratos/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("No se pudo eliminar el contrato");
+      }
+      const nuevosContratos = contratos.filter((contrato) => contrato._id !== id);
+      setContratos(nuevosContratos);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const abrirModalActualizar = (contrato) => {
+    setContratoSeleccionado(contrato);
+    setValoresContratoSeleccionado({ ...contrato });
+    setMostrarModalActualizar(true);
+  };
+
+  const cerrarModalActualizar = () => {
+    setContratoSeleccionado(null);
+    setMostrarModalActualizar(false);
+  };
+
+  const handleActualizarContrato = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/contratos/${contratoSeleccionado._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(valoresContratoSeleccionado),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("No se pudo actualizar el contrato");
+      }
+      const data = await response.json();
+      const index = contratos.findIndex((c) => c._id === contratoSeleccionado._id);
+      const nuevosContratos = [...contratos];
+      nuevosContratos[index] = data;
+      setContratos(nuevosContratos);
+      cerrarModalActualizar();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const resetFormulario = () => {
+    setNuevoContrato({
+      nombreContrato: "",
+      fechaInicio: "",
+      fechaFin: "",
+      diasLaborales: "",
+      diasDescanso: "",
     });
-    setContratos(nuevosContratos);
+    setMostrarFormulario(false);
   };
 
   return (
-    <div className="v281_60 contratos-container">
-      <div className="v281_61">
-        <p className="v281_63">ChronoMagnament</p>
-        <div className="v358_4"></div> {/* Aquí se mostrará la imagen */}
-      </div>
-      <h2>Contratos</h2>
-      <div className="v281_68 contratos-table-container">
-        <table className="contratos-table">
-          <thead>
-            <tr>
-              <th>Área</th>
-              <th>Sede</th>
-              <th>Tipo de Contrato</th>
-              <th>Acciones</th>
+    <div>
+      <Table className="table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Nombre Contrato</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Días Laborales</th>
+            <th>Días de Descanso</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {contratos.map((contrato, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{contrato.nombreContrato}</td>
+              <td>{contrato.fechaInicio}</td>
+              <td>{contrato.fechaFin}</td>
+              <td>{contrato.diasLaborales}</td>
+              <td>{contrato.diasDescanso}</td>
+              <td>
+                <Button
+                  variant="info"
+                  onClick={() => abrirModalActualizar(contrato)}
+                >
+                  Actualizar
+                </Button>{" "}
+              </td>
+              <td>
+                <Button
+                  variant="danger"
+                  onClick={() => handleEliminarContrato(contrato._id)}
+                >
+                  Eliminar
+                </Button>{" "}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {contratos.map((contrato, index) => (
-              <tr key={index}>
-                <td>
-                  <input type="text" className="contratos-input" value={contrato.area} onChange={(e) => handleEditarContrato(index, 'area', e.target.value)} />
-                </td>
-                <td>
-                  <input type="text" className="contratos-input" value={contrato.sede} onChange={(e) => handleEditarContrato(index, 'sede', e.target.value)} />
-                </td>
-                <td>
-                  <select className="contratos-select" value={contrato.tipoContrato} onChange={(e) => handleEditarContrato(index, 'tipoContrato', parseInt(e.target.value))}>
-                    <option value={1}>Tipo 1</option>
-                    <option value={2}>Tipo 2</option>
-                    <option value={3}>Tipo 3</option>
-                  </select>
-                </td>
-                <td>
-                  <button className="action-button eliminar" onClick={() => handleEliminarContrato(index)}>Eliminar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </Table>
+
+      <div className="boton-container">
+        <Button
+          variant="success"
+          className="boton-verde"
+          onClick={() => setMostrarFormulario(true)}
+        >
+          Agregar
+        </Button>{" "}
       </div>
-      <div className="eliminar-todos-contratos">
-        <button className="action-button eliminar" onClick={handleEliminarContrato}>Eliminar Todos los Contratos</button>
-      </div>
-      <div className="nuevo-contrato">
-        <h3>Agregar Nuevo Contrato</h3>
-        <input type="text" className="contratos-input" name="area" value={nuevoContrato.area} onChange={handleInputChange} placeholder="Área" />
-        <input type="text" className="contratos-input" name="sede" value={nuevoContrato.sede} onChange={handleInputChange} placeholder="Sede" />
-        <select className="contratos-select" name="tipoContrato" value={nuevoContrato.tipoContrato} onChange={handleInputChange}>
-          <option value={1}>Tipo 1</option>
-          <option value={2}>Tipo 2</option>
-          <option value={3}>Tipo 3</option>
-        </select>
-        <button className="action-button" onClick={handleAgregarContrato}>Agregar Contrato</button>
-      </div>
+
+      <Modal
+        show={mostrarFormulario}
+        onHide={() => setMostrarFormulario(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Contrato</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formNombreContrato">
+              <Form.Label>Nombre Contrato</Form.Label>
+              <FormControl
+                type="text"
+                name="nombreContrato"
+                value={nuevoContrato.nombreContrato}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formFechaInicio">
+              <Form.Label>Fecha de Inicio</Form.Label>
+              <FormControl
+                type="date"
+                name="fechaInicio"
+                value={nuevoContrato.fechaInicio}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formFechaFin">
+              <Form.Label>Fecha de Fin</Form.Label>
+              <FormControl
+                type="date"
+                name="fechaFin"
+                value={nuevoContrato.fechaFin}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formDiasLaborales">
+              <Form.Label>Días Laborales</Form.Label>
+              <FormControl
+                type="number"
+                name="diasLaborales"
+                value={nuevoContrato.diasLaborales}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formDiasDescanso">
+              <Form.Label>Días de Descanso</Form.Label>
+              <FormControl
+                type="number"
+                name="diasDescanso"
+                value={nuevoContrato.diasDescanso}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setMostrarFormulario(false)}
+          >
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={handleAgregarContrato}>
+            Agregar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={mostrarModalActualizar} onHide={cerrarModalActualizar}>
+        <Modal.Header closeButton>
+          <Modal.Title>Actualizar Contrato</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formNombreContratoActualizar">
+              <Form.Label>Nombre Contrato</Form.Label>
+              <FormControl
+                type="text"
+                name="nombreContrato"
+                value={valoresContratoSeleccionado.nombreContrato}
+                onChange={(e) =>
+                  setValoresContratoSeleccionado({
+                    ...valoresContratoSeleccionado,
+                    nombreContrato: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formFechaInicioActualizar">
+              <Form.Label>Fecha de Inicio</Form.Label>
+              <FormControl
+                type="date"
+                name="fechaInicio"
+                value={valoresContratoSeleccionado.fechaInicio}
+                onChange={(e) =>
+                  setValoresContratoSeleccionado({
+                    ...valoresContratoSeleccionado,
+                    fechaInicio: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formFechaFinActualizar">
+              <Form.Label>Fecha de Fin</Form.Label>
+              <FormControl
+                type="date"
+                name="fechaFin"
+                value={valoresContratoSeleccionado.fechaFin}
+                onChange={(e) =>
+                  setValoresContratoSeleccionado({
+                    ...valoresContratoSeleccionado,
+                    fechaFin: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formDiasLaboralesActualizar">
+              <Form.Label>Días Laborales</Form.Label>
+              <FormControl
+                type="number"
+                name="diasLaborales"
+                value={valoresContratoSeleccionado.diasLaborales}
+                onChange={(e) =>
+                  setValoresContratoSeleccionado({
+                    ...valoresContratoSeleccionado,
+                    diasLaborales: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formDiasDescansoActualizar">
+              <Form.Label>Días de Descanso</Form.Label>
+              <FormControl
+                type="number"
+                name="diasDescanso"
+                value={valoresContratoSeleccionado.diasDescanso}
+                onChange={(e) =>
+                  setValoresContratoSeleccionado({
+                    ...valoresContratoSeleccionado,
+                    diasDescanso: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={cerrarModalActualizar}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={handleActualizarContrato}>
+            Actualizar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
