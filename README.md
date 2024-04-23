@@ -55,7 +55,11 @@ https://drive.google.com/file/d/1Sn0g8p0NlGWkeKtrQ2ztxy-GAr9f7pOn/view?usp=drive
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive
-https://drive.google.com/file/d/1OxIBvJxc3qJllHSZeufG_ekpki7gq7-z/view?usp=drive_link
+https://drive.google.com/file/d/1rjRKyLCn6_Bt9fpgx0yj-wfHo9_ISl_R/view?usp=drive_link
+
+> [!IMPORTANT]
+> Se anexa el link de las pantallas funcionales
+https://docs.google.com/document/d/1pxPDX9uzIkbFo2mFuOiSv-wm2YGnKm73o0-S8wmOor0/edit?usp=sharing   
 
 ## Manual de Usuario
 ![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/a2ae203b-c92c-447e-9fb0-932e022b276d)
