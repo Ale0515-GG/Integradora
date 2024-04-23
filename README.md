@@ -1,4 +1,4 @@
-# Chrono management
+8# Chrono management
 ## Descripción del proyecto de Gestión de Empleados
 El Sistema de Gestión de Empleados se concibe como una solución integral para las empresas modernas, enfrentadas a la creciente necesidad de optimizar sus procesos internos y mejorar la gestión de su capital humano. Este sistema se propone simplificar y agilizar diversas áreas de la gestión de recursos humanos, ofreciendo herramientas específicas diseñadas para satisfacer las demandas tanto de los empleados como de los administradores.
 
@@ -89,6 +89,9 @@ https://trello.com/b/1vyyoX1B
 
 > [!IMPORTANT]
 > Se anexa el link de Notion donde se llevo a cabo toda la documentacion
+https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
+>
+
 https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
 
 
