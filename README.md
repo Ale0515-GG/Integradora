@@ -55,7 +55,7 @@ https://drive.google.com/file/d/1Sn0g8p0NlGWkeKtrQ2ztxy-GAr9f7pOn/view?usp=drive
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive
-https://drive.google.com/file/d/1rjRKyLCn6_Bt9fpgx0yj-wfHo9_ISl_R/view?usp=drive_link
+https://drive.google.com/file/d/1SJRsVm5gByxC07sUbdNY4UuAX4frzWJF/view?usp=drive_link
 
 > [!IMPORTANT]
 > Se anexa el link de las pantallas funcionales
