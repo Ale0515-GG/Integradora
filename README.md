@@ -10,6 +10,13 @@ La plataforma también ofrece herramientas para la gestión de actividades, cont
 
 En última instancia, el Sistema de Gestión de Empleados busca mejorar la eficiencia operativa de la empresa y promover un ambiente laboral más colaborativo y centrado en el bienestar de los empleados. Al proporcionar una plataforma intuitiva y completa, el sistema aspira a mejorar la productividad y la satisfacción laboral, contribuyendo así al éxito y la competitividad de la empresa en el mercado actual.
 
+## Drive con todos los documentos 
+https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sharing
+
+
+
+
+
 ## Lista de requisitos priorizada del proyecto refinada
 ### Historias de Usuario
 ![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/2376125f-8898-4771-a29d-d7d0dfe2ebe1)
