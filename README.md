@@ -10,11 +10,11 @@ Además, la plataforma ofrecerá herramientas para la gestión de actividades, c
 
 En resumen, el Sistema de Gestión de Empleados se propone mejorar la eficiencia operativa de la empresa y fomentar un ambiente laboral más colaborativo y centrado en el bienestar de los empleados. Al proporcionar una plataforma intuitiva y completa, busca aumentar la productividad y la satisfacción laboral, lo que contribuirá al éxito y la competitividad de la empresa en el mercado actual.
 
-## Drive con todos los documentos 
+## Documentos (en caso de que no abran)
 https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sharing
 
 
-
+----------------------------------------------------------------------------------------------------------------
 
 
 ## Lista de requisitos priorizada del proyecto refinada
