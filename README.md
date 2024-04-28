@@ -1,16 +1,13 @@
-#´*ChronoMagnament*´
+      ´*ChronoMagnament*´
 
 
 ´*Integrantes*´
 ---------------------------------------------------------------
 Palomares Barrientos Schoenstantt Andrea 
 
-
 Galván García Mayra Alejandra
 
-
 Salas Hernández Itzel Alejandra 
-
 
 Zúgiña Abundis Omar
 ------------------------------------------------------------------------
