@@ -40,7 +40,7 @@ https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sha
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/1r_4xi4OuTDWhT5Jx7wP6UAhIFS0fzqNS/view?usp=drive_open
+https://drive.google.com/file/d/1Eyffq9PDbxzKl7PVO3WQWYWioZt_to7-/view?usp=drive_link
 -----------------------------------------------------------------------------------------------------------------------
 
 ### Diagrama de casos de Uso
@@ -51,20 +51,25 @@ https://drive.google.com/file/d/1r_4xi4OuTDWhT5Jx7wP6UAhIFS0fzqNS/view?usp=drive
 https://docs.google.com/document/d/119Jf0QvwwltLrrF9cAymkuq4Tmuh2GK6pHvc65vT5ac/edit?usp=sharing
 --------------------------------------------------------------------------------------------------------------------
 ### Diagrama de Actividades
+![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/480c6451-dc04-4915-bcf5-6b50c83a8ce9)
 
+
+> [!IMPORTANT]
+> Se anexa el link del documento de drive:
+https://drive.google.com/file/d/1g5foCUuVZb0KedM1vB0jbfs4frTHsB3g/view?usp=sharing
 ## Modelo de base de datos refinada
 ![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/480c6451-dc04-4915-bcf5-6b50c83a8ce9)
 
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/1qq4QDBqIfy-YdQlR14WYPy5tGTBf3IPt/view?usp=sharing
+https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=sharing
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 ## Diagrama de Clases 
 
 > [!IMPORTANT]
-> Se anexa el link del documento de drive: 
-https://drive.google.com/file/d/1f-YW18LftcfWgeOAfywAF38J_njN2zTb/view?usp=sharing
+> Se anexa el link del documento de drive:
+> https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=sharing
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Arquitectura MVC y diagrama de componentes
 
