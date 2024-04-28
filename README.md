@@ -3,14 +3,17 @@
 
 ´*Integrantes*´
 ---------------------------------------------------------------
-Palomares Barrientos Schoenstantt Andrea 
+1. Palomares Barrientos Schoenstantt Andrea 
 
-Galván García Mayra Alejandra
+2. Galván García Mayra Alejandra
 
-Salas Hernández Itzel Alejandra 
+3. Salas Hernández Itzel Alejandra 
 
-Zúgiña Abundis Omar
+4. Zúgiña Abundis Omar
 
+
+
+------------------------------------------------------------------------------------------------------
 Descripción Proyecto
 
 
