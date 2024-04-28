@@ -1,12 +1,16 @@
 CRHONO MAGNAMENT
-##Integrantes 
+
+
+Integrantes 
 ---------------------------------------------------------------
 Palomares Barrientos Schoenstantt Andrea 
 Galván García Mayra Alejandra
 Salas Hernández Itzel Alejandra 
 Zúgiña Abundis Omar
 ------------------------------------------------------------------------
-##Descripción Proyecto
+Descripción Proyecto
+
+
 El proyecto tiene como objetivo principal crear un sistema integral de gestión de recursos humanos para empresas contemporáneas. Este sistema estará diseñado para simplificar y agilizar diversas áreas de la gestión de personal, proporcionando herramientas específicas que satisfagan las necesidades tanto de empleados como de administradores.
 
 Una de las características clave del sistema será su capacidad para administrar usuarios y roles de manera eficiente, permitiendo un control preciso de los accesos y privilegios en todas las sedes disponibles. Además, facilitará la asignación y seguimiento de capacitaciones, promoviendo el desarrollo profesional y la actualización de habilidades en un entorno laboral en constante cambio y competitividad.
