@@ -1,11 +1,17 @@
-CRHONO MAGNAMENT
+#´*ChronoMagnament*´
 
 
-Integrantes 
+´*Integrantes*´
 ---------------------------------------------------------------
 Palomares Barrientos Schoenstantt Andrea 
+
+
 Galván García Mayra Alejandra
+
+
 Salas Hernández Itzel Alejandra 
+
+
 Zúgiña Abundis Omar
 ------------------------------------------------------------------------
 Descripción Proyecto
