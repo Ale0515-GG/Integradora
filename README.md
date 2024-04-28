@@ -66,12 +66,6 @@ https://drive.google.com/file/d/16D1vTDpM3xBod9sDvJFywFq5QSfWOYfv/view?usp=shari
 https://drive.google.com/file/d/1OxIBvJxc3qJllHSZeufG_ekpki7gq7-z/view?usp=sharing
 
 -----------------------------------------------------------------------------------------------------------------------------
-
-> [!IMPORTANT]
-> Se anexa el link de las pantallas funcionales
-https://docs.google.com/document/d/1pxPDX9uzIkbFo2mFuOiSv-wm2YGnKm73o0-S8wmOor0/edit?usp=sharing
---------------------------------------------------------------------------------------------------------------------------------
-
 ## Manual de Usuario
 ![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/a2ae203b-c92c-447e-9fb0-932e022b276d)
 
