@@ -1,5 +1,5 @@
-#ChronoMagnament
-
+´*Crhono Management*´
+--------------------------------------------------------------------
 
 ´*Integrantes*´
 ---------------------------------------------------------------
@@ -10,7 +10,7 @@ Galván García Mayra Alejandra
 Salas Hernández Itzel Alejandra 
 
 Zúgiña Abundis Omar
-------------------------------------------------------------------------
+
 Descripción Proyecto
 
 
