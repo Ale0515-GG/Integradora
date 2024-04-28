@@ -78,10 +78,10 @@ https://drive.google.com/file/d/1tl55b_PiyhYhJw7qD4UbkqBgcJOLfutl/view?usp=shari
 ![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/ac65ca0c-5546-4bba-b8ba-8f314bf41cb1)
 
 > [!IMPORTANT]
-> Se anexa link´s de documentos de drive: 
--https://docs.google.com/spreadsheets/d/1qtn0W-sXsf5FgV0D0LElAcxwXJgx2UIJ/edit#gid=653563780
--https://docs.google.com/spreadsheets/d/1QRmAVFPxxnMeIaMfAiNePwQl4l5CgNTB/edit#gid=1499591377 (equipo Luis, linete, braulio)
--https://drive.google.com/file/d/1qRWR9ZuGbRMte9-OvGY6qqRM6LIAwVJI/view?usp=sharing (capturas de Testeo equipo Luis)
+> Se anexa link´s de documentos de drive:
+> https://docs.google.com/spreadsheets/d/1qtn0W-sXsf5FgV0D0LElAcxwXJgx2UIJ/edit#gid=653563780
+> https://docs.google.com/spreadsheets/d/1QRmAVFPxxnMeIaMfAiNePwQl4l5CgNTB/edit#gid=1499591377 (equipo Luis, linete, braulio)
+> https://drive.google.com/file/d/1qRWR9ZuGbRMte9-OvGY6qqRM6LIAwVJI/view?usp=sharing (capturas de Testeo equipo Luis)
 -------------------------------------------------------------------------------------------------------------------------
 
 ## Plan de iteraciones
@@ -97,6 +97,5 @@ https://trello.com/b/1vyyoX1B
 --------------------------------------------------------------------------------------------------------------
 > [!IMPORTANT]
 > Se anexa el link de Notion donde se llevo a cabo toda la documentacion
--https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
--https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
--https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sharing
+> https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
+> https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
