@@ -1,4 +1,4 @@
-                                                                                CRHONO MAGNAMENT
+CRHONO MAGNAMENT
 ##Integrantes 
 ---------------------------------------------------------------
 Palomares Barrientos Schoenstantt Andrea 
