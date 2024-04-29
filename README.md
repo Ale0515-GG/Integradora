@@ -36,88 +36,77 @@ https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sha
 
 ## Lista de requisitos priorizada del proyecto refinada
 ### Historias de Usuario
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/2376125f-8898-4771-a29d-d7d0dfe2ebe1)
+
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/1Eyffq9PDbxzKl7PVO3WQWYWioZt_to7-/view?usp=drive_link
+
 -----------------------------------------------------------------------------------------------------------------------
 
 ### Diagrama de casos de Uso
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/6015cc57-7894-4ddb-8541-718dfbdc609c)
+
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://docs.google.com/document/d/119Jf0QvwwltLrrF9cAymkuq4Tmuh2GK6pHvc65vT5ac/edit?usp=sharing
+
 --------------------------------------------------------------------------------------------------------------------
 ### Diagrama de Actividades
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/480c6451-dc04-4915-bcf5-6b50c83a8ce9)
+
 
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/1g5foCUuVZb0KedM1vB0jbfs4frTHsB3g/view?usp=sharing
+
+
 ## Modelo de base de datos refinada
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/480c6451-dc04-4915-bcf5-6b50c83a8ce9)
+
 
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=sharing
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 ## Diagrama de Clases 
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-> https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=sharing
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Arquitectura MVC y diagrama de componentes
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/16D1vTDpM3xBod9sDvJFywFq5QSfWOYfv/view?usp=sharing
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 ## Proceso de Instalación de la aplicación.
-![image](https://drive.google.com/file/d/1SJRsVm5gByxC07sUbdNY4UuAX4frzWJF/view?usp=drive_link)
 
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
-https://drive.google.com/file/d/1OxIBvJxc3qJllHSZeufG_ekpki7gq7-z/view?usp=sharing
+
 
 -----------------------------------------------------------------------------------------------------------------------------
 ## Manual de Usuario
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/a2ae203b-c92c-447e-9fb0-932e022b276d)
+
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive
-https://drive.google.com/file/d/1tl55b_PiyhYhJw7qD4UbkqBgcJOLfutl/view?usp=sharing
+
+
 --------------------------------------------------------------------------------------------------------------------------
 
 ## Código Fuente documentado y pruebas de caja negra.
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/ac65ca0c-5546-4bba-b8ba-8f314bf41cb1)
 
 > [!IMPORTANT]
 > Se anexa link´s de documentos de drive:
-> https://docs.google.com/spreadsheets/d/1qtn0W-sXsf5FgV0D0LElAcxwXJgx2UIJ/edit#gid=653563780
-> https://docs.google.com/spreadsheets/d/1QRmAVFPxxnMeIaMfAiNePwQl4l5CgNTB/edit#gid=1499591377 (equipo Luis, linete, braulio)
-> https://drive.google.com/file/d/1qRWR9ZuGbRMte9-OvGY6qqRM6LIAwVJI/view?usp=sharing (capturas de Testeo equipo Luis)
+
+
 -------------------------------------------------------------------------------------------------------------------------
 
 ## Plan de iteraciones
 > [!IMPORTANT]
 > Se anexa el link del trello donce se llevo a cabo el registro de actividades
-https://trello.com/b/11rc9Yz5
 
----------------------------------------------------------------------------------------------------------------
-> [!IMPORTANT]
-> Se anexa el link del trello donce se llevo a cabo el registro de las daylis
-https://trello.com/b/1vyyoX1B
 
 --------------------------------------------------------------------------------------------------------------
-> [!IMPORTANT]
-> Se anexa el link de Notion donde se llevo a cabo toda la documentacion
-> https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
-> https://www.notion.so/ChronoManagement-f97e16fb3e9e45e19ec5e52cedd23800?pvs=4
