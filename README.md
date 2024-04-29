@@ -55,9 +55,12 @@ https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sha
 ## Lista de requisitos priorizada del proyecto refinada
 ### Historias de Usuario
 
+![Screenshot 2024-04-29 155648](https://github.com/Ale0515-GG/Integradora/assets/116208731/7ad86f7e-9b15-4c2d-b64e-621bae2522f8)
+
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
+> https://drive.google.com/file/d/12T3nLbu5AF8SOGQXupu4deGkxHf7zlNh/view?usp=sharing
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -142,10 +145,13 @@ Portada de libre diseño indicando la temática del proyecto.
 
 -----------------------------------------------------------------------------------------------------------------------------
 ## Manual de Usuario
+![Screenshot 2024-04-29 155648](https://github.com/Ale0515-GG/Integradora/assets/116208731/4305f86e-72a3-4431-aa7c-8527facf2292)
 
 
 > [!IMPORTANT]
-> Se anexa el link del documento de drive
+> Se anexa los links del documento de drive
+> > https://drive.google.com/file/d/12T3nLbu5AF8SOGQXupu4deGkxHf7zlNh/view?usp=sharing
+> > https://drive.google.com/file/d/1tl55b_PiyhYhJw7qD4UbkqBgcJOLfutl/view?usp=sharing
 
 
 --------------------------------------------------------------------------------------------------------------------------
