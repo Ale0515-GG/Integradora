@@ -118,14 +118,13 @@ https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=drive
 
 ## Proceso de Instalación de la aplicación.
 
+![Screenshot 2024-04-29 152758](https://github.com/Ale0515-GG/Integradora/assets/116208731/0e394219-505f-4d55-83ff-eccb681030fb)
 
->Mediante un manual en formato PDF el equipo deberá generar un documento donde
+> Mediante un manual en formato PDF el equipo deberá generar un documento donde
 describa el proceso de instalación de la aplicación en un entorno de desarrollo y/o
 producción paso a paso, se deberán agregar imágenes en donde se menciona el paso a
 paso.
 Portada de libre diseño indicando la temática del proyecto.
-
-![Screenshot 2024-04-29 152758](https://github.com/Ale0515-GG/Integradora/assets/116208731/0e394219-505f-4d55-83ff-eccb681030fb)
 
 
 > [!IMPORTANT]
