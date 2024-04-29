@@ -110,9 +110,13 @@ https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=drive
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Arquitectura MVC y diagrama de componentes
+![Screenshot 2024-04-29 153428](https://github.com/Ale0515-GG/Integradora/assets/116208731/ac40637b-3a8e-4b08-a5bc-112e06742161)
+
+
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
+> https://drive.google.com/file/d/16D1vTDpM3xBod9sDvJFywFq5QSfWOYfv/view?usp=sharing
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
