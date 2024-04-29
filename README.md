@@ -80,7 +80,7 @@ https://drive.google.com/file/d/16D1vTDpM3xBod9sDvJFywFq5QSfWOYfv/view?usp=shari
 -------------------------------------------------------------------------------------------------------------------------------------
 
 ## Proceso de Instalación de la aplicación.
-![image](https://github.com/Ale0515-GG/Integradora/assets/116208731/1665c263-2dee-4f08-956d-f1c6adf25580)
+![image](https://drive.google.com/file/d/1SJRsVm5gByxC07sUbdNY4UuAX4frzWJF/view?usp=drive_link)
 
 
 > [!IMPORTANT]
