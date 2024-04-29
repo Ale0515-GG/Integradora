@@ -78,10 +78,12 @@ extends
 --------------------------------------------------------------------------------------------------------------------
 ### Diagrama de Actividades
 
+![Screenshot 2024-04-29 154258](https://github.com/Ale0515-GG/Integradora/assets/116208731/f988d683-6c47-4294-a114-0c1516a9f244)
 
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
+> https://drive.google.com/file/d/1g5foCUuVZb0KedM1vB0jbfs4frTHsB3g/view?usp=sharing
 
 
 ## Diagrama de Clases o modelo de la base de datos refinada. 
