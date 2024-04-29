@@ -76,12 +76,21 @@ https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sha
 > Se anexa el link del documento de drive:
 
 
-## Modelo de base de datos refinada
+## Diagrama de Clases o modelo de la base de datos refinada. 
 
-
+> Diagrama de clase o interfaces (Atributos o características, métodos) con relaciones entre
+clases
+Modelo de la base de datos relacional o no relacional
+Estándar de base de datos en donde se mencionan los estándares empleados de manera
+clara en : tablas, atributos, procedimientos almacenados, índices, claves primarias y
+claves foráneas..
+Estándar de programación en donde se mencionan los estándares de componentes, clases
+o interfaces,
 
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
+https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=drive_link
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 ## Diagrama de Clases 
