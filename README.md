@@ -158,15 +158,24 @@ Portada de libre diseño indicando la temática del proyecto.
 
 ## Código Fuente documentado y pruebas de caja negra.
 
+![Screenshot 2024-04-29 160106](https://github.com/Ale0515-GG/Integradora/assets/116208731/8ddcaa3d-69ce-41a7-8c49-a940fcdf4138)
+
+
 > [!IMPORTANT]
 > Se anexa link´s de documentos de drive:
+> https://docs.google.com/spreadsheets/d/1qtn0W-sXsf5FgV0D0LElAcxwXJgx2UIJ/edit?usp=sharing&ouid=109045646592807152322&rtpof=true&sd=true
 
 
 -------------------------------------------------------------------------------------------------------------------------
 
 ## Plan de iteraciones
+
+![Screenshot 2024-04-29 160227](https://github.com/Ale0515-GG/Integradora/assets/116208731/df3dbe54-e373-41fe-a10d-1d8364969187)
+
+
 > [!IMPORTANT]
-> Se anexa el link del trello donce se llevo a cabo el registro de actividades
+> Se anexa el link :
+> https://docs.google.com/spreadsheets/d/1yObebMEdo9d_9ewi9kfeSdYFinrKV5GL/edit?usp=sharing&ouid=109045646592807152322&rtpof=true&sd=true
 
 
 --------------------------------------------------------------------------------------------------------------
