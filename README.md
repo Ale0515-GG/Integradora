@@ -85,6 +85,12 @@ extends
 
 
 ## Diagrama de Clases o modelo de la base de datos refinada. 
+
+1. Diagrama de clase o interfaces (Atributos o características, métodos) con relaciones entre clases
+2. Modelo de la base de datos relacional o no relacional
+3. Estándar de la base de datos
+4 . Estándar de programación
+   
 ![jjj](https://github.com/Ale0515-GG/Integradora/assets/116208731/514d95d5-445f-4e1e-b43e-55e3d634cb66)
 
 
@@ -102,13 +108,9 @@ o interfaces,
 https://drive.google.com/file/d/1mFiXioNLLtVMfvSrrtWH09Ht6Ydcv_8H/view?usp=drive_link
 
 
------------------------------------------------------------------------------------------------------------------------------------------------------
-## Diagrama de Clases 
-
-> [!IMPORTANT]
-> Se anexa el link del documento de drive:
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 ## Arquitectura MVC y diagrama de componentes
 ![Screenshot 2024-04-29 153428](https://github.com/Ale0515-GG/Integradora/assets/116208731/ac40637b-3a8e-4b08-a5bc-112e06742161)
 
