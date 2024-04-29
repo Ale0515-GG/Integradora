@@ -64,8 +64,16 @@ https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sha
 ### Diagrama de casos de Uso
 
 
+![Screenshot 2024-04-29 152512](https://github.com/Ale0515-GG/Integradora/assets/116208731/7defb9da-bfe2-4502-8321-1a8204ee68b9)
+
+> Donde se identifique la frontera del sistema, el
+nombre del actor, nombre correcto del caso de uso, dependencias include y
+extends
+
+
 > [!IMPORTANT]
 > Se anexa el link del documento de drive:
+> https://docs.google.com/document/d/119Jf0QvwwltLrrF9cAymkuq4Tmuh2GK6pHvc65vT5ac/edit?usp=sharing
 
 --------------------------------------------------------------------------------------------------------------------
 ### Diagrama de Actividades
