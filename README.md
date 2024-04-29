@@ -31,9 +31,9 @@ En resumen, el Sistema de Gestión de Empleados se propone mejorar la eficiencia
 -----------------------------
 ´*Duración de Proyecto*´
 ---------------------------
+El proyecto de gestión de turnos que hemos estado desarrollando durante casi 4 meses tiene como objetivo principal simplificar y agilizar la forma en que manejamos todo lo relacionado con el personal en nuestra empresa.
 
-
-´*Riegos*´
+´*Riesgos*´
 -------------
 Un riesgo que pudimos encontrar fue el de la seguridad de los datos de los empleados, si nuestro sistema no contaba con estas medidas de seguridad adecuadas como la encryptación de los datos, posibles errores de la gestión de roles y accesos si nuestro sistema no gestionaba adecuadamente los roles y los niveles de acceso pudiera ser que los empleados tuvieran acceso a información confidencial o funciones no correspondidas. 
 
