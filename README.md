@@ -77,6 +77,8 @@ https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sha
 
 
 ## Diagrama de Clases o modelo de la base de datos refinada. 
+![jjj](https://github.com/Ale0515-GG/Integradora/assets/116208731/514d95d5-445f-4e1e-b43e-55e3d634cb66)
+
 
 > Diagrama de clase o interfaces (Atributos o características, métodos) con relaciones entre
 clases
