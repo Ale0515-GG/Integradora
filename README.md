@@ -14,7 +14,8 @@
 
 
 ------------------------------------------------------------------------------------------------------
-Descripción Proyecto
+´*Descripción Proyecto*´
+--------------------------
 
 
 El proyecto tiene como objetivo principal crear un sistema integral de gestión de recursos humanos para empresas contemporáneas. Este sistema estará diseñado para simplificar y agilizar diversas áreas de la gestión de personal, proporcionando herramientas específicas que satisfagan las necesidades tanto de empleados como de administradores.
@@ -26,6 +27,23 @@ Otra funcionalidad fundamental será la gestión de solicitudes de contratos y v
 Además, la plataforma ofrecerá herramientas para la gestión de actividades, contratos y áreas en todas las sedes, facilitando la organización del trabajo y el seguimiento de tareas en un entorno distribuido. La posibilidad de cargar archivos relevantes al sistema contribuirá a centralizar la documentación importante, mejorando la accesibilidad y la gestión de información crítica para la empresa y sus empleados.
 
 En resumen, el Sistema de Gestión de Empleados se propone mejorar la eficiencia operativa de la empresa y fomentar un ambiente laboral más colaborativo y centrado en el bienestar de los empleados. Al proporcionar una plataforma intuitiva y completa, busca aumentar la productividad y la satisfacción laboral, lo que contribuirá al éxito y la competitividad de la empresa en el mercado actual.
+
+-----------------------------
+´*Duración de Proyecto*´
+---------------------------
+
+
+´*Riegos*´
+-------------
+Un riesgo que pudimos encontrar fue el de la seguridad de los datos de los empleados, si nuestro sistema no contaba con estas medidas de seguridad adecuadas como la encryptación de los datos, posibles errores de la gestión de roles y accesos si nuestro sistema no gestionaba adecuadamente los roles y los niveles de acceso pudiera ser que los empleados tuvieran acceso a información confidencial o funciones no correspondidas. 
+
+´*Organigarama*´
+-------------------------
+![Blue and Green Professional Organizational Chart Graph](https://github.com/Ale0515-GG/Integradora/assets/145499403/af10ee30-d59b-4fb0-b25c-1cc873980a71)
+
+´*Cronograma*´
+------------------------------------------------
+![image](https://github.com/Ale0515-GG/Integradora/assets/145499403/a234735f-5ae6-4492-954b-bb47434a1212)
 
 ## Documentos (en caso de que no abran)
 https://drive.google.com/drive/folders/1MNahYhdMeY-cw96ynUIwtLC-HbgWCifn?usp=sharing
